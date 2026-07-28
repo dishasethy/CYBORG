@@ -1,0 +1,8 @@
+{
+  "name": "Cyborg Robotics ",
+  "description": "Innovation in Robotics and AI at NIT Rourkela. A dynamic ensemble of students driven by a shared passion for cutting-edge robotics and artificial intelligence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
