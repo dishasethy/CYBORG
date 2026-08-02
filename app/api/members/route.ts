@@ -43,8 +43,8 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         success: true,
-        message: "Member record successfully saved in MongoDB / Registry.",
-        savedToMongoDb: result.savedToDb,
+        message: "Member record successfully saved in Registry.",
+        savedToMongoDb: false,
         data: result.member,
       },
       { status: 201 }

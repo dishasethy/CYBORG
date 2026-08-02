@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShieldCheck, Lock, Mail, User, KeyRound, Cpu, CheckCircle2, ArrowRight, Github, Fingerprint, LogOut, AlertCircle, Building2, Hash, Box } from 'lucide-react';
 import { UserSession } from '../../types';
-import ItemsManagementView from '../inventory/ItemsManagementView';
 
 interface AuthViewProps {
   session: UserSession;
   setSession: React.Dispatch<React.SetStateAction<UserSession>>;
   onNavigateHome: () => void;
-  onNavigateItems?: () => void;
 }
 
-export default function AuthView({ session, setSession, onNavigateHome, onNavigateItems }: AuthViewProps) {
+export default function AuthView({ session, setSession, onNavigateHome }: AuthViewProps) {
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
   const [isLoading, setIsLoading] = useState(false);
   const [feedbackMsg, setFeedbackMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
@@ -151,9 +149,6 @@ export default function AuthView({ session, setSession, onNavigateHome, onNaviga
               </div>
             </div>
           </motion.div>
-
-          {/* CYBORG ITEMS MANAGEMENT SYSTEM */}
-          <ItemsManagementView session={session} />
         </div>
       ) : (
         /* Unauthenticated Auth Container */

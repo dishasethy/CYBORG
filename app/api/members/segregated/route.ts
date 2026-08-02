@@ -6,7 +6,7 @@ export async function GET() {
     const segregatedData = await getSegregatedMembers();
     return NextResponse.json({
       success: true,
-      schema: "Mongo_MemberModel_v1",
+      schema: "Static_MemberModel_v1",
       description: "Segregated hierarchically: Year -> Subsystem -> Members",
       data: segregatedData,
     });

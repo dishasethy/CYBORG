@@ -11,7 +11,6 @@ import ProjectsView from './features/projects/ProjectsView';
 import AchievementsView from './features/achievements/AchievementsView';
 import TeamView from './features/team/TeamView';
 import AuthView from './features/auth/AuthView';
-import ItemsManagementView from './features/inventory/ItemsManagementView';
 import RoboticArmCursor from './components/ui/fragment/RoboticArmCursor';
 import SocialSidebar from './components/ui/fragment/SocialSidebar';
 import Footer from './components/Footer';
@@ -39,8 +38,6 @@ export default function App() {
     switch (activeTab) {
       case 'home':
         return <HomeView onNavigate={(tab) => setActiveTab(tab)} />;
-      case 'items':
-        return <ItemsManagementView session={session} onLoginClick={() => setActiveTab('auth')} />;
       case 'events':
         return <EventsView />;
       case 'projects':
@@ -50,7 +47,7 @@ export default function App() {
       case 'team':
         return <TeamView />;
       case 'auth':
-        return <AuthView session={session} setSession={setSession} onNavigateHome={() => setActiveTab('home')} onNavigateItems={() => setActiveTab('items')} />;
+        return <AuthView session={session} setSession={setSession} onNavigateHome={() => setActiveTab('home')} />;
       default:
         return <HomeView onNavigate={(tab) => setActiveTab(tab)} />;
     }

@@ -4,7 +4,6 @@ export * from '../config/EventsView';
 export * from '../config/ProjectsView';
 export * from '../config/AchievementsView';
 export * from '../config/TeamView';
-export * from '../config/ItemsView';
 
 export const DEFAULT_AVATAR = "https://lh3.googleusercontent.com/aida-public/AB6AXuAeXW6pJgvLLhJeuoUVx8gEU6DulDjTzUWXhl9-mVWOyyzPUbsYkyKHKFKa6IoBDhcHqPkhyHqA97lpQFyETUhL86LoQrNDR5xNUypCuj-NIgrwpJKyh8FpKTw5XHAz075zFxrvXNxQXlvXRcfjV6vy-ICZaxAMHrjoQfX9EdT15SCQTos6MfI81hvsx-OGXcomvari_DxXpWMoOCRdACVJjFIXlU-NSecJ79wcz5VcqnszFeJ5YDGRDAF3d94mNZ0RuCnBcVf-TMFJ";
 

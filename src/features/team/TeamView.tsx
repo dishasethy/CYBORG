@@ -409,7 +409,7 @@ export default function TeamView() {
               <div className="space-y-1">
                 <div className="flex items-center gap-2 text-[#00F2FF] font-mono text-xs">
                   <Database className="w-4 h-4" />
-                  <span>MONGODB MONGOOSE DOCUMENT WRITER</span>
+                  <span>LOCAL REGISTRY STORAGE WRITER</span>
                 </div>
                 <h3 className="font-cyber font-bold text-xl text-white uppercase tracking-tight">
                   REGISTER MEMBER RECORD
