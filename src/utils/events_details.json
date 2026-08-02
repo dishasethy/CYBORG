@@ -1,0 +1,37 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "DEATH RACE",
+      "date": "2025-11-7",
+      "body": "Death Race, the flagship event of Cyborg, the Robotics and Automation club at NITR, is a highly anticipated competition held annually during Innovision, the tech fest of NITR. Drawing students from various colleges, this thrilling 2-day event captivates every bot enthusiast. The challenge for participants is to build a manually operated bot capable of navigating a perilous arena filled with deadly wedges, flames, and numerous obstacles. As one of the most exhilarating events of the fest, it garners immense enthusiasm and excitement from both participants and the audience.",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719498843/IMG_20221023_033521_064_kvlzt5.jpg",
+      "ps": "https://res.cloudinary.com/diml2eds6/image/upload/v1761241737/DEATH_RACE_2K25_jzywlu.pdf"
+    },
+    {
+      "id": 2,
+      "name": "ROBO SUMO",
+      "date": "2025-11-7",
+      "body": "Robo Sumo Wars is an exciting robotics event conducted by Cyborg during Innovision where autonomous robots face off in intense one-on-one sumo-style matches. Competitors design powerful robots to push their opponents out of a circular ring.In each match, two robots enter a circular ring, and drivers use their reflexes and strategy to push the opposing bot out of bounds. The combination of engineering ingenuity and real-time tactics makes Robo Sumo Wars a crowd-pleasing spectacle where only the strongest and best-driven robots emerge victorious.",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1728615611/robo_sumo_qfbmhi.jpg",
+      "ps": "https://res.cloudinary.com/diml2eds6/image/upload/v1761241714/ROBO_SUMO_WAR_2K25_hdhp4j.pdf"
+    },
+
+    {
+      "id": 3,
+      "name": "HACK SAMAGAM",
+      "date": "2024-01-18",
+      "body": "Samagam: Crossing the boundaries, a mega-event brought to you by the combined forces of APS, Cyborg, ML4E & OpenCode, is here to ignite your passion for tech! Get ready for competitions, prizes, and endless fun as we explore the frontiers of technology together. Mark your calendars for the Orientation.",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719498843/pasted-image_2_fuoypm.jpg",
+      "ps": null
+    },
+    {
+      "id": 4,
+      "name": "TREAD-O-QUEST",
+      "date": "2024-01-27",
+      "body": "Tread-O-Quest is an exciting robotics competition that challenges students to design, build, and program their own line-following robots. It is also the first hurdle students must cross to get inducted into Cyborg. Participants are tasked with creating robots capable of autonomously navigating a complex maze of twisting paths, hairpin turns, and intersections marked by high-contrast lines on the arena floor. The competition tests students' skills in sensor integration, motor control, and algorithmic decision-making as their robots race against the clock and each other to complete the course with precision and speed.",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719498843/image_10_e7mjx1.png",
+      "ps": null
+    }
+  ]
+}

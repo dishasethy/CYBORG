@@ -1,0 +1,491 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "ANVRIT-The Intelligent Ground Vehicle",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479912/igvc_fpbyua.jpg",
+      "tech stack": [
+        "ROS",
+        "Python",
+        "OpenCV",
+        "Arduino",
+        "Raspberry Pi",
+        "NVIDIA Jetson",
+        "Gazebo",
+        "SLAM",
+        "Machine Learning"
+      ],
+      "body": "The Intelligent Ground Vehicle Competition (IGVC) challenges student teams to develop autonomous vehicles capable of navigating complex outdoor courses, focusing on tasks such as path following, obstacle detection, avoidance, and GPS navigation. This event advances technology and education in autonomous systems, offering hands-on experience in designing, constructing, and programming intelligent robots. Teams utilize a comprehensive tech stack: Raspberry Pi for sensor data acquisition and initial processing, NVIDIA Jetson for high-performance tasks like real-time image processing and deep learning, and Arduino for precise hardware control. Python is used for developing algorithms and integrating subsystems, while ROS manages communication between software modules and hardware components. Machine learning techniques improve decision-making, OpenCV handles real-time image processing, Gazebo provides a robust simulation environment for testing algorithms, and SLAM enables accurate mapping and localization in real-time. ",
+      "contributors": [
+        {
+          "name": "Pratik Kumar Sahoo",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347351/IMG_20240606_115824_-_Pratik_Kumar_Sahoo_ixxdil.jpg"
+        },
+        {
+          "name": "Romala Mishra",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719472176/IMG_3416_-_Romala_Mishra_wt8prv.jpg"
+        },
+        {
+          "name": "Sreeharsh kowdodi",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719471535/image_1_bfceje.png"
+        },
+        {
+          "name": "Raj Pattnaik",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347377/IMG_20240613_114659_-_Raj_Pattnaik_zq2bai.jpg"
+        },
+        {
+          "name": "Sovit Patel",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347483/pic-comp_11zon_-_Sovit_Patel_timpu4.jpg"
+        },
+        {
+          "name": "Shantanu Panda ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719472729/shan_exg4qz.jpg"
+        },
+        {
+          "name": "Shivam Gupta",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347379/my_photo_2_-_Shivam_Gupta_oe7oby.jpg"
+        },
+        {
+          "name": "Snehil Sah",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347378/IMG_20240613_155428_-_Snehil_Sah_jzysdl.jpg"
+        },
+        {
+          "name": "Siba Sankar Pradhan",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347345/298288225_3272214723105002_6305042898751308061_n_1_-_Sibasankar_Pradhan_jixy3u.jpg"
+        },
+        {
+          "name": "Aditya Kumar Ray",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/image1_-_%C3%82D%C3%8ETY%C3%85_fpfwov.jpg"
+        },
+        {
+          "name": "Satyajit singh ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347344/DocScanner_Feb_8_2024_22-12_-_Satyajit_Singh_qvi2no.jpg"
+        },
+        {
+          "name": "Soumitra Naik ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347343/20230513_113811_-_Soumitra_Naik_srjxuj.jpg"
+        },
+        {
+          "name": "Ansuman Patro ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347350/IMG_20240606_105109_-_Ansuman_Patro_vktns6.jpg"
+        },
+        {
+          "name": "Akshar Dash",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347347/IMG_20230301_114831092_3_-_Akshar_Dash_zrkzoa.jpg"
+        },
+        {
+          "name": "Lohith Dayantri",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347381/photograph_-_Lohith_Dayantri_cwsjak.jpg"
+        },
+        {
+          "name": "Sanskar Panda",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347556/PXL_20240507_071706812_-_Sanskar_Panda_1_kcg6hu.jpg"
+        },
+        {
+          "name": "Anirudh Venkateswaran ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/aniphoto_-_Anirudh_Venkateswaran_cjahiu.jpg"
+        },
+        {
+          "name": "Tanishq Shastri",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/20240604_235615_-_125_Tanishq_mzp3tp.jpg"
+        },
+        {
+          "name": "Anup Kumar Nayak",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/image_1_-_himanshu_nayak_tkzzza.jpg"
+        },
+        {
+          "name": "Soumya Sourav",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347345/434751945_1273598246932452_8508940523697671726_n_18064757668509812_-_Soumya_Sourav_rz6cxf.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Rourkela Steel Plant Industrial Project",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479878/image_2_s3una3.png",
+      "tech stack": [
+        "Arduino",
+        "Control systems",
+        "Signal processing",
+        "OpenPLC",
+        "Power electronics"
+      ],
+      "body": "This project aims to develop a modernized industrial motor control system that replaces an outdated Programmable Logic Controller (PLC) with an Arduino-based solution. The system will leverage Arduino's versatility and affordability to precisely control the speed of a motor using a PID (Proportional-Integral-Derivative) control algorithm, while also monitoring and regulating the motor's field current. The unique aspect of this project is the integration of a thyristor stack, which will provide controlled power to the motor based on the Arduino's firing signals. This project will deliver a cost-effective, flexible, and efficient solution for industrial motor control applications.",
+      "contributors": [
+        {
+          "name": "Sovit Patel",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347483/pic-comp_11zon_-_Sovit_Patel_timpu4.jpg"
+        },
+        {
+          "name": "Monalisa Behera",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347344/100671634_-_Monalisa_Behera_ugl8rf.jpg"
+        },
+        {
+          "name": "Raj Pattnaik",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347377/IMG_20240613_114659_-_Raj_Pattnaik_zq2bai.jpg"
+        },
+        {
+          "name": "Adarsh Priyaranjan ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347462/PhotoSize32kb_-_Adarsh_Priyaranjan_wacz13.jpg"
+        },
+        {
+          "name": "Rudra Nandkishor Anjiwadekar ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347716/rudra_wypmgy.jpg"
+        },
+        {
+          "name": "Saumit Pradhan ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347871/WhatsApp_Image_2024-06-13_at_17.30.33_-_SAUMIT_PRADHAN_xgbodz.jpg"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Automated Door Lock",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479920/image_5_g0n4lh.png",
+      "tech stack": ["Deep learning", "OpenCV", "Raspberry Pi", "PCB design"],
+      "body": "This project aims to develop a secure and advanced door lock system that leverages the power of the Raspberry Pi, face recognition technology, and face spoofing detection using Deep-Pixel-wise-Binary-Supervision (DPBF). The system will provide a highly secure and convenient access control mechanism by authenticating users through facial recognition while ensuring protection against potential spoofing attacks.",
+      "contributors": [
+        {
+          "name": "Monalisa Behera",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347344/100671634_-_Monalisa_Behera_ugl8rf.jpg"
+        },
+        {
+          "name": "Raj Pattnaik",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347377/IMG_20240613_114659_-_Raj_Pattnaik_zq2bai.jpg"
+        },
+        {
+          "name": "Anay Pareek",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/1000107290_-_Anay_Pareek_ev7pmf.jpg"
+        },
+        {
+          "name": "Arpit Mohanty",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719469615/image_i5xapl.png"
+        },
+        {
+          "name": "Dhavala Keerthi Priya",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347379/Keerthi_-_keerthi_priya_un6kzu.jpg"
+        },
+        {
+          "name": "Abhishek Beuria",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347350/IMG_20240519_11324_-_Abhisek_Beuria_ys44di.jpg"
+        },
+        {
+          "name": "Lohith Dayantri",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347381/photograph_-_Lohith_Dayantri_cwsjak.jpg"
+        },
+        {
+          "name": "Saumit Pradhan",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347871/WhatsApp_Image_2024-06-13_at_17.30.33_-_SAUMIT_PRADHAN_xgbodz.jpg"
+        },
+        {
+          "name": "Saisugash Senthil",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347379/passport_photo_-_Saisugash_Senthil_nspcbs.jpg"
+        },
+        {
+          "name": "Anirudh Venkateshwaran",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/aniphoto_-_Anirudh_Venkateswaran_cjahiu.jpg"
+        },
+        {
+          "name": "Debabrata Bhagat",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347343/deb_v8dkmg.jpg"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Swarm Robots",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479922/image_6_phqume.png",
+      "tech stack": [
+        "PixHawk",
+        "ArduPilot",
+        "Arduino",
+        "Raspberry pi",
+        "C++",
+        "Python"
+      ],
+      "body": "A group of 4-6 aerial vehicles, with only one control unit. To have coordinated motion by moving together forward, backward, left and right (100m each direction). No external controls are allowed.",
+      "contributors": [
+        {
+          "name": "Diksha Kumari",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347377/IMG_20240613_081143_-_Diksha_Kumari_am8rgw.jpg"
+        },
+        {
+          "name": "Lohith Dayantri",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347381/photograph_-_Lohith_Dayantri_cwsjak.jpg"
+        },
+        {
+          "name": "Rohan Mohapatra",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347378/IMG-20240606-WA0008_-_ROHAN_MOHAPATRA_jyrk3s.jpg"
+        },
+        {
+          "name": "Tanisq Shastri",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/20240604_235615_-_125_Tanishq_mzp3tp.jpg"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Micro Mouse",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479921/image_7_pveyek.png",
+      "tech stack": ["Arduino", "C++", "PCB design", "Solidworks"],
+      "body": "A micromouse robot is a small autonomous vehicle designed to navigate and solve mazes. It typically features sensors to detect walls, a microcontroller for processing, and motors for movement. The goal is for the robot to find the fastest path from the start to the center of the maze, often using algorithms for pathfinding.",
+      "contributors": [
+        {
+          "name": "Aditya Kumar Ray",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/image1_-_%C3%82D%C3%8ETY%C3%85_fpfwov.jpg"
+        },
+        {
+          "name": "Amit Prasad Singh",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347539/PXL_20231112_155007335_-_Amit_Singh_wb7v4i.jpg"
+        },
+        {
+          "name": "Sandeep Kumar Das",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347737/sandeep_-_Sandeep_Das_byoocm.jpg"
+        },
+        {
+          "name": "Ansuman Patro",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347350/IMG_20240606_105109_-_Ansuman_Patro_vktns6.jpg"
+        },
+        {
+          "name": "Abhishek Beuria",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347350/IMG_20240519_11324_-_Abhisek_Beuria_ys44di.jpg"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Key-App",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479889/image_8_ib3yhx.png",
+      "tech stack": ["React js", "Firebase", "Node js", "Express js", "CSS"],
+      "body": "The Cyborg Key App is a mobile app that helps members manage and track the possession of club keys. Users can request to borrow a key through the app, and the current key holder can approve or deny the request. Upon approval, the app updates a digital log with the requester's name and timestamp. Members can view the log to see who currently has the keys, streamlining communication and ensuring accountability within the club.",
+      "contributors": [
+        {
+          "name": "Anay Pareek",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/1000107290_-_Anay_Pareek_ev7pmf.jpg"
+        },
+        {
+          "name": "Pabitra Kumar Bebartta",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347350/IMG_20240606_000619_-_Pabitra_Kumar_Bebartta_ogznsd.jpg"
+        },
+        {
+          "name": "Debabrata Bhagat",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347343/deb_v8dkmg.jpg"
+        },
+        {
+          "name": "Abhijeet Kumar Sourav",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719473124/abhije_tgxtdu.jpg"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Robotic Arm",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479910/Picture1_nwaiuf.png",
+      "tech stack": ["Yolo V8", "ROS", "Arduino", "Solidworks"],
+      "body": "A robotic arm that has abilities to detect individual packages from a group of packages. Pick a package from that group and drop it in the Drop-Zone with the shipment barcode present on top when dropped in the Drop-Zone. The system includes a flexible picking arm of 5 DOF with a suction end effector and a flipping mechanism for orientation. It utilizes vision and sensor systems (Xbox KINECT, laser sensors, etc.) connecting to a live PC for input processing.",
+      "contributors": [
+        {
+          "name": "Pratik Kumar Sahoo",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347351/IMG_20240606_115824_-_Pratik_Kumar_Sahoo_ixxdil.jpg"
+        },
+        {
+          "name": "Diksha Kumari",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347377/IMG_20240613_081143_-_Diksha_Kumari_am8rgw.jpg"
+        },
+        {
+          "name": "Adasrsh Priyaranjan",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347462/PhotoSize32kb_-_Adarsh_Priyaranjan_wacz13.jpg"
+        },
+        {
+          "name": "Shantanu Panda",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719472729/shan_exg4qz.jpg"
+        },
+        {
+          "name": "Shivam Gupta",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347379/my_photo_2_-_Shivam_Gupta_oe7oby.jpg"
+        },
+        {
+          "name": "Amit Prasad Singh",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347539/PXL_20231112_155007335_-_Amit_Singh_wb7v4i.jpg"
+        },
+        {
+          "name": "Ansuman Patro",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347350/IMG_20240606_105109_-_Ansuman_Patro_vktns6.jpg"
+        },
+        {
+          "name": "Tanisq Shastri",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/20240604_235615_-_125_Tanishq_mzp3tp.jpg"
+        },
+        {
+          "name": "Anup Kumar Nayak",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/image_1_-_himanshu_nayak_tkzzza.jpg"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Hexapod",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479880/image_9_jlcwze.png",
+      "tech stack": [
+        "ROS2",
+        "Inverse Kinematics",
+        "ESP32",
+        "PCB design",
+        "Communication Protocol"
+      ],
+      "body": "The hexapod robot represents a pinnacle of mechanical ingenuity, designed meticulously to mimic the agile locomotion of insects such as spiders and ants. With six legs featuring multiple articulations, it effortlessly navigates varied terrains with unparalleled stability and precision. Crafted with cutting-edge sensors and sophisticated control algorithms. Engineered for versatility and reliability, they offer unparalleled manoeuvrability and adaptability, ensuring optimal performance in dynamic environments. Experience the epitome of robotic innovation and efficiency with our hexapod robots, revolutionising industries and pushing boundaries with each step.",
+      "contributors": [
+        {
+          "name": "Ashish Kumar Sahu",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347347/IMG_20231025_181025_918_-_Ashish_Sahu_smai3j.jpg"
+        },
+        {
+          "name": "Shantanu Panda ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719472729/shan_exg4qz.jpg"
+        },
+        {
+          "name": "Snehil Sah",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347378/IMG_20240613_155428_-_Snehil_Sah_jzysdl.jpg"
+        },
+        {
+          "name": "Abhisek Beuria ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347350/IMG_20240519_11324_-_Abhisek_Beuria_ys44di.jpg"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Self Balancing Robot",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479878/pasted-image_q5jqmn.jpg",
+      "tech stack": ["Arduino", "Python", "C++"],
+      "body": "Introducing our two-wheeled self-balancing robot project. This robot uses an Arduino or Raspberry Pi for control and power, and it stays upright on two wheels with the help of stepper motors and an L298N H-Bridge Motor Driver. It features a gyroscope and accelerometer (like the MPU-6050 or MPU-9250) to sense its position and wheel encoders for precise movement feedback. Programmed in C/C++ and Python, the robot's development is supported by the Arduino IDE and popular code editors like Thonny and Visual Studio Code. This project showcases our ability to combine advanced technology in a simple, innovative robot.",
+      "contributors": [
+        {
+          "name": "Sanskar Panda",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347556/PXL_20240507_071706812_-_Sanskar_Panda_1_kcg6hu.jpg"
+        },
+        {
+          "name": "Ritesh Kumar tarai ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719473139/IMG_9445-01-02_-_Ritesh_Kumar_Tarai_ifqaha.jpg"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Rover",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479877/image_3_ahehm7.png",
+      "tech stack": [
+        "Raspberry Pi",
+        "Solidworks",
+        "Rocker Bogie Mechanism",
+        "ROS"
+      ],
+      "body": "A six wheeled bot designed using Rocker Bogie mechanism which can robustly localise itself in the outdoor environment and successfully avoid obstacles in its path to reach its final destination",
+      "contributors": [
+        {
+          "name": "Mrinal Misra",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347348/IMG_20220331_192524_953_-_Mrinal_Misra_v3qlbt.jpg"
+        },
+        {
+          "name": "Sovit Patel",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347483/pic-comp_11zon_-_Sovit_Patel_timpu4.jpg"
+        },
+        {
+          "name": "Monalisa Behera",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347344/100671634_-_Monalisa_Behera_ugl8rf.jpg"
+        },
+        {
+          "name": "Raj Pattnaik",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347377/IMG_20240613_114659_-_Raj_Pattnaik_zq2bai.jpg"
+        },
+        {
+          "name": "Shantanu Panda ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719472729/shan_exg4qz.jpg"
+        },
+        {
+          "name": "Akshar Dash",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347347/IMG_20230301_114831092_3_-_Akshar_Dash_zrkzoa.jpg"
+        },
+        {
+          "name": "Tanishq Shastri",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/20240604_235615_-_125_Tanishq_mzp3tp.jpg"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "PID Ball Balance Robot",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479869/image_4_bsr5kc.png",
+      "tech stack": ["OpenCV", "PySerial", "Solidworks", "Control systems"],
+      "body": "A PID ball balance robot is a control systems project that uses a Proportional-Integral-Derivative (PID) controller to balance a ball on a flat platform. The platform is typically tilted by servo motors. A camera detects the ball's position using image processing. The PID algorithm calculates the error between the desired (center) and actual ball positions, then adjusts the platform's tilt to minimize this error, keeping the ball balanced at the center",
+      "contributors": [
+        {
+          "name": "Satyajit singh ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347344/DocScanner_Feb_8_2024_22-12_-_Satyajit_Singh_qvi2no.jpg"
+        },
+        {
+          "name": "Saumit Pradhan ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347871/WhatsApp_Image_2024-06-13_at_17.30.33_-_SAUMIT_PRADHAN_xgbodz.jpg"
+        },
+        {
+          "name": "Anup Kumar Nayak",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/image_1_-_himanshu_nayak_tkzzza.jpg"
+        },
+        {
+          "name": "Tanishq Shastri",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347346/20240604_235615_-_125_Tanishq_mzp3tp.jpg"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Rubiks Cube Solver",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479866/pasted-image_1_b67yls.jpg",
+      "tech stack": ["Arduino", "OpenCV", "Computer Vision"],
+      "body": "The Rubik's Cube Solving Robot is a remarkable blend of computer vision and precise mechanics, designed to solve the iconic 3D puzzle quickly and accurately. It uses a camera and OpenCV software to capture and analyze the cube's current state, identifying the colors on each face. After digitizing the cube's configuration, an algorithm calculates the best solution. Stepper motors, mounted on a sturdy frame, then perform exact rotations based on this solution. This results in a captivating demonstration of technology, as the robot efficiently solves the puzzle in seconds, showcasing the integration of visual perception, algorithmic problem-solving, and mechanical control.",
+      "contributors": [
+        {
+          "name": "Raj Srivastava",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719472475/pass_-_Raj_Srivastava_dbbfko.jpg"
+        },
+        {
+          "name": "Raj Pattnaik",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347377/IMG_20240613_114659_-_Raj_Pattnaik_zq2bai.jpg"
+        },
+        {
+          "name": "Akshaya Kumar Maharana",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347378/IMG_123679373_-_Akshaya_Kumar_Maharana_tc7pnc.jpg"
+        },
+        {
+          "name": "Satyajit singh ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347344/DocScanner_Feb_8_2024_22-12_-_Satyajit_Singh_qvi2no.jpg"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Smart Watch",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719479932/pexels-tdcat-437038_1_1_gn5cip.jpg",
+      "tech stack": ["Arduino", "C++", "Machine Learning"],
+      "body": "This compact, feature-rich timepiece combines the convenience of a traditional watch with the capabilities of a miniature computer. At its core, the ESP32 provides built-in Wi-Fi and Bluetooth connectivity, allowing the watch to sync time, receive notifications, and even control smart home devices. The watch features a small but vibrant OLED or e-paper display, offering clear visibility of time, date, notifications",
+      "contributors": [
+        {
+          "name": "Raj Pattnaik",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347377/IMG_20240613_114659_-_Raj_Pattnaik_zq2bai.jpg"
+        },
+        {
+          "name": "Monalisa Behera",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347344/100671634_-_Monalisa_Behera_ugl8rf.jpg"
+        },
+        {
+          "name": "Sovit Patel",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347483/pic-comp_11zon_-_Sovit_Patel_timpu4.jpg"
+        },
+        {
+          "name": "Rudra Nandkishor Anjiwadekar ",
+          "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347716/rudra_wypmgy.jpg"
+        }
+      ]
+    }
+  ]
+}

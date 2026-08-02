@@ -30,6 +30,7 @@ export interface IMember {
   year: AcademicYearType;
   role?: string;
   image?: string;
+  projects?: string;
   alumniInfo?: IAlumniDetails;
   createdAt?: Date;
   updatedAt?: Date;
@@ -98,6 +99,10 @@ export const MemberSchema = new Schema<IMemberDocument>(
     image: { 
       type: String, 
       default: '' 
+    },
+    projects: {
+      type: String,
+      default: ''
     },
     alumniInfo: { 
       type: AlumniDetailsSchema, 

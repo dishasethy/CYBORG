@@ -5,12 +5,31 @@ import { YearGroup, segregateMembersByYearAndSubsystem } from '../../utils/membe
 import { IMember, AcademicYearType, SubsystemType } from '../../models/Member';
 import { teamMembers, DEFAULT_MEMBER_AVATAR } from '../../constants';
 
+// Local fallback using teamMembers converted to IMember
+const mappedStatic: IMember[] = teamMembers.map(m => ({
+  name: m.name,
+  github: m.github || '',
+  linkedin: m.linkedin || '',
+  email: m.email || '',
+  subsystem: (m.subsystem as SubsystemType) || 'software',
+  year: (m.category === 'alumni' ? 'alumni' : m.category === 'final-year' ? 'final year' : m.category === 'pre-final-year' ? 'pre-final year' : 'sophomore') as AcademicYearType,
+  role: m.role,
+  image: m.image,
+  projects: m.projects || '',
+  alumniInfo: m.category === 'alumni' ? {
+    company: m.work_degree || '',
+    designation: m.subsystem || 'Alumnus',
+    graduationYear: parseInt(m.batch || '2025') || 2025
+  } : undefined
+}));
+
+const initialSegregatedGroups = segregateMembersByYearAndSubsystem(mappedStatic);
+
 export default function TeamView() {
   const [viewMode, setViewMode] = useState<'segregated' | 'flat'>('segregated');
-  const [selectedYearFilter, setSelectedYearFilter] = useState<string>('all');
-  const [memberList, setMemberList] = useState<IMember[]>([]);
-  const [segregatedGroups, setSegregatedGroups] = useState<YearGroup<IMember>[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [selectedYearFilter, setSelectedYearFilter] = useState<string>('final year');
+  const [memberList, setMemberList] = useState<IMember[]>(mappedStatic);
+  const [segregatedGroups, setSegregatedGroups] = useState<YearGroup<IMember>[]>(initialSegregatedGroups);
   const [isAddingMember, setIsAddingMember] = useState<boolean>(false);
   const [successToast, setSuccessToast] = useState<string | null>(null);
 
@@ -43,7 +62,7 @@ export default function TeamView() {
     alumniLocation: ''
   });
 
-  // Fetch or load initial members
+  // Fetch or load initial members in the background
   useEffect(() => {
     async function loadMembers() {
       try {
@@ -60,29 +79,11 @@ export default function TeamView() {
               });
             });
             setMemberList(allFetched);
-            setLoading(false);
-            return;
           }
         }
       } catch (err) {
         console.warn('API fetch deferred, using static fallback seed records');
       }
-
-      // Local fallback using teamMembers converted to IMember
-      const mappedStatic: IMember[] = teamMembers.map(m => ({
-        name: m.name,
-        github: m.github || '',
-        linkedin: m.linkedin || '',
-        email: m.email || '',
-        subsystem: (m.subsystem as SubsystemType) || 'software',
-        year: (m.category === 'alumni' ? 'alumni' : m.category === 'final-year' ? 'final year' : m.category === 'pre-final-year' ? 'pre-final year' : 'sophomore') as AcademicYearType,
-        role: m.role,
-        image: m.image,
-      }));
-
-      setMemberList(mappedStatic);
-      setSegregatedGroups(segregateMembersByYearAndSubsystem(mappedStatic));
-      setLoading(false);
     }
 
     loadMembers();
@@ -170,34 +171,7 @@ export default function TeamView() {
         </div>
 
         {/* Action controls */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex neo-btn p-1 rounded-xl bg-black/50 border border-[#494551]/30">
-            <button
-              onClick={() => setViewMode('segregated')}
-              className={`px-3 py-1.5 rounded-lg font-mono text-[10px] uppercase font-bold transition-all cursor-pointer ${
-                viewMode === 'segregated' ? 'bg-[#00F2FF]/20 text-[#00F2FF] border border-[#00F2FF]/40' : 'text-[#cac4d2]'
-              }`}
-            >
-              YEAR → SUBSYSTEM HIERARCHY
-            </button>
-            <button
-              onClick={() => setViewMode('flat')}
-              className={`px-3 py-1.5 rounded-lg font-mono text-[10px] uppercase font-bold transition-all cursor-pointer ${
-                viewMode === 'flat' ? 'bg-[#00F2FF]/20 text-[#00F2FF] border border-[#00F2FF]/40' : 'text-[#cac4d2]'
-              }`}
-            >
-              ALL OPERATORS (GRID)
-            </button>
-          </div>
 
-          <button
-            onClick={() => setIsAddingMember(true)}
-            className="px-4 py-2.5 rounded-xl font-mono text-xs text-white bg-[#00F2FF]/20 border border-[#00F2FF]/50 hover:bg-[#00F2FF]/30 transition-all flex items-center gap-2 neo-btn font-bold cursor-pointer"
-          >
-            <Plus className="w-4 h-4 text-[#00F2FF]" />
-            <span>SAVE MEMBER TO MONGO DB</span>
-          </button>
-        </div>
       </section>
 
       {/* Success Notification Toast */}
@@ -220,22 +194,20 @@ export default function TeamView() {
         <div className="flex flex-wrap items-center gap-2 border-b border-[#494551]/20 pb-4 font-mono text-xs">
           <span className="text-[#948e9c] text-[10px] uppercase font-bold mr-2">FILTER YEAR:</span>
           {[
-            { id: 'all', label: 'ALL YEARS' },
-            { id: 'alumni', label: 'ALUMNI' },
             { id: 'final year', label: 'FINAL YEAR' },
             { id: 'pre-final year', label: 'PRE-FINAL YEAR' },
             { id: 'sophomore', label: 'SOPHOMORE' },
+            { id: 'alumni', label: 'ALUMNI' },
           ].map((yearTab) => {
             const isActive = selectedYearFilter === yearTab.id;
             return (
               <button
                 key={yearTab.id}
                 onClick={() => setSelectedYearFilter(yearTab.id)}
-                className={`px-3.5 py-1.5 rounded-xl font-mono text-[11px] font-bold uppercase transition-all cursor-pointer neo-btn ${
-                  isActive
-                    ? 'bg-[#00F2FF]/20 text-[#00F2FF] border border-[#00F2FF]/60'
-                    : 'text-[#cac4d2] border border-[#494551]/30 hover:border-[#00F2FF]/30'
-                }`}
+                className={`px-3.5 py-1.5 rounded-xl font-mono text-[11px] font-bold uppercase transition-all cursor-pointer neo-btn ${isActive
+                  ? 'bg-[#00F2FF]/20 text-[#00F2FF] border border-[#00F2FF]/60'
+                  : 'text-[#cac4d2] border border-[#494551]/30 hover:border-[#00F2FF]/30'
+                  }`}
               >
                 {yearTab.label}
               </button>
@@ -244,142 +216,139 @@ export default function TeamView() {
         </div>
       )}
 
-      {loading ? (
-        <div className="py-20 text-center font-mono text-xs text-[#00F2FF] animate-pulse">
-          INITIALIZING MONGODB DATA SCHEMA &amp; SEGREGATING RECORDS...
-        </div>
-      ) : viewMode === 'segregated' ? (
+      {viewMode === 'segregated' ? (
         /* HIERARCHICAL SEGREGATION VIEW: YEAR -> SUBSYSTEM -> MEMBERS */
         <div className="space-y-16">
-          {(selectedYearFilter === 'all'
-            ? segregatedGroups
-            : segregatedGroups.filter(g => g.yearKey === selectedYearFilter)
-          ).map((yearGroup) => (
-            <div key={yearGroup.yearKey} className="space-y-8 neo-card p-6 md:p-8 rounded-3xl border border-[#494551]/30">
-              {/* LEVEL 1: ACADEMIC YEAR HEADER */}
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#00F2FF]/30 pb-4 gap-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-[#00F2FF]" />
-                    <h3 className="font-cyber font-black text-lg md:text-2xl text-white uppercase tracking-tight">
-                      {yearGroup.yearLabel}
-                    </h3>
+          {segregatedGroups
+            .filter(g => g.yearKey === selectedYearFilter)
+            .map((yearGroup) => (
+              <div key={yearGroup.yearKey} className="space-y-8 py-2">
+                {/* LEVEL 1: ACADEMIC YEAR HEADER */}
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#00F2FF]/30 pb-4 gap-2">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <Layers className="w-4 h-4 text-[#00F2FF]" />
+                      <h3 className="font-cyber font-black text-lg md:text-2xl text-white uppercase tracking-tight">
+                        {yearGroup.yearLabel}
+                      </h3>
+                    </div>
+                    <p className="font-sans text-xs text-[#cac4d2] mt-1">{yearGroup.description}</p>
                   </div>
-                  <p className="font-sans text-xs text-[#cac4d2] mt-1">{yearGroup.description}</p>
+
+                  <div className="neo-btn px-3 py-1.5 rounded-xl border border-[#00F2FF]/40 font-mono text-xs text-[#00F2FF] font-bold">
+                    {yearGroup.totalCount} {yearGroup.totalCount === 1 ? 'MEMBER' : 'MEMBERS'}
+                  </div>
                 </div>
 
-                <div className="neo-btn px-3 py-1.5 rounded-xl border border-[#00F2FF]/40 font-mono text-xs text-[#00F2FF] font-bold">
-                  {yearGroup.totalCount} {yearGroup.totalCount === 1 ? 'MEMBER' : 'MEMBERS'}
-                </div>
-              </div>
-
-              {/* YEAR MEMBERS GRID */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {yearGroup.subsystems
-                  .flatMap((subGroup) => subGroup.members)
-                  .map((member, idx) => (
-                    <motion.div
-                      key={`${member.name}-${idx}`}
-                      whileHover={{ y: -4 }}
-                      className="neo-card rounded-2xl overflow-hidden flex flex-col justify-between border border-[#494551]/30 hover:border-[#00F2FF]/60 transition-all p-4 space-y-4 group"
-                    >
-                      <div className="space-y-3">
-                        {/* Avatar Header */}
-                        <div className="relative h-40 bg-[#0b0a11] rounded-xl overflow-hidden neo-inset">
-                          <img
-                            alt={member.name}
-                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                            referrerPolicy="no-referrer"
-                            src={member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy'}
-                          />
-                          <div className="absolute top-2 right-2 z-10">
-                            <span className="px-2 py-0.5 rounded font-mono text-[9px] font-bold uppercase border border-[#00F2FF]/40 text-[#00F2FF] bg-black/80 backdrop-blur-md shadow-lg">
-                              {member.subsystem}
-                            </span>
+                {/* YEAR MEMBERS GRID */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
+                  {[...yearGroup.subsystems.flatMap((subGroup) => subGroup.members)]
+                    .sort((a, b) => {
+                      const findIndex = (member: IMember) => memberList.findIndex(m => 
+                        m.name.toLowerCase().trim() === member.name.toLowerCase().trim() &&
+                        (m.email?.toLowerCase().trim() === member.email?.toLowerCase().trim() ||
+                         m.github?.toLowerCase().trim() === member.github?.toLowerCase().trim())
+                      );
+                      return findIndex(a) - findIndex(b);
+                    })
+                    .map((member, idx) => (
+                      <motion.div
+                        key={`${member.name}-${idx}`}
+                        whileHover={{ y: -4 }}
+                        className="neo-card rounded-2xl overflow-hidden flex flex-col justify-between border border-[#494551]/30 hover:border-[#00F2FF]/60 transition-all p-3 space-y-3 group h-full"
+                      >
+                        <div className="space-y-3">
+                          {/* Avatar Header */}
+                          <div className="relative h-60 bg-[#0b0a11] rounded-xl overflow-hidden neo-inset">
+                            <img
+                              alt={member.name}
+                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                              referrerPolicy="no-referrer"
+                              src={member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy'}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] via-transparent to-transparent pointer-events-none" />
                           </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] via-transparent to-transparent pointer-events-none" />
-                        </div>
 
-                        {/* Name & Role */}
-                        <div>
-                          <h4 className="font-cyber font-bold text-sm text-white group-hover:text-[#00F2FF] transition-colors leading-tight">
-                            {member.name}
-                          </h4>
-                          <p className="font-sans text-xs text-[#cac4d2] mt-1 leading-relaxed line-clamp-2">
-                            {member.role || `${member.subsystem.toUpperCase()} Engineer`}
-                          </p>
-                        </div>
+                          {/* Name & Role */}
+                          <div>
+                            <h4 className="font-cyber font-bold text-sm text-white group-hover:text-[#00F2FF] transition-colors leading-tight">
+                              {member.name}
+                            </h4>
+                            <p className="font-sans text-xs text-[#cac4d2] mt-1 leading-relaxed line-clamp-2">
+                              {member.role || `${member.subsystem.toUpperCase()} Engineer`}
+                            </p>
+                          </div>
 
-                        {/* Alumni Details Card */}
-                        {member.year === 'alumni' && member.alumniInfo && (
-                          <div className="neo-inset p-2.5 rounded-xl border border-amber-500/20 space-y-1 font-mono text-[10px] text-amber-200">
-                            <div className="flex items-center gap-1 font-bold">
-                              <Building className="w-3 h-3 text-amber-400" />
-                              <span>{member.alumniInfo.company || 'Alumni Tech Lab'}</span>
-                            </div>
-                            <div className="text-[#cac4d2]">
-                              {member.alumniInfo.designation || 'Engineer'} ({member.alumniInfo.graduationYear || '2023'})
-                            </div>
-                            {member.alumniInfo.currentLocation && (
-                              <div className="flex items-center gap-1 text-[#948e9c]">
-                                <MapPin className="w-2.5 h-2.5" />
-                                <span>{member.alumniInfo.currentLocation}</span>
+                          {/* Alumni Details Card */}
+                          {member.year === 'alumni' && member.alumniInfo && (
+                            <div className="neo-inset p-2.5 rounded-xl border border-amber-500/20 space-y-1 font-mono text-[10px] text-amber-200">
+                              <div className="flex items-center gap-1 font-bold">
+                                <Building className="w-3 h-3 text-amber-400" />
+                                <span>{member.alumniInfo.company || 'Alumni Tech Lab'}</span>
                               </div>
+                              <div className="text-[#cac4d2]">
+                                {member.alumniInfo.designation || 'Engineer'} ({member.alumniInfo.graduationYear || '2023'})
+                              </div>
+                              {member.alumniInfo.currentLocation && (
+                                <div className="flex items-center gap-1 text-[#948e9c]">
+                                  <MapPin className="w-2.5 h-2.5" />
+                                  <span>{member.alumniInfo.currentLocation}</span>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Social Links Bar */}
+                        <div className="pt-3 border-t border-[#494551]/20 flex items-center justify-between font-mono text-[10px]">
+                          <div className="flex gap-2">
+                            {member.github && (
+                              <a
+                                href={member.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#00F2FF] transition-colors"
+                                title="GitHub"
+                              >
+                                <Github className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                            {member.linkedin && (
+                              <a
+                                href={member.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#00F2FF] transition-colors"
+                                title="LinkedIn"
+                              >
+                                <Linkedin className="w-3.5 h-3.5" />
+                              </a>
+                            )}
+                            {member.email && (
+                              <a
+                                href={`mailto:${member.email}`}
+                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-white transition-colors"
+                                title="Email"
+                              >
+                                <Mail className="w-3.5 h-3.5" />
+                              </a>
                             )}
                           </div>
-                        )}
-                      </div>
-
-                      {/* Social Links Bar */}
-                      <div className="pt-3 border-t border-[#494551]/20 flex items-center justify-between font-mono text-[10px]">
-                        <div className="flex gap-2">
-                          {member.github && (
-                            <a
-                              href={member.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#00F2FF] transition-colors"
-                              title="GitHub"
-                            >
-                              <Github className="w-3.5 h-3.5" />
-                            </a>
-                          )}
-                          {member.linkedin && (
-                            <a
-                              href={member.linkedin}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#00F2FF] transition-colors"
-                              title="LinkedIn"
-                            >
-                              <Linkedin className="w-3.5 h-3.5" />
-                            </a>
-                          )}
-                          {member.email && (
-                            <a
-                              href={`mailto:${member.email}`}
-                              className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-white transition-colors"
-                              title="Email"
-                            >
-                              <Mail className="w-3.5 h-3.5" />
-                            </a>
-                          )}
+                          <span className="text-[#948e9c] text-[9px] font-mono uppercase tracking-wider">{member.subsystem}</span>
                         </div>
-                        <span className="text-[#948e9c] text-[9px] font-mono uppercase tracking-wider">{member.subsystem}</span>
-                      </div>
-                    </motion.div>
-                  ))}
+                      </motion.div>
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       ) : (
         /* FLAT GRID VIEW OF ALL OPERATORS */
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-5">
           {memberList.map((member, idx) => (
-            <div key={idx} className="neo-card p-5 rounded-2xl space-y-3 flex flex-col justify-between border border-[#494551]/30">
+            <div key={idx} className="neo-card p-3 rounded-2xl space-y-3 flex flex-col justify-between border border-[#494551]/30 h-full">
               <div className="space-y-3">
-                <div className="h-44 bg-black rounded-xl overflow-hidden neo-inset relative">
+                <div className="h-60 bg-black rounded-xl overflow-hidden neo-inset relative">
                   <img
                     alt={member.name}
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -396,7 +365,6 @@ export default function TeamView() {
               </div>
 
               <div className="flex justify-between items-center pt-3 border-t border-[#494551]/20 font-mono text-[9px]">
-                <span className="text-[#cfbdff] uppercase">{member.subsystem}</span>
                 <div className="flex gap-2">
                   {member.github && (
                     <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#00F2FF]">
@@ -409,6 +377,7 @@ export default function TeamView() {
                     </a>
                   )}
                 </div>
+                <span className="text-[#cfbdff] uppercase tracking-wider">{member.subsystem}</span>
               </div>
             </div>
           ))}

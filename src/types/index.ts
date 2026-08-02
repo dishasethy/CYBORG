@@ -41,6 +41,9 @@ export interface TeamMember {
   github?: string;
   linkedin?: string;
   email?: string;
+  projects?: string;
+  work_degree?: string;
+  batch?: string;
 }
 
 export interface Achievement {

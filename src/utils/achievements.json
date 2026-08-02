@@ -1,0 +1,193 @@
+{
+  "achievements": [
+    {
+      "Members": "Mrinal Misra",
+      "Competition Name": "Medihacks",
+      "Award/Rank Achieved": "Honourable Mention ",
+      "Year Of Participation": "2023-09-14 00:00:00",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Mrinal Misra ",
+      "Competition Name": "Titan Smartwear Techathon'23 ",
+      "Award/Rank Achieved": "Grand finalist ",
+      "Year Of Participation": "2023-08-10 00:00:00",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Mrinal Misra ",
+      "Competition Name": "Atmecs Global Gen AI Hackathon ",
+      "Award/Rank Achieved": "Finalist ",
+      "Year Of Participation": "2024-10-15 00:00:00",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "AKSHAR DASH",
+      "Competition Name": "CDAC C2S Analog Design Hackathon ",
+      "Award/Rank Achieved": "Runners up",
+      "Year Of Participation": "2025-03-15 00:00:00",
+      "Brief Description": "Low power current supplies are crucial in microampere devices . We designed a low power current reference circuit with low TC (39 ppm post layout) for applications in data acquisition in ECG .",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1744052838/IMG-20250321-WA0001_-_Akshar_Dash_sxqb3d.jpg"
+    },
+    {
+      "Members": "Ansuman Patro, Sandeep Kumar Das, Aditya Kumar Ray, Amit Prasad Singh, Abhisek Beuria",
+      "Competition Name": "Gujarat Robofest 4.0",
+      "Award/Rank Achieved": "Winner",
+      "Year Of Participation": "2025-01-24 00:00:00",
+      "Brief Description": "Nano Navigator is an autonomous Micromouse robot designed to efficiently solve complex mazes using a modified Tr\u00e9maux algorithm with a DFS approach. Implemented in C++ on Arduino, the robot utilizes custom stack and queue libraries to enhance path exploration and decision-making.",
+      "image": [
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052836/IMG-20250124-WA0067_-_Ansuman_Patro_omcfl7.jpg",
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052836/IMG-20241015-WA0017_-_Ansuman_Patro_sjqfyr.jpg",
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052838/IMG-20250124-WA0017_-_Ansuman_Patro_ch1fca.jpg"
+      ]
+    },
+    {
+      "Members": "Romala Mishra, Phanendra Sreeharsh kowdodi",
+      "Competition Name": "ICORT 2025",
+      "Award/Rank Achieved": "Special Jury Award",
+      "Year Of Participation": "2025-03-06 00:00:00",
+      "Brief Description": "nan",
+      "image": [
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052837/WhatsApp_Image_2025-03-29_at_2.47.24_PM_-_Romala_Mishra_wrtghx.jpg",
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052840/WhatsApp_Image_2025-03-29_at_2.47.27_PM_-_Romala_Mishra_ouj3be.jpg",
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052840/WhatsApp_Image_2025-03-29_at_2.57.18_PM_-_Romala_Mishra_q7iqkb.jpg"
+      ]
+    },
+
+    {
+      "Members": "Pratik Kumar Sahoo, Romala Mishra, Shantanu Panda, Monalisa Behera",
+      "Competition Name": "eYantra Robotics Challenge, IIT Bombay ",
+      "Award/Rank Achieved": "Semi-finalists",
+      "Year Of Participation": "2023-03-06 00:00:00",
+      "Brief Description": "We developed a 3 Omni wheel holonomic robot to create complex art on surface with pen attached to it by extracting and manipulating contours using ROS, OpenCV, Gazebo and Arduino with help of microcontroller, with the robot moving through localization through Aruco markers.",
+      "image": "nan"
+    },
+    {
+      "Members": "Phanendra Sreeharsh kowdodi, Raj Pattnaik, Romala Mishra, Sovit Patel, Shantanu Panda, Pratik Kumar Sahoo",
+      "Competition Name": "Voyager, IIT Kharagpur",
+      "Award/Rank Achieved": "Second Runners-up ",
+      "Year Of Participation": "2024-01-05 00:00:00",
+      "Brief Description": "We developed a line follower capable of following white or black lines using IR sensor array with ability to detect colors using sensors to make decisions based upon the color and capable of back tracing its path using Arduino microcontroller programming.",
+      "image": "nan"
+    },
+    {
+      "Members": "Mrinal Misra, Raj Pattnaik, Diksha Kumari, Shantanu Panda, Monalisa Behera, Pratik Kumar Sahoo, Phanendra Sreeharsh kowdodi, Romala Mishra",
+      "Competition Name": "Flipkart Grid 4.0",
+      "Award/Rank Achieved": " Finalists ",
+      "Year Of Participation": "2024-01-10 00:00:00",
+      "Brief Description": "A quad-copter drone was developed for delivery of packages based on markers and colors using ROS, Gazebo, Open-CV, Ardupilot, Dronekit and PixHawk.",
+      "image": "nan"
+    },
+    {
+      "Members": "Swikar Thanekar, Hrushikesh Sarangi, Soubhagya Biswal, Prabhav Khare",
+      "Competition Name": "E-Toycathon 2025",
+      "Award/Rank Achieved": " Finalists ",
+      "Year Of Participation": "2025-08-3 00:00:00",
+      "Brief Description": "A quad-copter drone was developed for delivery of packages based on markers and colors using ROS, Gazebo, Open-CV, Ardupilot, Dronekit and PixHawk.",
+      "image": [
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052872/team1_-_Swikar_Thanekar_bhl0jz.jpg",
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052838/team4_-_Swikar_Thanekar_xdcxbk.jpg",
+        "https://res.cloudinary.com/diml2eds6/image/upload/v1744052838/toy_-_Swikar_Thanekar_zdj0gm.jpg"
+      ]
+    },
+    {
+      "Members": "Adyasha Jena",
+      "Competition Name": "Dr.Reddy Digital Heatlth Hackathon",
+      "Award/Rank Achieved": "Finalist ",
+      "Year Of Participation": "nan",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "AdityaRaj Sahu",
+      "Competition Name": "Dr.Reddy Digital Heatlth Hackathon",
+      "Award/Rank Achieved": "Finalist ",
+      "Year Of Participation": "nan",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Debrup Panda",
+      "Competition Name": "e-Yantra Robotics Competition ",
+      "Award/Rank Achieved": "Finalist ",
+      "Year Of Participation": "2022-23",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Pratyush Mohanty ",
+      "Competition Name": "e-Yantra Robotics Competition ",
+      "Award/Rank Achieved": "Finalist ",
+      "Year Of Participation": "2022-23",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Aman Sagar",
+      "Competition Name": "e-Yantra Robotics Competition ",
+      "Award/Rank Achieved": "Finalist ",
+      "Year Of Participation": "2022-23",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Gourav Mohanty ",
+      "Competition Name": "Dr.Reddy Digital Heatlth Hackathon",
+      "Award/Rank Achieved": "Winner",
+      "Year Of Participation": "nan",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Sayantan Chatterjee",
+      "Competition Name": "Dr.Reddy Digital Heatlth Hackathon",
+      "Award/Rank Achieved": "Winner",
+      "Year Of Participation": "nan",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Ojasvi Das",
+      "Competition Name": "Meshmerise Techfest IIT Bombay",
+      "Award/Rank Achieved": "National Finalist",
+      "Year Of Participation": "nan",
+      "Brief Description": "A Line following robot created using an array of IR sensors that can keep track of directions while going through a maze. It can analyze the path in a dry run and find the shortest possible way to traverse the maze to reach the ending point in the minimum possible time. ",
+      "image": "nan"
+    },
+    {
+      "Members": "Suyansh Verma",
+      "Competition Name": "Meshmerise Techfest IIT Bombay",
+      "Award/Rank Achieved": "National Finalist",
+      "Year Of Participation": "nan",
+      "Brief Description": "A Line following robot created using an array of IR sensors that can keep track of directions while going through a maze. It can analyze the path in a dry run and find the shortest possible way to traverse the maze to reach the ending point in the minimum possible time. ",
+      "image": "nan"
+    },
+    {
+      "Members": "Anjan Mridha",
+      "Competition Name": "Meshmerise Techfest IIT Bombay",
+      "Award/Rank Achieved": "National Finalist",
+      "Year Of Participation": "nan",
+      "Brief Description": "A Line following robot created using an array of IR sensors that can keep track of directions while going through a maze. It can analyze the path in a dry run and find the shortest possible way to traverse the maze to reach the ending point in the minimum possible time. ",
+      "image": "nan"
+    },
+    {
+      "Members": "Adyasha Jena",
+      "Competition Name": "Sirion HackLabs Hackathon",
+      "Award/Rank Achieved": "Runners up",
+      "Year Of Participation": "nan",
+      "Brief Description": "nan",
+      "image": "nan"
+    },
+    {
+      "Members": "Kamaljeet Sahoo",
+      "Competition Name": "Sirion HackLabs Hackathon",
+      "Award/Rank Achieved": "Runners up",
+      "Year Of Participation": "nan",
+      "Brief Description": "nan",
+      "image": "nan"
+    }
+  ]
+}

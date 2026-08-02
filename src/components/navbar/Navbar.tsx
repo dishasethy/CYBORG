@@ -49,13 +49,13 @@ export default function Navbar({ activeTab, setActiveTab, session }: NavbarProps
           {/* Official Cyborg Logo */}
           <div
             onClick={() => setActiveTab('home')}
-            className="flex items-center gap-3 cursor-pointer group py-1"
+            className="flex items-center gap-2 cursor-pointer group py-1"
           >
-
-            <img src="/favicon.ico" alt="Cyborg Logo" className="w-20 h-21 object-contain" />
-
-            <div className="hidden lg:flex flex-col">
-              <span className="text-xs font-mono tracking-[0.25em] text-[#00F2FF] uppercase font-bold group-hover:text-white transition-colors">...</span>
+            <img src="/cyborg_logo.png" alt="Cyborg Logo" className="h-10 w-auto object-contain" />
+            <div className="hidden lg:flex flex-col justify-center">
+              <span className="text-sm font-bold tracking-[0.2em] text-white group-hover:text-[#00F2FF] transition-colors uppercase">
+                CYBORG
+              </span>
             </div>
           </div>
 

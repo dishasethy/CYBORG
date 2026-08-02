@@ -78,7 +78,7 @@ export default function App() {
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} session={session} />
 
       {/* Main Viewport Content Wrapper */}
-      <main className="relative z-10 pt-28 pb-20 px-6 md:px-16 max-w-7xl mx-auto min-h-[90vh]">
+      <main className={`relative z-10 pt-28 pb-20 px-6 md:px-16 mx-auto min-h-[90vh] ${activeTab === 'team' ? 'max-w-[92vw]' : 'max-w-7xl'}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
