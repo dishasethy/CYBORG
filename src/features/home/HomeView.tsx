@@ -38,7 +38,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
       {/* Hero Section */}
       <section id="home-hero-section" className="min-h-[85vh] flex flex-col items-center justify-center text-center relative pt-8 pb-4">
         <motion.div variants={itemVariants} className="max-w-7xl w-full mx-auto space-y-8 px-4">
-          
+
           {/* Interactive Cinematic Logo Character Split with Particles */}
           <div className="py-2 w-full">
             <ParticleText />
@@ -175,7 +175,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* Connection Section: Highlights to Sponsors */}
-      <SectionConnector 
+      <SectionConnector
         label="UPLINK BUS :: HIGHLIGHTS -> SPONSORS"
         sublabel="COMMUNICATION_LINK_ESTABLISHED"
         nodeId="BUS_01"
@@ -193,7 +193,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
 
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
             {sponsors.map((sponsor) => (
-              <motion.div 
+              <motion.div
                 key={sponsor.id}
                 whileHover={{ scale: 1.04 }}
                 className="neo-card p-6 md:p-8 rounded-2xl flex items-center justify-center border border-[#494551]/30 hover:border-[#cfbdff]/50 transition-all cursor-pointer"
@@ -210,7 +210,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* Connection Section: Sponsors to Info Bento Grid */}
-      <SectionConnector 
+      <SectionConnector
         label="LABORATORY UPLINK :: SPONSORS -> FACULTY & LEADERSHIP"
         sublabel="SECURE_CHANNEL_READY"
         nodeId="BUS_02"
@@ -218,17 +218,17 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
       />
 
       {/* Information Bento Grid */}
-      <section id="info-bento-grid" className="py-12 max-w-7xl mx-auto px-6 relative">
+      <section id="info-bento-grid" className="pt-12 pb-7 max-w-7xl mx-auto px-6 relative">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          
+
           {/* Division Overview Card (7 columns) */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="md:col-span-7 neo-card neo-card-cyan rounded-2xl p-8 flex flex-col justify-between border-l-4 border-l-[#cfbdff] hover:border-l-[#00F2FF] relative overflow-hidden group"
             id="card-division-overview"
           >
             <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#00F2FF]/5 group-hover:bg-[#00F2FF]/15 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
-            
+
             <div className="space-y-4 relative z-10">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -241,7 +241,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                   LAB NOTEBOOK
                 </span>
               </div>
-              
+
               <div className="relative pl-4 border-l-2 border-[#cfbdff]/40 my-3 neo-inset rounded-r-xl p-4">
                 <p className="font-note text-xl md:text-2xl text-[#e9e1ff] leading-relaxed tracking-wide font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
                   {divisionOverview.notebookText}
@@ -268,7 +268,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           </motion.div>
 
           {/* Faculty Advisor Card (5 columns) */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="md:col-span-5 neo-card neo-card-purple rounded-2xl p-8 flex flex-col justify-between border-l-4 border-l-[#9a83db] hover:border-l-[#cfbdff] relative overflow-hidden group"
             id="card-faculty-advisor"
@@ -297,7 +297,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                     src={facultyAdvisor.image}
                   />
                 </div>
-                
+
                 <div className="text-center space-y-1">
                   <h5 className="font-sans font-bold text-base md:text-lg text-white group-hover:text-[#cfbdff] transition-colors">
                     {facultyAdvisor.name}
@@ -322,7 +322,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           </motion.div>
 
           {/* President Details Card (Full Row, 12 columns) */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="md:col-span-12 neo-card neo-card-cyan rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-l-[#00F2FF] relative overflow-hidden group"
             id="card-club-president"

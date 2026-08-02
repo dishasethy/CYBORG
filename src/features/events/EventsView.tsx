@@ -4,33 +4,33 @@ import { activeEvents, archiveEvents } from '../../config/EventsView';
 
 export default function EventsView() {
   return (
-    <div className="space-y-24 pt-4">
+    <div className="space-y-12 pt-2">
       {/* Splitscreen Dual Cinematic Hero Header */}
-      <section id="splitscreen-hero-panel" className="relative min-h-[70vh] flex flex-col lg:flex-row overflow-hidden neo-card rounded-2xl bg-black">
+      <section id="splitscreen-hero-panel" className="relative min-h-[45vh] lg:h-[400px] flex flex-col lg:flex-row overflow-hidden neo-card rounded-2xl bg-black">
         {/* Left Side: Death Race */}
-        <div id="hero-left-death-race" className="relative flex-1 group overflow-hidden border-b lg:border-b-0 lg:border-r border-[#494551]/20 min-h-[350px]">
+        <div id="hero-left-death-race" className="relative flex-1 group overflow-hidden border-b lg:border-b-0 lg:border-r border-[#494551]/20 min-h-[220px]">
           <div className="absolute inset-0 z-0">
             <img
               alt="Death Race Banner"
-              className="w-full h-full object-cover grayscale opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-[2s] ease-out"
+              className="w-full h-full object-cover opacity-60 group-hover:opacity-85 group-hover:scale-105 transition-all duration-[2s] ease-out"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkXIOyHoyikiaGl7Ub7sv0LmMEkSw3F8fG-E5DslqfKdABVj9TYC7swpHZxZDagkuII2fyv29ZMsiBW4HkPg-xP6ps7X3C74AW4VPugVVCA8foObfEpYEZa6v5JkqqPmLQV0iMCNTBfzUMIxMiUvxlO85EaHx9Yz6JdXm9Q9MHQqQ9cyiIG3rdyoDQgZyVcpSYddEJxzxYcqfDxbRFaI3h-E5udfX_r1-I-hclFaPltgpbIkky_P8GTrvG85b0hgBMolBDXZETCmPp"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0f0d13] via-[#0f0d13]/30 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] to-transparent" />
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 space-y-4">
+          <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8 space-y-3">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
               <span className="font-mono text-[9px] text-red-400 tracking-[0.2em] uppercase">High_Risk_Zone</span>
             </div>
-            <h1 className="font-cyber text-3xl md:text-5xl italic font-black text-glow-purple uppercase tracking-tight text-white">
+            <h1 className="font-cyber text-2xl md:text-4xl italic font-black text-glow-purple uppercase tracking-tight text-white">
               DEATH_RACE
             </h1>
             <p className="font-sans text-xs md:text-sm text-[#cac4d2]/80 max-w-sm leading-relaxed">
               Combat-focused high-velocity physical obstacle traversal. Structural integrity is optional. Victory is absolute.
             </p>
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex items-center gap-4 pt-1">
               <button 
                 onClick={() => {
                   const el = document.getElementById('event-death-race');
@@ -47,29 +47,29 @@ export default function EventsView() {
         </div>
 
         {/* Right Side: Robo Sumo */}
-        <div id="hero-right-robo-sumo" className="relative flex-1 group overflow-hidden min-h-[350px]">
+        <div id="hero-right-robo-sumo" className="relative flex-1 group overflow-hidden min-h-[220px]">
           <div className="absolute inset-0 z-0">
             <img
               alt="Robo Sumo Banner"
-              className="w-full h-full object-cover grayscale opacity-30 group-hover:opacity-50 group-hover:scale-105 transition-all duration-[2s] ease-out"
+              className="w-full h-full object-cover opacity-60 group-hover:opacity-85 group-hover:scale-105 transition-all duration-[2s] ease-out"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQqFxoA5dlsnJndCsZYkMm1Fj2TYHU1vNcSQSRBGsgYdzUu-Woj-xdhvbVdn6JJg6ZQmydoUjJCcImfPnQH8UmzOCgiL1yzE05v7qhwFUyKuueXbMoaq7NXhChf4KOPnhfVvJINLxbfPo8lEKrDr5RHcRvYgcwpMEK1k8DLicvv1MnwwqGJcL-XrSgF3K5y0Uy6g_i5XyPEIzlm4HE3RRXjQIdfRPhzbKlMjX1m7FhllAD7rh6qm0uiPw5K39wAqtz93ShxrIc8YHo"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-[#0f0d13] via-[#0f0d13]/30 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] to-transparent" />
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-12 lg:items-end lg:text-right space-y-4">
+          <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8 lg:items-end lg:text-right space-y-3">
             <div className="flex items-center gap-2 lg:flex-row-reverse">
               <span className="w-2 h-2 rounded-full bg-[#00F2FF] animate-pulse" />
               <span className="font-mono text-[9px] text-[#00F2FF] tracking-[0.2em] uppercase">Mass_Collision_Protocol</span>
             </div>
-            <h1 className="font-cyber text-3xl md:text-5xl italic font-black text-glow-cyan uppercase tracking-tight text-white">
+            <h1 className="font-cyber text-2xl md:text-4xl italic font-black text-glow-cyan uppercase tracking-tight text-white">
               ROBO_SUMO
             </h1>
             <p className="font-sans text-xs md:text-sm text-[#cac4d2]/80 max-w-sm leading-relaxed">
               Pure torque and geometric weight distribution control. Command the perimeter and dominate the circular ring.
             </p>
-            <div className="flex items-center gap-4 pt-2 lg:flex-row-reverse">
+            <div className="flex items-center gap-4 pt-1 lg:flex-row-reverse">
               <button 
                 onClick={() => {
                   const el = document.getElementById('event-robo-sumo');
@@ -96,7 +96,7 @@ export default function EventsView() {
       </section>
 
       {/* Active Timeline List Grid */}
-      <section id="active-timeline-section" className="max-w-7xl mx-auto px-6">
+      <section id="active-timeline-section" className="w-full px-4">
         <div className="flex flex-col md:flex-row items-baseline gap-4 mb-12">
           <h2 className="font-cyber text-xl md:text-3xl font-black text-white uppercase tracking-tight">Active_Timeline</h2>
           <div className="flex-1 h-[1px] bg-[#494551]/20" />
@@ -117,7 +117,7 @@ export default function EventsView() {
                 <div className="h-44 overflow-hidden relative">
                   <img
                     alt={evt.title}
-                    className="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                    className="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     src={evt.image}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] to-transparent" />
@@ -177,7 +177,7 @@ export default function EventsView() {
       </section>
 
       {/* Archives Section (Decrypted Database) */}
-      <section id="archives-section" className="max-w-5xl mx-auto px-6">
+      <section id="archives-section" className="w-full max-w-7xl mx-auto px-4">
         <div className="flex items-center gap-4 mb-10">
           <Database className="text-[#00F2FF] w-5 h-5" />
           <h2 className="font-cyber text-lg tracking-[0.2em] text-white uppercase">Archives_Decryption</h2>

@@ -7,13 +7,18 @@ import { projects, projectCategories as categories } from '../../config/Projects
 export default function ProjectsView() {
   const [filter, setFilter] = useState<string>('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isAnvritExpanded, setIsAnvritExpanded] = useState<boolean>(false);
 
   const filteredProjects = filter === 'all' 
     ? projects 
     : projects.filter(p => p.category === filter);
 
+  // Extract ANVRIT project as a featured full-width block if it matches the current category filter
+  const anvritProject = filteredProjects.find(p => p.title.toLowerCase().includes('anvrit'));
+  const masonryProjects = filteredProjects.filter(p => p.id !== anvritProject?.id);
+
   return (
-    <div className="space-y-16">
+    <div className="space-y-12">
       {/* Category Selection Filter Bar */}
       <section id="projects-filter-bar" className="flex flex-col md:flex-row justify-between items-baseline md:items-center gap-6 border-b border-[#494551]/20 pb-6">
         <div>
@@ -38,31 +43,119 @@ export default function ProjectsView() {
         </div>
       </section>
 
-      {/* 12-Column Responsive Bento Grid */}
-      <section id="bento-grid-projects" className="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-7xl mx-auto">
-        {filteredProjects.map((proj, idx) => {
-          const colSpanClass = proj.flagship 
-            ? 'md:col-span-8' 
-            : idx === 1 
-              ? 'md:col-span-4' 
-              : 'md:col-span-6';
+      {/* Featured ANVRIT Project Full Div Layout */}
+      {anvritProject && (
+        <motion.div
+          key={anvritProject.id}
+          id={`project-card-${anvritProject.id}`}
+          layoutId={`project-container-${anvritProject.id}`}
+          whileHover={{ y: -4 }}
+          className={`w-full max-w-7xl mx-auto neo-card neo-card-cyan rounded-2xl overflow-hidden group flex flex-col md:flex-row border border-[#00F2FF]/30 hover:border-[#00F2FF] transition-all bg-[#0f0d13] mb-8 ${isAnvritExpanded ? 'md:h-auto' : 'md:h-80'}`}
+        >
+          {/* Media Container (Stretches on desktop, height-capped based on state) */}
+          <div className={`relative w-full md:w-1/2 overflow-hidden bg-black flex-shrink-0 ${isAnvritExpanded ? 'min-h-[300px] md:min-h-full h-64 md:h-auto' : 'h-64 md:h-full'}`}>
+            <img
+              alt={anvritProject.title}
+              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1.2s]"
+              src={anvritProject.image}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#141218] via-transparent to-transparent pointer-events-none" />
+            
+            {/* Overlay Badge */}
+            <div className="absolute top-4 left-4 flex gap-2">
+              <span className="neo-btn bg-black/85 backdrop-blur-md text-[#cfbdff] border border-[#cfbdff]/30 font-mono text-[9px] px-2.5 py-1 rounded-lg">
+                {anvritProject.category.toUpperCase()}
+              </span>
+              <span className="neo-btn bg-[#00F2FF]/25 backdrop-blur-md text-[#00F2FF] border border-[#00F2FF]/40 font-mono text-[9px] px-2.5 py-1 rounded-lg glow-accent">
+                FLAGSHIP
+              </span>
+            </div>
 
+            <div className="absolute bottom-4 right-4 neo-btn bg-black/80 backdrop-blur-md border border-[#494551]/40 px-2.5 py-1 rounded-lg font-mono text-[9px] text-[#cac4d2]">
+              {anvritProject.statusLabel}
+            </div>
+          </div>
+
+          {/* Text Information Details */}
+          <div className="p-6 md:p-8 flex flex-col justify-between flex-grow md:w-1/2 overflow-hidden space-y-4">
+            <div className="space-y-2">
+              <span className="font-mono text-[9px] text-[#00F2FF] tracking-widest uppercase block">FEATURED MAIN SYSTEM</span>
+              <h3 className="font-cyber font-black text-xl md:text-2xl text-white group-hover:text-[#cfbdff] transition-colors uppercase tracking-tight">
+                {anvritProject.title}
+              </h3>
+              <p className="font-sans text-xs md:text-sm text-[#cac4d2] leading-relaxed">
+                {isAnvritExpanded ? (
+                  <>
+                    {anvritProject.description}{' '}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsAnvritExpanded(false);
+                      }}
+                      className="text-[#00F2FF] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
+                    >
+                      Read Less
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    {anvritProject.description.slice(0, 160)}...{' '}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsAnvritExpanded(true);
+                      }}
+                      className="text-[#00F2FF] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
+                    >
+                      Read More
+                    </button>
+                  </>
+                )}
+              </p>
+            </div>
+
+            {/* Tags and Action Bar */}
+            <div className="pt-4 border-t border-[#494551]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex flex-wrap gap-1.5">
+                {anvritProject.tags.map((tag, tIdx) => (
+                  <span key={tIdx} className="neo-inset text-[#cac4d2] font-mono text-[9px] px-2.5 py-1 rounded-md">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+
+              <button
+                id={`btn-access-${anvritProject.id}`}
+                onClick={() => setSelectedProject(anvritProject)}
+                className="px-4 py-2 neo-btn text-[#cfbdff] hover:text-[#00F2FF] font-cyber font-bold text-[9px] tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>ACCESS_SYSTEM_CORE</span>
+                <Eye className="w-3.5 h-3.5 text-[#00F2FF]" />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Structured Symmetric Grid Layout for rest of the project cards */}
+      <section id="grid-projects" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto items-stretch">
+        {masonryProjects.map((proj) => {
           return (
             <motion.div
               key={proj.id}
               id={`project-card-${proj.id}`}
               layoutId={`project-container-${proj.id}`}
               whileHover={{ y: -4 }}
-              className={`${colSpanClass} neo-card ${proj.flagship ? 'neo-card-cyan' : 'neo-card-purple'} rounded-2xl overflow-hidden group flex flex-col justify-between border border-[#494551]/30 hover:border-[#cfbdff] transition-all`}
+              className={`flex flex-col h-full neo-card ${proj.flagship ? 'neo-card-cyan' : 'neo-card-purple'} rounded-2xl overflow-hidden group border border-[#494551]/30 hover:border-[#cfbdff] transition-all bg-[#0f0d13]`}
             >
               {/* Media Container */}
-              <div className="relative h-60 md:h-72 w-full overflow-hidden bg-black">
+              <div className="relative w-full h-48 md:h-56 overflow-hidden bg-black flex-shrink-0">
                 <img
                   alt={proj.title}
-                  className="w-full h-full object-cover grayscale opacity-40 group-hover:opacity-75 group-hover:scale-105 transition-all duration-[1.5s]"
+                  className="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1.2s]"
                   src={proj.image}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#141218] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141218] via-transparent to-transparent pointer-events-none" />
                 
                 {/* Overlay Badge */}
                 <div className="absolute top-4 left-4 flex gap-2">
@@ -82,18 +175,33 @@ export default function ProjectsView() {
               </div>
 
               {/* Text Information Details */}
-              <div className="p-6 md:p-8 flex flex-col flex-grow justify-between space-y-6">
+              <div className="p-5 md:p-6 flex flex-col justify-between flex-grow space-y-4">
                 <div className="space-y-3">
                   <h3 className="font-cyber font-bold text-lg md:text-xl text-white group-hover:text-[#cfbdff] transition-colors uppercase tracking-tight">
                     {proj.title}
                   </h3>
                   <p className="font-sans text-xs md:text-sm text-[#cac4d2] leading-relaxed">
-                    {proj.description}
+                    {proj.description.length > 160 ? (
+                      <>
+                        {proj.description.slice(0, 140)}...{' '}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProject(proj);
+                          }}
+                          className="text-[#00F2FF] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
+                        >
+                          Read More
+                        </button>
+                      </>
+                    ) : (
+                      proj.description
+                    )}
                   </p>
                 </div>
 
                 {/* Tags and Action Bar */}
-                <div className="pt-6 mt-6 border-t border-[#494551]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="pt-4 border-t border-[#494551]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex flex-wrap gap-1.5">
                     {proj.tags.map((tag, tIdx) => (
                       <span key={tIdx} className="neo-inset text-[#cac4d2] font-mono text-[9px] px-2.5 py-1 rounded-md">
@@ -188,7 +296,7 @@ export default function ProjectsView() {
                           <img
                             src={contrib.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy'}
                             alt={contrib.name}
-                            className="w-5 h-5 rounded object-cover grayscale"
+                            className="w-5 h-5 rounded object-cover"
                           />
                           <span className="font-sans text-[9px] text-[#cac4d2] font-semibold">{contrib.name}</span>
                         </div>
