@@ -19,7 +19,7 @@ export default function AchievementsView() {
         </div>
       </section>
 
-      {/* Grid of Stats Counters */}
+      {/* Grid of Stats Counters
       <section id="ach-stats-grid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {achievementStats.map((stat, idx) => (
           <div key={idx} className="p-6 neo-card rounded-2xl flex flex-col justify-between">
@@ -31,11 +31,11 @@ export default function AchievementsView() {
             </div>
           </div>
         ))}
-      </section>
+      </section> */}
 
       {/* Scrolling Carousels (Endless horizontal and vertical) */}
       <section id="endless-scrolling-carousels" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
+
         {/* Horizontal Scrolling Feed (7 columns) */}
         <div className="lg:col-span-8 space-y-6">
           <div className="flex items-center gap-2">
@@ -103,11 +103,11 @@ export default function AchievementsView() {
       {/* Grid of detailed accomplishments */}
       <section id="milestones-deepdive" className="max-w-6xl mx-auto space-y-6">
         <h3 className="font-cyber font-bold text-xs uppercase tracking-widest text-glow-purple text-[#cfbdff]">Verified_Decryption_Grid</h3>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {verifiedDecryptionLogs.map((log, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className={`neo-card ${log.glowBorder === 'cyan' ? 'neo-card-cyan border-l-4 border-l-[#00F2FF]' : 'neo-card-purple border-l-4 border-l-[#cfbdff]'} p-6 rounded-2xl space-y-2`}
             >
               <span className={`font-mono text-[8px] ${log.glowBorder === 'cyan' ? 'text-[#00F2FF]' : 'text-[#cfbdff]'}`}>

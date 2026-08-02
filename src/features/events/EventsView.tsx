@@ -153,10 +153,22 @@ export default function EventsView() {
                     {evt.description}
                   </p>
 
-                  <button className="mt-auto w-full py-2.5 neo-btn text-[#cfbdff] hover:text-[#00F2FF] font-cyber font-bold text-[9px] tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer">
-                    <span>ACCESS_PORTAL</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </button>
+                  {evt.ps ? (
+                    <a
+                      href={evt.ps}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto w-full py-2.5 neo-btn text-[#cfbdff] hover:text-[#00F2FF] font-cyber font-bold text-[9px] tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer text-center"
+                    >
+                      <span>ACCESS_PROBLEM_STATEMENT</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </a>
+                  ) : (
+                    <button className="mt-auto w-full py-2.5 neo-btn text-[#cfbdff]/40 font-cyber font-bold text-[9px] tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 cursor-not-allowed">
+                      <span>PORTAL_OFFLINE</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                  )}
                 </div>
               </motion.div>
             );

@@ -11,6 +11,7 @@ export interface Event {
   phase?: string;
   riskLevel?: 'high' | 'medium' | 'low' | 'creative' | 'autonomous';
   tag?: string;
+  ps?: string | null;
 }
 
 export interface Project {
@@ -29,6 +30,7 @@ export interface Project {
   statusLabel?: string;
   tags?: string[];
   meta?: string;
+  contributors?: { name: string; image: string }[];
 }
 
 export interface TeamMember {

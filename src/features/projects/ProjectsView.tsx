@@ -179,6 +179,24 @@ export default function ProjectsView() {
                   </div>
                 </div>
 
+                {selectedProject.contributors && selectedProject.contributors.length > 0 && (
+                  <div className="pt-4 border-t border-[#494551]/20 space-y-3">
+                    <span className="font-mono text-[8px] text-[#cfbdff] tracking-widest uppercase block">Core_Contributors</span>
+                    <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto pr-1">
+                      {selectedProject.contributors.map((contrib, cIdx) => (
+                        <div key={cIdx} className="flex items-center gap-2 p-1 pr-2.5 neo-inset rounded-lg bg-black/40 border border-[#494551]/20">
+                          <img
+                            src={contrib.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy'}
+                            alt={contrib.name}
+                            className="w-5 h-5 rounded object-cover grayscale"
+                          />
+                          <span className="font-sans text-[9px] text-[#cac4d2] font-semibold">{contrib.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex justify-end pt-4 gap-3">
                   <button
                     onClick={() => setSelectedProject(null)}
