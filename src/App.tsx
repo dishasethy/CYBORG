@@ -78,7 +78,7 @@ export default function App() {
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} session={session} />
 
       {/* Main Viewport Content Wrapper */}
-      <main className={`relative z-10 pt-28 pb-20 px-6 md:px-16 mx-auto min-h-[90vh] ${activeTab === 'team' ? 'max-w-[92vw]' : 'max-w-7xl'}`}>
+      <main className={`relative z-10 pt-28 pb-20 px-6 md:px-16 mx-auto min-h-[90vh] ${(activeTab === 'team' || activeTab === 'achievements') ? 'max-w-[92vw]' : 'max-w-7xl'}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -93,7 +93,7 @@ export default function App() {
       </main>
 
       {/* Creative High-Impact Cybernetic Footer */}
-      <Footer systemUptime={systemUptime} onNavigate={(tab) => setActiveTab(tab)} />
+      <Footer onNavigate={(tab) => setActiveTab(tab)} />
     </div>
   );
 }

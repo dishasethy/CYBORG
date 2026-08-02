@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -5,6 +6,7 @@
   --font-cyber: var(--font-cyber-loaded), "Orbitron", sans-serif;
   --font-mono: var(--font-mono-loaded), "JetBrains Mono", monospace;
   --font-note: var(--font-caveat-loaded), var(--font-architects-loaded), "Caveat", "Architects Daughter", cursive, sans-serif;
+  --font-bitcount: "Bitcount Ink", sans-serif;
 
   --color-brand-surface: #141218;
   --color-brand-surface-lowest: #0f0d13;
