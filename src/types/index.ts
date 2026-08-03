@@ -57,12 +57,3 @@ export interface Achievement {
   verified: boolean;
 }
 
-export interface UserSession {
-  isLoggedIn: boolean;
-  name?: string;
-  email?: string;
-  rollNumber?: string;
-  department?: string;
-  role?: string;
-  avatar?: string;
-}

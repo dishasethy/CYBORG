@@ -89,8 +89,12 @@ export default function ParticleText() {
     const init = () => {
       if (!canvas || !ctx) return;
       
-      const width = containerRef.current?.clientWidth || 1000;
-      const height = 340;
+      const width = containerRef.current?.clientWidth || window.innerWidth || 1000;
+      const fontScale = width < 1200 ? 5.6 : 4.8;
+      const fontSize = Math.min(200, Math.floor(width / fontScale));
+      const height = width < 640 ? Math.max(140, Math.floor(fontSize * 1.8)) : 340;
+      
+      mouse.radius = width < 640 ? 60 : 135;
       
       const dpr = window.devicePixelRatio || 1;
       canvas.width = width * dpr;
@@ -106,7 +110,6 @@ export default function ParticleText() {
       if (!oCtx) return;
 
       oCtx.fillStyle = '#ffffff';
-      const fontSize = Math.min(200, Math.floor(width / 4.6));
       oCtx.font = `900 ${fontSize}px "Orbitron", sans-serif`;
       oCtx.textBaseline = 'middle';
       oCtx.textAlign = 'center';
@@ -139,6 +142,14 @@ export default function ParticleText() {
       }
     };
 
+    const resizeObserver = new ResizeObserver((entries) => {
+      init();
+    });
+
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
     document.fonts.ready.then(() => {
       init();
     });
@@ -169,15 +180,6 @@ export default function ParticleText() {
     canvas.addEventListener('mouseleave', handleMouseLeave);
     canvas.addEventListener('touchend', handleMouseLeave);
 
-    let resizeTimer: number;
-    const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => {
-        init();
-      }, 200);
-    };
-    window.addEventListener('resize', handleResize);
-
     const animate = () => {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -194,13 +196,13 @@ export default function ParticleText() {
 
     return () => {
       cancelAnimationFrame(animationId);
+      resizeObserver.disconnect();
       if (canvas) {
         canvas.removeEventListener('mousemove', handleMouseMove);
         canvas.removeEventListener('touchmove', handleTouchMove);
         canvas.removeEventListener('mouseleave', handleMouseLeave);
         canvas.removeEventListener('touchend', handleMouseLeave);
       }
-      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

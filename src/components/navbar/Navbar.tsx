@@ -1,16 +1,14 @@
 import { useState, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Terminal, Bell, Menu, X, Cpu, LogIn, UserCheck } from 'lucide-react';
-import { navItems, initialTerminalLogs, DEFAULT_AVATAR } from '../../constants';
-import { UserSession } from '../../types';
+import { Terminal, Bell, Menu, X, Cpu } from 'lucide-react';
+import { navItems, initialTerminalLogs } from '../../constants';
 
 interface NavbarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  session?: UserSession;
 }
 
-export default function Navbar({ activeTab, setActiveTab, session }: NavbarProps) {
+export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [terminalLogs, setTerminalLogs] = useState<string[]>(initialTerminalLogs);
@@ -49,9 +47,13 @@ export default function Navbar({ activeTab, setActiveTab, session }: NavbarProps
           {/* Official Cyborg Logo */}
           <div
             onClick={() => setActiveTab('home')}
-            className="flex items-center gap-2 cursor-pointer group py-1"
+            className="flex items-center gap-2.5 cursor-pointer group py-1"
           >
-            <img src="/cyborg_logo.png" alt="Cyborg Logo" className="h-10 w-auto object-contain" />
+            <img 
+              src="/cyborg_logo.png" 
+              alt="Cyborg Logo" 
+              className="h-[52px] w-auto object-contain -my-2 transition-transform duration-300 group-hover:scale-105" 
+            />
             <div className="hidden lg:flex flex-col justify-center">
               <span className="text-sm font-bold tracking-[0.2em] text-white group-hover:text-[#00F2FF] transition-colors uppercase">
                 CYBORG
@@ -100,27 +102,7 @@ export default function Navbar({ activeTab, setActiveTab, session }: NavbarProps
               </div>
             </div>
 
-            <div
-              onClick={() => setActiveTab('auth')}
-              title={session?.isLoggedIn ? `Operator: ${session.name}` : "Operator Login / Sign Up"}
-              className={`flex items-center gap-2 p-1 rounded-xl neo-btn cursor-pointer transition-all duration-300 ${activeTab === 'auth' ? 'border-[#00F2FF] shadow-[0_0_15px_rgba(0,242,255,0.3)]' : ''
-                }`}
-            >
-              <div className="w-8 h-8 rounded-lg overflow-hidden relative">
-                <img
-                  alt={session?.name || "CYBORG Operator"}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
-                  referrerPolicy="no-referrer"
-                  src={session?.avatar || DEFAULT_AVATAR}
-                />
-                {session?.isLoggedIn && (
-                  <span className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-400 rounded-full border border-black" />
-                )}
-              </div>
-              <span className="hidden xl:inline font-mono text-[10px] text-[#00F2FF] uppercase font-bold pr-1">
-                {session?.isLoggedIn ? 'ONLINE' : 'AUTH'}
-              </span>
-            </div>
+
 
             {/* Mobile Menu Button */}
             <button
@@ -161,19 +143,7 @@ export default function Navbar({ activeTab, setActiveTab, session }: NavbarProps
                     </button>
                   );
                 })}
-                <button
-                  onClick={() => {
-                    setActiveTab('auth');
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`text-left font-semibold text-xs uppercase py-3 px-4 rounded transition-all flex items-center justify-between ${activeTab === 'auth'
-                    ? 'bg-[#00F2FF]/10 text-[#00F2FF] border-l-2 border-[#00F2FF]'
-                    : 'text-[#00F2FF] hover:bg-[#36343a]/20'
-                    }`}
-                >
-                  <span>Operator Login / Register</span>
-                  <LogIn className="w-3.5 h-3.5" />
-                </button>
+
               </div>
             </motion.div>
           )}

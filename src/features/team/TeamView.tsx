@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Github, Linkedin, Mail, Plus, X, Cpu, Terminal, Layers, Database, CheckCircle2, User, Building, MapPin, Award } from 'lucide-react';
+import { Github, Linkedin, Mail, X, Layers, Database, CheckCircle2, Building, MapPin } from 'lucide-react';
 import { YearGroup, segregateMembersByYearAndSubsystem } from '../../utils/memberSegregation';
 import { IMember, AcademicYearType, SubsystemType } from '../../models/Member';
 import { teamMembers, DEFAULT_MEMBER_AVATAR } from '../../constants';
@@ -262,7 +262,7 @@ export default function TeamView() {
                           <div className="relative h-60 bg-[#0b0a11] rounded-xl overflow-hidden neo-inset">
                             <img
                               alt={member.name}
-                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                               referrerPolicy="no-referrer"
                               src={member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy'}
                             />
@@ -351,7 +351,7 @@ export default function TeamView() {
                 <div className="h-60 bg-black rounded-xl overflow-hidden neo-inset relative">
                   <img
                     alt={member.name}
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                    className="w-full h-full object-cover transition-all duration-500"
                     src={member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy'}
                   />
                 </div>

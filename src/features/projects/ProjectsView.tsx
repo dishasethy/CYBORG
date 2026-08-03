@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Eye, Cpu, Database, Activity, HardDrive, X } from 'lucide-react';
+import { Eye, Cpu, Database, X } from 'lucide-react';
 import { Project } from '../../types';
 import { projects, projectCategories as categories } from '../../config/ProjectsView';
 

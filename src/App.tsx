@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Terminal, ShieldCheck, Heart, Cpu } from 'lucide-react';
 import InteractiveBg from './components/ui/fragment/InteractiveBg';
 import Navbar from './components/navbar/Navbar';
 import HomeView from './features/home/HomeView';
@@ -10,16 +9,13 @@ import EventsView from './features/events/EventsView';
 import ProjectsView from './features/projects/ProjectsView';
 import AchievementsView from './features/achievements/AchievementsView';
 import TeamView from './features/team/TeamView';
-import AuthView from './features/auth/AuthView';
 import RoboticArmCursor from './components/ui/fragment/RoboticArmCursor';
 import SocialSidebar from './components/ui/fragment/SocialSidebar';
 import Footer from './components/Footer';
-import { UserSession } from './types';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [systemUptime, setSystemUptime] = useState<string>('00:00:00');
-  const [session, setSession] = useState<UserSession>({ isLoggedIn: false });
 
   // Realistic dynamic uptime counter for high-tech aesthetic
   useEffect(() => {
@@ -46,8 +42,6 @@ export default function App() {
         return <AchievementsView />;
       case 'team':
         return <TeamView />;
-      case 'auth':
-        return <AuthView session={session} setSession={setSession} onNavigateHome={() => setActiveTab('home')} />;
       default:
         return <HomeView onNavigate={(tab) => setActiveTab(tab)} />;
     }
@@ -72,10 +66,10 @@ export default function App() {
       <div className="fixed inset-0 pointer-events-none z-1 tactical-bg opacity-[0.03]" />
 
       {/* Navigation Mainframe */}
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} session={session} />
+      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Main Viewport Content Wrapper */}
-      <main className={`relative z-10 pt-28 px-6 md:px-16 mx-auto min-h-[90vh] ${activeTab === 'home' ? 'pb-2' : 'pb-12'} ${(activeTab === 'team' || activeTab === 'achievements' || activeTab === 'events' || activeTab === 'projects') ? 'max-w-[92vw]' : 'max-w-7xl'}`}>
+      <main className={`relative z-10 pt-10 px-6 md:px-16 mx-auto min-h-[90vh] ${activeTab === 'home' ? 'pb-2' : 'pb-12'} ${(activeTab === 'team' || activeTab === 'achievements' || activeTab === 'events' || activeTab === 'projects') ? 'max-w-[92vw]' : 'max-w-7xl'}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}

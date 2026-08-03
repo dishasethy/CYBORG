@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Cpu, Terminal, Shield, Zap, Sparkles, Activity } from 'lucide-react';
+import { Cpu, Shield, Sparkles, Activity } from 'lucide-react';
 
 interface LoaderProps {
     onComplete?: () => void;

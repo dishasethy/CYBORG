@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Rocket, Mail, MapPin, Phone, Award, Cpu, Trophy, Users, Zap, Terminal } from 'lucide-react';
+import { Rocket, Mail, MapPin, Phone, Award, Cpu } from 'lucide-react';
 import ParticleText from '../../components/ui/fragment/ParticleText';
 import { sponsors, divisionOverview, facultyAdvisor, clubPresident } from '../../config/HomeView';
 import SectionConnector from '../../components/ui/fragment/SectionConnector';
@@ -36,13 +36,13 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
       className="space-y-24"
     >
       {/* Hero Section */}
-      <section id="home-hero-section" className="min-h-[85vh] flex flex-col items-center justify-center text-center relative pt-8 pb-4">
+      <section id="home-hero-section" className="min-h-[75vh] sm:min-h-[85vh] flex flex-col items-center justify-center text-center relative pt-8 pb-4">
         <motion.div variants={itemVariants} className="max-w-7xl w-full mx-auto space-y-8 px-4">
 
           {/* Interactive Cinematic Logo Character Split with Particles */}
           <div className="py-2 w-full">
             <ParticleText />
-            <p className="font-cyber text-[11px] md:text-xs tracking-[0.45em] text-[#00F2FF] mt-4 font-semibold uppercase">
+            <p className="font-cyber text-[9px] sm:text-[11px] md:text-xs tracking-[0.2em] sm:tracking-[0.35em] md:tracking-[0.45em] text-[#00F2FF] mt-4 font-semibold uppercase">
               artificial intelligence &amp; autonomous systems lab
             </p>
           </div>
@@ -52,7 +52,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             Welcome to <span className="text-white font-bold">CYBORG</span>, where imagination meets innovation! A dynamic ensemble of students at <span className="text-[#cfbdff] font-medium">NIT Rourkela</span>, driven by a shared passion for robotics and cognitive computing.
           </p>
 
-          <h2 className="font-cyber text-xs md:text-sm text-[#9a83db] tracking-[0.3em] uppercase font-bold text-glow-purple">
+          <h2 className="font-cyber text-[9px] sm:text-xs md:text-sm text-[#9a83db] tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold text-glow-purple">
             Where every idea sparks a new possibility
           </h2>
 
@@ -77,110 +77,6 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
 
         </motion.div>
       </section>
-
-      {/* Cyborg Highlight Section */}
-      <section id="cyborg-highlights-section" className="py-6 max-w-7xl mx-auto px-6 relative">
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-[#00F2FF]/60"></div>
-          <div className="flex items-center gap-2 px-3 py-1 neo-btn rounded-lg border border-[#00F2FF]/30">
-            <img src="/cyborg_logo.png" alt="Cyborg" className="w-5 h-5 object-contain" />
-            <h3 className="font-cyber text-[11px] text-[#00F2FF] uppercase tracking-[0.3em] font-bold">
-              CYBORG TELEMETRY &amp; HIGHLIGHTS
-            </h3>
-          </div>
-          <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-[#00F2FF]/60"></div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {/* Highlight 1 */}
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ y: -4, scale: 1.02 }}
-            className="neo-card p-5 rounded-2xl border border-[#cfbdff]/20 hover:border-[#00F2FF]/50 transition-all flex items-start gap-4 group relative overflow-hidden"
-          >
-            <div className="p-3 rounded-xl neo-btn text-[#00F2FF] group-hover:border-[#00F2FF]/60 shrink-0 transition-all">
-              <Trophy className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-cyber font-black text-2xl text-white group-hover:text-[#00F2FF] transition-colors block">
-                15+ PODIUMS
-              </span>
-              <p className="font-mono text-[11px] text-[#cac4d2] mt-0.5 leading-snug">
-                RoboCon, TechFest &amp; VEX Robotics Victories
-              </p>
-            </div>
-            <div className="absolute top-0 right-0 w-16 h-16 bg-[#00F2FF]/5 rounded-bl-full pointer-events-none" />
-          </motion.div>
-
-          {/* Highlight 2 */}
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ y: -4, scale: 1.02 }}
-            className="neo-card p-5 rounded-2xl border border-[#cfbdff]/20 hover:border-[#cfbdff]/50 transition-all flex items-start gap-4 group relative overflow-hidden"
-          >
-            <div className="p-3 rounded-xl neo-btn text-[#cfbdff] group-hover:border-[#cfbdff]/60 shrink-0 transition-all">
-              <Zap className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-cyber font-black text-2xl text-white group-hover:text-[#cfbdff] transition-colors block">
-                45+ PROTOTYPES
-              </span>
-              <p className="font-mono text-[11px] text-[#cac4d2] mt-0.5 leading-snug">
-                Autonomous Rovers, Drones &amp; AI Robotic Arms
-              </p>
-            </div>
-            <div className="absolute top-0 right-0 w-16 h-16 bg-[#cfbdff]/5 rounded-bl-full pointer-events-none" />
-          </motion.div>
-
-          {/* Highlight 3 */}
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ y: -4, scale: 1.02 }}
-            className="neo-card p-5 rounded-2xl border border-[#cfbdff]/20 hover:border-[#00F2FF]/50 transition-all flex items-start gap-4 group relative overflow-hidden"
-          >
-            <div className="p-3 rounded-xl neo-btn text-[#00F2FF] group-hover:border-[#00F2FF]/60 shrink-0 transition-all">
-              <Users className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-cyber font-black text-2xl text-white group-hover:text-[#00F2FF] transition-colors block">
-                120+ INNOVATORS
-              </span>
-              <p className="font-mono text-[11px] text-[#cac4d2] mt-0.5 leading-snug">
-                Cross-Departmental R&amp;D Engineers at NIT Rourkela
-              </p>
-            </div>
-            <div className="absolute top-0 right-0 w-16 h-16 bg-[#00F2FF]/5 rounded-bl-full pointer-events-none" />
-          </motion.div>
-
-          {/* Highlight 4 */}
-          <motion.div
-            variants={itemVariants}
-            whileHover={{ y: -4, scale: 1.02 }}
-            className="neo-card p-5 rounded-2xl border border-[#cfbdff]/20 hover:border-[#cfbdff]/50 transition-all flex items-start gap-4 group relative overflow-hidden"
-          >
-            <div className="p-3 rounded-xl neo-btn text-[#cfbdff] group-hover:border-[#cfbdff]/60 shrink-0 transition-all">
-              <Terminal className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="font-cyber font-black text-2xl text-white group-hover:text-[#cfbdff] transition-colors block">
-                100% AUTONOMOUS
-              </span>
-              <p className="font-mono text-[11px] text-[#cac4d2] mt-0.5 leading-snug">
-                In-House PCB, ROS2, Computer Vision &amp; Firmware
-              </p>
-            </div>
-            <div className="absolute top-0 right-0 w-16 h-16 bg-[#cfbdff]/5 rounded-bl-full pointer-events-none" />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Connection Section: Highlights to Sponsors */}
-      <SectionConnector
-        label="UPLINK BUS :: HIGHLIGHTS -> SPONSORS"
-        sublabel="COMMUNICATION_LINK_ESTABLISHED"
-        nodeId="BUS_01"
-        variant="circuit"
-      />
 
       {/* Sponsors Section */}
       <section id="sponsors-section" className="py-12 border-y border-[#494551]/20 bg-[#0f0d13]/50 relative overflow-hidden">
@@ -209,13 +105,6 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         </div>
       </section>
 
-      {/* Connection Section: Sponsors to Info Bento Grid */}
-      <SectionConnector
-        label="LABORATORY UPLINK :: SPONSORS -> FACULTY & LEADERSHIP"
-        sublabel="SECURE_CHANNEL_READY"
-        nodeId="BUS_02"
-        variant="pulse"
-      />
 
       {/* Information Bento Grid */}
       <section id="info-bento-grid" className="pt-12 pb-7 max-w-7xl mx-auto px-6 relative">
