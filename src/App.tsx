@@ -62,8 +62,8 @@ export default function App() {
       <div className="scan-line" />
 
       {/* Global Tactical grid and noise overlays */}
-      <div className="fixed inset-0 pointer-events-none z-1 bg-repeat hud-grid opacity-30" />
-      <div className="fixed inset-0 pointer-events-none z-1 tactical-bg opacity-[0.03]" />
+      <div className="fixed inset-0 pointer-events-none z-1 bg-repeat hud-grid opacity-[0.45]" />
+      <div className="fixed inset-0 pointer-events-none z-1 tactical-bg opacity-[0.07]" />
 
       {/* Navigation Mainframe */}
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />

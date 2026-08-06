@@ -31,16 +31,18 @@ export interface ClubPresidentInfo {
 }
 
 export const sponsors: Sponsor[] = [
+
+
   {
     id: 'sponsor-solidworks',
     name: 'SolidWorks Logo',
-    logoUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDAWkCepxJxMxuWkpKFjLs7BKRccpS-UxHpYz8cP4TKN-b4FvJaqGBvF3DbXM7Rq9j0LbweFzSTLF0b05zr9l8R7wRZSHgbV28ociCz08mDWKLWrKHLHewjtBV2702eBfO9xotX8pYNAm5MK9dxvHjDMy67tVGLJb7Zj9LEltz8dYO5qXdb1_xe5scblTqLO3FakNDjt_sIc-oPYJ2VxxYIG6_HSoee7QOPclc9v2GkzhxWB9F8twu9pO58TNfdEr3CERB9SHmAP5_Q',
+    logoUrl: 'https://res.cloudinary.com/diml2eds6/image/upload/v1720209377/solidworks_d04csf.png',
     heightClass: 'h-10 md:h-12'
   },
   {
     id: 'sponsor-ansys',
     name: 'Ansys Logo',
-    logoUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCdM2y3xf3LILupk_b4zd8N4qbL5GPLwkZgWSf4FspJQZanKSz9RG_IfxAf7vDnXsRcRYGubh2gSuMwNr56V7JkGhZn3Hbj5EaPQLKpT4w42Q2NC_EtSDBgM6m8umZuRlwKe8_SJ6L5tg_JBCQbpqiKXKGG4B6o4faZHNjHYuZuZ_amt8FTg-2RgmCw0xXmSWb_DGs6V-R3mco5uF9rNeO0_rDxFGOQ3pFsC_cTkG4FkrirTdKzWdUFw11Sbi8c_0vHyJK2fgE1Y536',
+    logoUrl: 'https://res.cloudinary.com/diml2eds6/image/upload/v1720209376/ansys_tof9ob.png',
     heightClass: 'h-8 md:h-10'
   }
 ];

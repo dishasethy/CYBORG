@@ -17,7 +17,7 @@ export const activeEvents: Event[] = eventsData.events.map((evt, idx) => {
 
   const tags = ["High Risk", "Technical", "Creative", "Autonomous"];
   const riskLevels = ["high", "medium", "creative", "autonomous"] as const;
-  const venues = ["ARENA_S01", "RING_R01", "LAB_X04", "MAZE_B12"];
+  const venues = ["ARENA_S01", "", "LAB_X04", "MAZE_B12"];
 
   return {
     id: evt.name.toLowerCase().replace(/[^a-z0-9]/g, '-'),

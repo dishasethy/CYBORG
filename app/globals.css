@@ -3,16 +3,16 @@
 
 @theme {
   --font-sans: var(--font-sans-loaded), "Space Grotesk", system-ui, sans-serif;
-  --font-cyber: var(--font-cyber-loaded), "Orbitron", sans-serif;
+  --font-cyber: var(--font-sans-loaded), "Space Grotesk", system-ui, sans-serif;
   --font-mono: var(--font-mono-loaded), "JetBrains Mono", monospace;
   --font-note: var(--font-caveat-loaded), var(--font-architects-loaded), "Caveat", "Architects Daughter", cursive, sans-serif;
   --font-bitcount: "Bitcount Ink", sans-serif;
 
-  --color-brand-surface: #141218;
-  --color-brand-surface-lowest: #0f0d13;
-  --color-brand-surface-low: #1d1b20;
-  --color-brand-surface-high: #2b292f;
-  --color-brand-surface-highest: #36343a;
+  --color-brand-surface: #0f0d13;
+  --color-brand-surface-lowest: #08060c;
+  --color-brand-surface-low: #121017;
+  --color-brand-surface-high: #1c1924;
+  --color-brand-surface-highest: #262232;
   --color-brand-primary: #cfbdff;
   --color-brand-on-primary: #371e72;
   --color-brand-primary-container: #9a83db;
@@ -21,19 +21,30 @@
   --color-brand-outline: #948e9c;
 }
 
+/* Custom modern body styling with fixed dynamic gradient dark background */
+body {
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(26, 23, 38, 0.8) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(9, 7, 13, 0.9) 0%, transparent 50%),
+    #0d0c12 !important;
+  background-attachment: fixed !important;
+  color: #e6e1e9;
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
 /* Custom Tactical and Cybernetic Styles */
 .hud-grid {
-  background-image: linear-gradient(rgba(207, 189, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(207, 189, 255, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-image: linear-gradient(rgba(207, 189, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(207, 189, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
 .scan-line {
   width: 100%;
   height: 2px;
-  background: linear-gradient(to right, transparent, rgba(0, 242, 255, 0.3), rgba(207, 189, 255, 0.3), transparent);
+  background: linear-gradient(to right, transparent, rgba(0, 242, 255, 0.15), rgba(207, 189, 255, 0.15), transparent);
   position: absolute;
-  animation: scan 9s linear infinite;
+  animation: scan 12s linear infinite;
   z-index: 10;
   pointer-events: none;
 }
@@ -48,43 +59,37 @@
   }
 }
 
-.glass-panel {
-  background: linear-gradient(145deg, rgba(29, 26, 38, 0.85), rgba(18, 16, 24, 0.85));
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(221, 214, 254, 0.2);
+/* Frosted glass container cards (backdrop-filter: blur) with thin refined metallic borders */
+.glass-panel, .glass-card, .neo-card {
+  background: rgba(22, 19, 31, 0.45) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow:
-    8px 8px 22px rgba(0, 0, 0, 0.75),
-    -5px -5px 15px rgba(221, 214, 254, 0.06),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+    8px 8px 24px #06050a,
+    -6px -6px 20px rgba(255, 255, 255, 0.03),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.12) !important;
+  border-radius: 1rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.glass-card {
-  background: linear-gradient(145deg, rgba(26, 23, 34, 0.75), rgba(17, 15, 22, 0.75));
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(221, 214, 254, 0.18);
+.glass-panel:hover, .glass-card:hover, .neo-card:hover {
+  transform: translateY(-4px) !important;
+  background: rgba(30, 26, 42, 0.55) !important;
+  border-color: rgba(207, 189, 255, 0.35) !important;
   box-shadow:
-    6px 6px 16px rgba(0, 0, 0, 0.7),
-    -4px -4px 12px rgba(221, 214, 254, 0.05),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card:hover {
-  border-color: rgba(221, 214, 254, 0.5);
-  box-shadow:
-    12px 12px 28px rgba(0, 0, 0, 0.82),
-    -6px -6px 18px rgba(221, 214, 254, 0.15),
-    0 0 25px rgba(207, 189, 255, 0.22),
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.25);
-  transform: translateY(-4px);
+    12px 12px 32px #040306,
+    -8px -8px 24px rgba(207, 189, 255, 0.05),
+    0 0 20px rgba(154, 131, 219, 0.15),
+    inset 1px 1px 1.5px rgba(255, 255, 255, 0.2) !important;
 }
 
 .text-glow-purple {
-  text-shadow: 0 0 15px rgba(207, 189, 255, 0.35);
+  text-shadow: 0 0 12px rgba(207, 189, 255, 0.25);
 }
 
 .text-glow-cyan {
-  text-shadow: 0 0 15px rgba(0, 242, 255, 0.45);
+  text-shadow: 0 0 12px rgba(0, 242, 255, 0.3);
 }
 
 .font-note {
@@ -92,83 +97,89 @@
 }
 
 .bento-glow-card {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(22, 19, 31, 0.45) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow:
-    10px 10px 24px rgba(0, 0, 0, 0.75),
-    -6px -6px 16px rgba(221, 214, 254, 0.08),
-    inset 0 1px 2px 0 rgba(255, 255, 255, 0.15);
+    8px 8px 24px #06050a,
+    -6px -6px 20px rgba(255, 255, 255, 0.03),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.12) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .bento-glow-card:hover {
   transform: translateY(-3px);
+  background: rgba(30, 26, 42, 0.55) !important;
   box-shadow:
-    0 16px 32px rgba(0, 0, 0, 0.85),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
-  border-color: rgba(207, 189, 255, 0.45);
+    12px 12px 32px #040306,
+    -8px -8px 24px rgba(207, 189, 255, 0.05),
+    0 0 24px rgba(154, 131, 219, 0.15),
+    inset 1px 1px 1.5px rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(207, 189, 255, 0.45) !important;
 }
 
-/* Solid Dark Navigation Bar */
+/* Translucent glassmorphic header navigation bar */
 .neo-header {
-  background: #09080e;
+  background: rgba(11, 9, 15, 0.65) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
   position: relative;
-  box-shadow:
-    0 12px 32px -4px rgba(0, 0, 0, 0.95),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Glossy specular reflection sheen line */
+/* Subtle specular glare sheen overlay removed for ultra-clean minimalist approach */
 .neo-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 48%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
-  pointer-events: none;
+  display: none;
 }
 
 .neo-nav-container {
-  background: #14111d;
+  background: rgba(20, 17, 29, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 9999px;
   padding: 5px 8px;
   position: relative;
   overflow: hidden;
   box-shadow:
-    0 6px 20px 0 rgba(0, 0, 0, 0.8),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .neo-btn {
-  background: linear-gradient(145deg, #252035, #14111d);
+  background: rgba(28, 25, 39, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow:
-    5px 5px 12px #08070e,
-    -4px -4px 10px rgba(255, 255, 255, 0.05),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    4px 4px 10px #06050b,
+    -3px -3px 8px rgba(255, 255, 255, 0.03),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border-radius: 0.75rem;
 }
 
 .neo-btn:hover {
-  background: linear-gradient(145deg, #2e2842, #1a1626);
+  background: rgba(36, 32, 51, 0.7) !important;
+  border-color: rgba(207, 189, 255, 0.45) !important;
   box-shadow:
-    6px 6px 16px #050409,
-    -5px -5px 12px rgba(207, 189, 255, 0.1),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.35);
-  border-color: rgba(0, 242, 255, 0.4);
-  transform: translateY(-1px);
+    6px 6px 14px #040307,
+    -4px -4px 12px rgba(207, 189, 255, 0.08),
+    0 0 12px rgba(207, 189, 255, 0.15),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px) !important;
 }
 
 .neo-btn:active,
 .neo-btn-pressed {
-  background: #100e18;
+  background: rgba(18, 16, 26, 0.6) !important;
   box-shadow:
-    inset 4px 4px 8px #06050b,
-    inset -3px -3px 6px rgba(255, 255, 255, 0.04);
-  border-color: rgba(0, 242, 255, 0.5);
-  transform: translateY(1px);
+    inset 4px 4px 8px #040307,
+    inset -3px -3px 6px rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(207, 189, 255, 0.55) !important;
+  transform: translateY(1px) !important;
 }
 
 .neo-tab-btn {
@@ -180,87 +191,51 @@
 }
 
 .neo-tab-active {
-  background: #110e19 !important;
-  color: #00F2FF !important;
+  background: rgba(154, 131, 219, 0.15) !important;
+  color: #cfbdff !important;
   box-shadow:
-    inset 4px 4px 10px #06050b,
-    inset -3px -3px 8px rgba(255, 255, 255, 0.06),
-    0 0 15px rgba(0, 242, 255, 0.25) !important;
-  border: 1px solid rgba(0, 242, 255, 0.5) !important;
-}
-
-/* 3D Neomorphism Depth Card Utility Classes */
-.neo-card {
-  background: linear-gradient(145deg, #191624, #100d18);
-  position: relative;
-  overflow: hidden;
-  box-shadow:
-    8px 8px 20px #08070d,
-    -6px -6px 16px rgba(255, 255, 255, 0.05),
-    inset 1px 1px 1px 0 rgba(255, 255, 255, 0.18),
-    inset -1px -1px 2px 0 rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Top glass glare sheen overlay for skeuomorphic depth */
-.neo-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 38%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.neo-card:hover {
-  transform: translateY(-4px);
-  background: linear-gradient(145deg, #201c2e, #13101d);
-  box-shadow:
-    12px 12px 28px #050409,
-    -8px -8px 20px rgba(207, 189, 255, 0.09),
-    0 0 20px rgba(0, 242, 255, 0.2),
-    inset 1px 1px 1.5px 0 rgba(255, 255, 255, 0.35);
-  border-color: rgba(0, 242, 255, 0.45);
+    0 0 15px rgba(154, 131, 219, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(154, 131, 219, 0.4) !important;
 }
 
 .neo-card-cyan {
-  border-color: rgba(0, 242, 255, 0.3);
+  border-color: rgba(0, 242, 255, 0.18) !important;
   box-shadow:
-    8px 8px 20px #08070d,
-    -6px -6px 16px rgba(255, 255, 255, 0.05),
-    inset 1px 1px 1px 0 rgba(0, 242, 255, 0.25);
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px 0 rgba(0, 242, 255, 0.1) !important;
 }
 
 .neo-card-cyan:hover {
-  border-color: rgba(0, 242, 255, 0.6);
+  border-color: rgba(0, 242, 255, 0.45) !important;
   box-shadow:
-    12px 12px 28px #050409,
-    -8px -8px 20px rgba(0, 242, 255, 0.12),
-    inset 1px 1px 1.5px 0 rgba(0, 242, 255, 0.4);
+    0 16px 48px 0 rgba(0, 0, 0, 0.5),
+    0 0 24px 0 rgba(0, 242, 255, 0.18),
+    inset 0 1px 1px 0 rgba(0, 242, 255, 0.15) !important;
 }
 
 .neo-card-purple {
-  border-color: rgba(207, 189, 255, 0.3);
+  border-color: rgba(207, 189, 255, 0.18) !important;
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px 0 rgba(207, 189, 255, 0.1) !important;
 }
 
 .neo-card-purple:hover {
-  border-color: rgba(207, 189, 255, 0.6);
+  border-color: rgba(207, 189, 255, 0.45) !important;
   box-shadow:
-    12px 12px 28px #050409,
-    -8px -8px 20px rgba(207, 189, 255, 0.15),
-    inset 1px 1px 1.5px 0 rgba(207, 189, 255, 0.4);
+    0 16px 48px 0 rgba(0, 0, 0, 0.5),
+    0 0 24px 0 rgba(207, 189, 255, 0.18),
+    inset 0 1px 1px 0 rgba(207, 189, 255, 0.15) !important;
 }
 
 .neo-inset {
-  background: #0b0a11;
-  box-shadow:
-    inset 6px 6px 14px #040307,
-    inset -4px -4px 12px rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 10, 17, 0.4) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 
+    inset 6px 6px 12px #040306,
+    inset -4px -4px 10px rgba(255, 255, 255, 0.03) !important;
 }
 
 /* Animations for scrolling achievements list */
@@ -319,16 +294,17 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f0d13;
+  background: rgba(15, 13, 22, 0.2);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #36343a;
+  background: rgba(148, 142, 156, 0.3);
   border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #cfbdff;
+  background: rgba(207, 189, 255, 0.6);
 }
 
 /* Glow tags */

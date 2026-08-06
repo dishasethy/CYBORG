@@ -123,10 +123,12 @@ export default function EventsView() {
                       <Calendar className="w-3 h-3 text-[#cfbdff]" />
                       {evt.date}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-3 h-3 text-[#00F2FF]" />
-                      {evt.venue}
-                    </span>
+                    {evt.venue && (
+                      <span className="flex items-center gap-1">
+                        <MapPin className="w-3 h-3 text-[#00F2FF]" />
+                        {evt.venue}
+                      </span>
+                    )}
                   </div>
 
                   <p className="font-sans text-xs text-[#cac4d2] leading-relaxed line-clamp-3">

@@ -19,22 +19,22 @@ export interface YearGroup<T = IMember> {
 export const YEAR_METADATA: Record<AcademicYearType, { label: string; description: string; order: number }> = {
   'alumni': {
     label: 'ALUMNI MEMBERS & VETERANS',
-    description: 'Founding engineers and alumni leads serving in top AI labs & industry.',
+    description: '',
     order: 1,
   },
   'final year': {
     label: 'FINAL YEAR MEMBERS',
-    description: 'Senior architects guiding core hardware, ROS2 pipelines, and club governance.',
+    description: '',
     order: 2,
   },
   'pre-final year': {
     label: 'PRE-FINAL YEAR MEMBERS',
-    description: 'Subsystem coordinators executing main robotics prototypes and competitions.',
+    description: '',
     order: 3,
   },
   'sophomore': {
     label: 'SOPHOMORE MEMBERS',
-    description: 'Emerging robotics researchers learning electronics, CAD, and embedded C++.',
+    description: '',
     order: 4,
   },
 };
