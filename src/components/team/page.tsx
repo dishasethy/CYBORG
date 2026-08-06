@@ -274,14 +274,14 @@ export default function TeamView() {
                                                     </div>
 
                                                     {/* Alumni Details Card */}
-                                                    {member.year === 'alumni' && member.alumniInfo && (
+                                                    {member.year === 'alumni' && member.alumniInfo && member.alumniInfo.company && (
                                                         <div className="neo-inset p-2.5 rounded-xl border border-amber-500/20 space-y-1 font-mono text-[10px] text-amber-200">
                                                             <div className="flex items-center gap-1 font-bold">
                                                                 <Building className="w-3 h-3 text-amber-400" />
-                                                                <span>{member.alumniInfo.company || 'Alumni Tech Lab'}</span>
+                                                                <span>{member.alumniInfo.company}</span>
                                                             </div>
                                                             <div className="text-[#cac4d2]">
-                                                                {member.alumniInfo.designation || 'Engineer'} ({member.alumniInfo.graduationYear || '2023'})
+                                                                {member.alumniInfo.designation && `${member.alumniInfo.designation} `}({member.alumniInfo.graduationYear})
                                                             </div>
                                                             {member.alumniInfo.currentLocation && (
                                                                 <div className="flex items-center gap-1 text-[#948e9c]">
