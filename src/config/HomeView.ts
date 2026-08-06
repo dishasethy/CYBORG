@@ -55,17 +55,18 @@ export const divisionOverview: DivisionOverview = {
 export const facultyAdvisor: FacultyAdvisor = {
   name: 'Prof. Ayas Kanta Swain',
   designation: 'Assistant Professor',
-  department: 'ECE DEPT',
+  department: '',
   phone: '0661-26462458',
   email: 'swainA@nitrkl.ac.in',
-  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCKM81b_c5twuQBSK3wO5hzZMXGs3NegkD6QHvd7jDI1bPkQiqmwBkk5eu3qNTlRVHh-6uWh_2rsooGT0LM1Kk32SIpgWdZz25T2LVDVFtnjXs431ijvmW37HZ-Z4knWwn4T4d9IsoUa88Kb36sx4e_2tm9JFaheYtQTCpD2xSYI8T9jXy8U7AyvAXFjkhzr2aBBL9IfMlHiV4GrFGOa57COloAqiTdbezV7U1nVlGFEpvIi3NBBRjM9J_lsiq5ZFmACI0ju7PT3BEQ'
+  image: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786007628/1110949_bsh1h9.jpg'
 };
 
 export const clubPresident: ClubPresidentInfo = {
-  name: 'Rudra Nandkishor Anjiwadekar',
+  name: 'Harprosad Mandal',
   title: 'Club President',
-  memberId: '122ME0896',
-  phone: '+91 9022275481',
-  email: '122me0896@nitrkl.ac.in',
-  image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAkZljaGvQgPLC060s1NnGpI4bSP_lAuIbYzMp-al7kl8etweSVtXLQMAXGtekC8uFeDIm86wQ9gdf32vYh1eaaEU0TnZFMnLL26MGM3tG_Ha-73jxvvvmJm4WSmctLeVPzm8qcn2YRO2nofP6r8cBFAJ3XofAEyIPxvH5JIOv6heYssEvHYZvgteH9jFqDW3bL8YmojThRrh51jOvv_9CE0a4GF7KdaD88uHHU59IUqdMP6dxmoyF6WWYb14tDMklc5wS7V81BVilD'
+  memberId: '',
+  phone: '+91 7077871779',
+  email: 'harprosadmandal@gmail.com',
+  image: 'https://res.cloudinary.com/diml2eds6/image/upload/v1719347348/IMG_4070_-_Harprosad_Mandal_ra5ptd.jpg'
 };
+

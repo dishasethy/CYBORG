@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useState, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Terminal, Bell, Menu, X, Cpu } from 'lucide-react';
@@ -49,10 +50,12 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             onClick={() => setActiveTab('home')}
             className="flex items-center gap-2.5 cursor-pointer group py-1"
           >
-            <img 
+            <Image 
               src="/cyborg_logo.png" 
               alt="Cyborg Logo" 
               className="h-[52px] w-auto object-contain -my-2 transition-transform duration-300 group-hover:scale-105" 
+              width={120}
+              height={52}
             />
             <div className="hidden lg:flex flex-col justify-center">
               <span className="text-sm font-bold tracking-[0.2em] text-white group-hover:text-[#00F2FF] transition-colors uppercase">

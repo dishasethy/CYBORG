@@ -29,7 +29,7 @@ const architectsDaughter = Architects_Daughter({
 });
 
 export const metadata: Metadata = {
-  title: "CYBORG | Robotics & AI Club | NIT Rourkela",
+  title: "CYBORG | Robotics &  Automation Club | NIT Rourkela",
   description: "CYBORG is the premier student-run robotics and artificial intelligence division of SAC, NIT Rourkela. Bridging the gap between theory and hardware implementation.",
   keywords: ["CYBORG", "NIT Rourkela", "Robotics", "Artificial Intelligence", "Student Club", "autonomous systems", "deep learning", "bento grid portfolio", "hardware", "engineering", "NITR"],
   authors: [{ name: "CYBORG NITR" }],
