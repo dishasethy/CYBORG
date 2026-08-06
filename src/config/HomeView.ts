@@ -31,19 +31,17 @@ export interface ClubPresidentInfo {
 }
 
 export const sponsors: Sponsor[] = [
-
-
   {
     id: 'sponsor-solidworks',
     name: 'SolidWorks Logo',
-    logoUrl: 'https://res.cloudinary.com/diml2eds6/image/upload/v1720209377/solidworks_d04csf.png',
-    heightClass: 'h-10 md:h-12'
+    logoUrl: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786015936/solidworks_thumb_vmvft5.webp',
+    heightClass: 'h-24 md:h-36'
   },
   {
     id: 'sponsor-ansys',
     name: 'Ansys Logo',
-    logoUrl: 'https://res.cloudinary.com/diml2eds6/image/upload/v1720209376/ansys_tof9ob.png',
-    heightClass: 'h-8 md:h-10'
+    logoUrl: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786015994/ansys-logo-png_seeklogo-349473_idbypp.webp',
+    heightClass: 'h-20 md:h-32'
   }
 ];
 

@@ -40,10 +40,10 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="space-y-24"
+      className="space-y-14 sm:space-y-16"
     >
       {/* Hero Section */}
-      <section id="home-hero-section" className="min-h-[75vh] sm:min-h-[85vh] flex flex-col items-center justify-center text-center relative pt-8 pb-4">
+      <section id="home-hero-section" className="min-h-[75vh] sm:min-h-[85vh] flex flex-col items-center justify-center text-center relative -pt-6 pb-4">
         <motion.div variants={itemVariants} className="max-w-7xl w-full mx-auto space-y-8 px-4">
 
           {/* Interactive Cinematic Logo Character Split with Particles */}
@@ -60,7 +60,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           </p>
 
           <h2 className={`${qwigley.className} text-2xl sm:text-3xl md:text-4xl text-[#9a83db] text-glow-purple normal-case`}>
-            Where every idea sparks a new possibility
+            " Where every idea sparks a new possibility "
           </h2>
 
 
@@ -69,27 +69,27 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
       </section>
 
       {/* Sponsors Section */}
-      <section id="sponsors-section" className="py-12 border-y border-[#494551]/20 bg-[#0f0d13]/50 relative overflow-hidden">
+      <section id="sponsors-section" className="py-4 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="flex items-center justify-center gap-4 mb-4">
             <div className="h-[1px] w-12 bg-[#494551]/30"></div>
             <h3 className="font-cyber text-[10px] text-[#948e9c] uppercase tracking-[0.3em]">Our Proud Sponsors</h3>
             <div className="h-[1px] w-12 bg-[#494551]/30"></div>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {sponsors.map((sponsor) => (
               <motion.div
                 key={sponsor.id}
-                whileHover={{ scale: 1.04 }}
-                className="neo-card p-6 md:p-8 rounded-2xl flex items-center justify-center border border-[#494551]/30 hover:border-[#cfbdff]/50 transition-all cursor-pointer"
+                whileHover={{ scale: 1.08 }}
+                className="flex items-center justify-center cursor-pointer transition-all duration-300"
               >
                 <Image
                   alt={sponsor.name}
-                  className={`${sponsor.heightClass} w-auto object-contain filter opacity-70 hover:opacity-100 transition-opacity drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]`}
+                  className={`${sponsor.heightClass} w-auto object-contain filter opacity-85 hover:opacity-100 transition-opacity`}
                   src={sponsor.logoUrl}
-                  width={200}
-                  height={80}
+                  width={400}
+                  height={120}
                 />
               </motion.div>
             ))}

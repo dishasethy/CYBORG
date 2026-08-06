@@ -8,7 +8,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   if (loading) {
-    return <Loader onComplete={() => setLoading(false)} durationMs={5000} />;
+    return <Loader onComplete={() => setLoading(false)} durationMs={1800} />;
   }
 
   return <App />;

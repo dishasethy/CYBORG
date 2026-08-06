@@ -35,7 +35,7 @@ export default function SocialSidebar() {
     {
       id: 'github',
       name: 'GitHub',
-      icon: Github, 
+      icon: Github,
       url: 'https://github.com',
       colorHover: 'hover:text-[#cfbdff] hover:border-[#cfbdff]/60'
     }
@@ -48,10 +48,10 @@ export default function SocialSidebar() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
       className="fixed left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col items-center gap-4"
     >
-      <div className="w-[2px] h-12 bg-gradient-to-b from-transparent via-[#cfbdff]/40 to-[#00F2FF]/60" />
+
 
       <div className="neo-card p-2.5 rounded-2xl flex flex-col gap-3.5 border border-[#cfbdff]/25 shadow-[0_10px_25px_rgba(0,0,0,0.8)] backdrop-blur-md relative group">
-        <div className="absolute -left-[1px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#cfbdff] via-[#00F2FF] to-[#cfbdff] rounded-full opacity-60 group-hover:opacity-100 transition-opacity" />
+
 
         {socials.map((item) => {
           const Icon = item.icon;
@@ -75,8 +75,6 @@ export default function SocialSidebar() {
           );
         })}
       </div>
-
-      <div className="w-[2px] h-12 bg-gradient-to-b from-[#00F2FF]/60 via-[#cfbdff]/40 to-transparent" />
     </motion.aside>
   );
 }

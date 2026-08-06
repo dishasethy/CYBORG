@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Space_Grotesk, Orbitron, JetBrains_Mono, Caveat, Architects_Daughter } from "next/font/google";
+import { Space_Grotesk, Orbitron, JetBrains_Mono, Caveat, Architects_Daughter, Qwigley } from "next/font/google";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -10,6 +10,12 @@ const spaceGrotesk = Space_Grotesk({
 const orbitron = Orbitron({
   subsets: ["latin"],
   variable: "--font-cyber-loaded",
+});
+
+const qwigley = Qwigley({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-qwigley-loaded",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -43,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${spaceGrotesk.variable} ${orbitron.variable} ${jetbrainsMono.variable} ${caveat.variable} ${architectsDaughter.variable}`}
+      className={`dark ${spaceGrotesk.variable} ${orbitron.variable} ${qwigley.variable} ${jetbrainsMono.variable} ${caveat.variable} ${architectsDaughter.variable}`}
     >
       <body className="text-[#e6e1e9] selection:bg-[#9a83db]/30 selection:text-[#cfbdff] antialiased">
         {children}

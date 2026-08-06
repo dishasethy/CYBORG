@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Terminal, Bell, Menu, X, Cpu } from 'lucide-react';
 import { navItems, initialTerminalLogs } from '../../constants';
@@ -14,6 +14,15 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [terminalLogs, setTerminalLogs] = useState<string[]>(initialTerminalLogs);
   const [terminalInput, setTerminalInput] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 15);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleTerminalSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -43,25 +52,21 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 neo-header font-cyber">
+      <header className={`fixed top-0 left-0 right-0 z-50 neo-header transition-all duration-300 font-cyber ${isScrolled ? 'neo-header-scrolled' : ''}`}>
         <nav className="flex justify-between items-center w-full px-6 md:px-12 py-3 max-w-7xl mx-auto">
           {/* Official Cyborg Logo */}
           <div
             onClick={() => setActiveTab('home')}
             className="flex items-center gap-2.5 cursor-pointer group py-1"
           >
-            <Image 
-              src="/cyborg_logo.png" 
-              alt="Cyborg Logo" 
-              className="h-[52px] w-auto object-contain -my-2 transition-transform duration-300 group-hover:scale-105" 
+            <Image
+              src="/cyborg_logo.png"
+              alt="Cyborg Logo"
+              className="h-[60px] w-auto object-contain -my-2 transition-transform duration-300 group-hover:scale-105"
               width={120}
               height={52}
             />
-            <div className="hidden lg:flex flex-col justify-center">
-              <span className="text-sm font-bold tracking-[0.2em] text-white group-hover:text-[#00F2FF] transition-colors uppercase">
-                CYBORG
-              </span>
-            </div>
+
           </div>
 
           {/* Desktop Navigation - Recessed Neomorphic Track */}

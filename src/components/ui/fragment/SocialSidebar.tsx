@@ -48,11 +48,7 @@ export default function SocialSidebar() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
       className="fixed left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 hidden sm:flex flex-col items-center gap-4"
     >
-      <div className="w-[2px] h-12 bg-gradient-to-b from-transparent via-[#cfbdff] to-[#00F2FF]" />
-
       <div className="bg-transparent flex flex-col gap-3.5 relative group">
-        <div className="absolute -left-[1px] top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#cfbdff] via-[#00F2FF] to-[#cfbdff] rounded-full opacity-100 transition-opacity" />
-
         {socials.map((item) => {
           const Icon = item.icon;
           return (
@@ -75,8 +71,6 @@ export default function SocialSidebar() {
           );
         })}
       </div>
-
-      <div className="w-[2px] h-12 bg-gradient-to-b from-[#00F2FF] via-[#cfbdff] to-transparent" />
     </motion.aside>
   );
 }
