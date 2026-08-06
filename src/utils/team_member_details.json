@@ -9,7 +9,18 @@
       "subsystem": "Electronics",
       "role": "President",
       "batch": "2027",
-      "projects": ""
+      "projects": "./"
+    },
+    {
+      "name": "Vishesh Jain",
+      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347870/vishesh_r8igjp.jpg",
+      "email": "visheshjain5082@gmail.com",
+      "github": "https://github.com/cptainperoxide",
+      "linkedin": "https://www.linkedin.com/in/visheshj28",
+      "subsystem": "Robotics",
+      "role": "Ex-Secretary",
+      "batch": "2027",
+      "projects": ".///"
     },
     {
       "name": "Amlan Prateek Panda ",
@@ -19,7 +30,7 @@
       "subsystem": "Electronics",
       "role": "Ex-Vice President",
       "batch": "2027",
-      "projects": "Newly inducted "
+      "projects": ".//"
     },
     {
       "name": "Abhisek Patnaik",
@@ -139,17 +150,6 @@
       "linkedin": "https://www.linkedin.com/in/shrimay-s-b4752328b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       "subsystem": "Electronics",
       "role": "IGVC Captain, IGVC Electronics Lead",
-      "batch": "2027",
-      "projects": ""
-    },
-    {
-      "name": "Vishesh Jain",
-      "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1719347870/vishesh_r8igjp.jpg",
-      "email": "visheshjain5082@gmail.com",
-      "github": "https://github.com/cptainperoxide",
-      "linkedin": "https://www.linkedin.com/in/visheshj28",
-      "subsystem": "Robotics",
-      "role": "Secretary",
       "batch": "2027",
       "projects": ""
     },
@@ -545,7 +545,7 @@
       "image": "https://res.cloudinary.com/diml2eds6/image/upload/v1758814205/20250331_113643_-_Disha_Sethi_vcbl4b.jpg",
       "email": "dishasethi01.1@gmail.com",
       "github": "https://github.com/JITUDISHA",
-      "linkedin": "https://www.linkedin.com/in/disha-sethi-06b737315?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      "linkedin": "https://res.cloudinary.com/dlrhikaak/image/upload/v1786017821/dishasethi124mm0008_lvdabb.png",
       "subsystem": "Web&Automation",
       "role": "Member",
       "batch": "2028",

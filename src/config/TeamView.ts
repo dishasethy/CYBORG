@@ -17,7 +17,9 @@ export const teamCategories: TeamCategoryFilter[] = [
 // Map subsystem strings to the normalized tags used by the frontend filters
 function mapJsonSubsystem(sub: string): string {
   const s = (sub || '').toLowerCase().trim();
-  if (s.includes('mech') || s.includes('cad') || s.includes('robotics')) return 'mechanical';
+  if (s.includes('web') || s.includes('automation')) return 'web&automation';
+  if (s.includes('robotics')) return 'robotics';
+  if (s.includes('mech') || s.includes('cad')) return 'mechanical';
   if (s.includes('elec') || s.includes('pcb')) return 'electronics';
   if (s.includes('embed') || s.includes('ros')) return 'embedded';
   if (s.includes('auto') || s.includes('slam')) return 'autonomous';

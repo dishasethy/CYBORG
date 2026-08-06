@@ -438,11 +438,13 @@ export default function TeamView() {
                                             onChange={e => setFormData({ ...formData, subsystem: e.target.value as SubsystemType })}
                                             className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#00F2FF] outline-none font-mono"
                                         >
+                                            <option value="robotics">Robotics &amp; Automation</option>
                                             <option value="software">Software &amp; AI</option>
                                             <option value="mechanical">Mechanical &amp; CAD</option>
                                             <option value="electronics">Electronics &amp; PCB</option>
                                             <option value="embedded">Embedded &amp; ROS2</option>
                                             <option value="autonomous">Autonomous &amp; SLAM</option>
+                                            <option value="web&automation">Web &amp; Automation</option>
                                             <option value="management">Management &amp; PR</option>
                                         </select>
                                     </div>

@@ -41,10 +41,15 @@ export const YEAR_METADATA: Record<AcademicYearType, { label: string; descriptio
 
 // Canonical display labels and colors for Subsystems
 export const SUBSYSTEM_METADATA: Record<SubsystemType, { label: string; badgeColor: string; order: number }> = {
+  'robotics': {
+    label: 'Robotics & Automation',
+    badgeColor: 'border-[#00F2FF]/40 text-[#00F2FF] bg-[#00F2FF]/10',
+    order: 1,
+  },
   'software': {
     label: 'Software & AI Systems',
     badgeColor: 'border-[#00F2FF]/40 text-[#00F2FF] bg-[#00F2FF]/10',
-    order: 1,
+    order: 2,
   },
   'mechanical': {
     label: 'Mechanical & CAD Engineering',
@@ -66,10 +71,15 @@ export const SUBSYSTEM_METADATA: Record<SubsystemType, { label: string; badgeCol
     badgeColor: 'border-purple-400/40 text-purple-300 bg-purple-400/10',
     order: 5,
   },
+  'web&automation': {
+    label: 'Web & Automation Systems',
+    badgeColor: 'border-[#cfbdff]/40 text-[#cfbdff] bg-[#cfbdff]/10',
+    order: 6,
+  },
   'management': {
     label: 'Operations & Public Relations',
     badgeColor: 'border-cyan-400/40 text-cyan-200 bg-cyan-400/10',
-    order: 6,
+    order: 7,
   },
 };
 
@@ -90,6 +100,8 @@ export function normalizeYear(yearStr: string): AcademicYearType {
  */
 export function normalizeSubsystem(subsystemStr: string): SubsystemType {
   const lowered = subsystemStr.trim().toLowerCase();
+  if (lowered.includes('web') || lowered.includes('automation')) return 'web&automation';
+  if (lowered.includes('robotics')) return 'robotics';
   if (lowered.includes('soft') || lowered.includes('ai')) return 'software';
   if (lowered.includes('mech') || lowered.includes('cad')) return 'mechanical';
   if (lowered.includes('elec') || lowered.includes('pcb')) return 'electronics';
@@ -146,11 +158,13 @@ export function segregateMembersByYearAndSubsystem<T extends IMember>(members: T
     let yearMemberCount = 0;
 
     const canonicalSubsystems: SubsystemType[] = [
+      'robotics',
       'software', 
       'mechanical', 
       'electronics', 
       'embedded', 
       'autonomous', 
+      'web&automation',
       'management'
     ];
 

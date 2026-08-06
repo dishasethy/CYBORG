@@ -7,7 +7,9 @@ export type { IMember, SubsystemType, AcademicYearType };
 // Map JSON subsystem string to valid subsystem name
 function mapJsonSubsystem(sub: string): SubsystemType {
   const s = (sub || '').toLowerCase().trim();
-  if (s.includes('mech') || s.includes('cad') || s.includes('robotics')) return 'mechanical';
+  if (s.includes('web') || s.includes('automation')) return 'web&automation';
+  if (s.includes('robotics')) return 'robotics';
+  if (s.includes('mech') || s.includes('cad')) return 'mechanical';
   if (s.includes('elec') || s.includes('pcb')) return 'electronics';
   if (s.includes('embed') || s.includes('ros')) return 'embedded';
   if (s.includes('auto') || s.includes('slam')) return 'autonomous';

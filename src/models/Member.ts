@@ -1,10 +1,12 @@
 export type SubsystemType = 
+  | 'robotics'
   | 'software' 
   | 'mechanical' 
   | 'electronics' 
   | 'embedded' 
   | 'autonomous' 
-  | 'management';
+  | 'management'
+  | 'web&automation';
 
 export type AcademicYearType = 
   | 'sophomore' 
