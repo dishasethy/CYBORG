@@ -50,7 +50,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           <div className="py-2 w-full">
             <ParticleText />
             <p className="font-cyber text-[9px] sm:text-[11px] md:text-xs tracking-[0.2em] sm:tracking-[0.35em] md:tracking-[0.45em] text-[#00F2FF] mt-4 font-semibold uppercase">
-              artificial intelligence &amp; autonomous systems lab
+              The Official Robotics &amp; automation club of NITR
             </p>
           </div>
 
@@ -227,7 +227,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               <div>
                 <span className="font-cyber text-[9px] tracking-wider text-[#00F2FF] uppercase font-black neo-btn px-2.5 py-1 rounded-md">{clubPresident.title}</span>
                 <h5 className="font-sans font-bold text-lg text-white mt-2 group-hover:text-[#cfbdff] transition-colors">{clubPresident.name}</h5>
-                <p className="text-xs text-[#cac4d2] font-mono mt-0.5">CYBORG_LEADER // ID: {clubPresident.memberId}</p>
+                <p className="text-xs text-[#cac4d2] font-mono mt-0.5">CYBORG_LEAD {clubPresident.memberId}</p>
               </div>
             </div>
 

@@ -13,6 +13,7 @@ export default function ParticleText() {
     let animationId: number;
     let particles: Particle[] = [];
     const mouse = { x: -1000, y: -1000, radius: 135 };
+    let isMobile = false;
 
     class Particle {
       x: number;
@@ -27,8 +28,8 @@ export default function ParticleText() {
       originalColor: string;
 
       constructor(x: number, y: number, color: string) {
-        this.x = x + (Math.random() - 0.5) * 500;
-        this.y = y + (Math.random() - 0.5) * 500;
+        this.x = isMobile ? x : x + (Math.random() - 0.5) * 500;
+        this.y = isMobile ? y : y + (Math.random() - 0.5) * 500;
         this.baseX = x;
         this.baseY = y;
         this.size = Math.random() * 2.2 + 0.9;
@@ -49,6 +50,12 @@ export default function ParticleText() {
       }
 
       update() {
+        if (isMobile) {
+          this.x = this.baseX;
+          this.y = this.baseY;
+          return;
+        }
+
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const distance = Math.hypot(dx, dy);
@@ -90,6 +97,7 @@ export default function ParticleText() {
       if (!canvas || !ctx) return;
       
       const width = containerRef.current?.clientWidth || window.innerWidth || 1000;
+      isMobile = width < 640;
       const fontScale = width < 1200 ? 5.6 : 4.8;
       const fontSize = Math.min(200, Math.floor(width / fontScale));
       const height = width < 640 ? Math.max(140, Math.floor(fontSize * 1.8)) : 340;

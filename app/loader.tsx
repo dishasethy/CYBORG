@@ -94,8 +94,7 @@ export default function Loader({ onComplete, durationMs = 1800 }: LoaderProps) {
                         }}
                     />
 
-                    {/* Laser Scanner Line */}
-                    <div className="scan-line" />
+
 
                     {/* TOP HEADER: Telemetry & Status */}
                     <div className="relative z-10 flex items-center justify-between text-base sm:text-lg text-[#948e9c] font-qwigley">

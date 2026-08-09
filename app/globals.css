@@ -294,7 +294,7 @@ body {
 }
 
 .scroll-h-left {
-  animation: scroll-horizontal-left 50s linear infinite;
+  animation: scroll-horizontal-left 95s linear infinite;
 }
 
 .carousel-container:hover .scroll-v-down,

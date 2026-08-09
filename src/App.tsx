@@ -58,8 +58,7 @@ export default function App() {
       {/* Interactive Network Particle Background */}
       <InteractiveBg />
 
-      {/* Cybernetic overlay laser scanline */}
-      <div className="scan-line" />
+
 
       {/* Global Tactical grid and noise overlays */}
       <div className="fixed inset-0 pointer-events-none z-1 bg-repeat hud-grid opacity-[0.45]" />

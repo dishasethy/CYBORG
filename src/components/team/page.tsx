@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState, useEffect, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Github, Linkedin, Mail, X, Layers, Database, CheckCircle2, Building, MapPin } from 'lucide-react';
-import { YearGroup, segregateMembersByYearAndSubsystem } from '../../utils/memberSegregation';
+import { YearGroup, segregateMembersByYearAndSubsystem, SUBSYSTEM_METADATA } from '../../utils/memberSegregation';
 import { IMember, AcademicYearType, SubsystemType } from '../../models/Member';
 import { teamMembers, DEFAULT_MEMBER_AVATAR } from '../../constants';
 
@@ -25,6 +25,37 @@ const mappedStatic: IMember[] = teamMembers.map(m => ({
 }));
 
 const initialSegregatedGroups = segregateMembersByYearAndSubsystem(mappedStatic);
+
+const renderMemberRole = (member: IMember) => {
+    const roleLower = (member.role || '').toLowerCase().trim();
+    if (roleLower === 'member' || roleLower === '') {
+        return null;
+    }
+
+    if (
+        roleLower.includes('president') ||
+        roleLower.includes('secretary') ||
+        roleLower.includes('captain') ||
+        roleLower.includes('treasurer') ||
+        roleLower.includes('vp')
+    ) {
+        return member.role;
+    }
+
+    if (roleLower.includes('lead')) {
+        const subMeta = SUBSYSTEM_METADATA[member.subsystem];
+        let subName = subMeta ? subMeta.label : member.subsystem;
+
+        if (subName.includes(' & ')) {
+            subName = subName.split(' & ')[0];
+        }
+        subName = subName.replace(/Systems|Engineering|Hardware|PCB|CAD/g, '').trim();
+
+        return `${subName} Lead`;
+    }
+
+    return null;
+};
 
 export default function TeamView() {
     const [viewMode, setViewMode] = useState<'segregated' | 'flat'>('segregated');
@@ -268,9 +299,11 @@ export default function TeamView() {
                                                         <h4 className="font-cyber font-bold text-sm text-white group-hover:text-[#00F2FF] transition-colors leading-tight">
                                                             {member.name}
                                                         </h4>
-                                                        <p className="font-sans text-xs text-[#cac4d2] mt-1 leading-relaxed line-clamp-2">
-                                                            {member.role || `${member.subsystem.toUpperCase()} Engineer`}
-                                                        </p>
+                                                        {renderMemberRole(member) && (
+                                                            <p className="font-sans text-xs text-[#cac4d2] mt-1 leading-relaxed line-clamp-2">
+                                                                {renderMemberRole(member)}
+                                                            </p>
+                                                        )}
                                                     </div>
 
                                                     {/* Alumni Details Card */}
@@ -356,7 +389,9 @@ export default function TeamView() {
                                         {member.year}
                                     </span>
                                 </div>
-                                <p className="font-sans text-xs text-[#cac4d2]">{member.role}</p>
+                                {renderMemberRole(member) && (
+                                    <p className="font-sans text-xs text-[#cac4d2] mt-1">{renderMemberRole(member)}</p>
+                                )}
                             </div>
 
                             <div className="flex justify-between items-center pt-3 border-t border-[#494551]/20 font-mono text-[9px]">
