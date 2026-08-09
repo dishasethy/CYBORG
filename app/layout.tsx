@@ -49,9 +49,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${spaceGrotesk.variable} ${orbitron.variable} ${qwigley.variable} ${jetbrainsMono.variable} ${caveat.variable} ${architectsDaughter.variable}`}
+      className={`${spaceGrotesk.variable} ${orbitron.variable} ${qwigley.variable} ${jetbrainsMono.variable} ${caveat.variable} ${architectsDaughter.variable}`}
     >
-      <body className="text-[#e6e1e9] selection:bg-[#9a83db]/30 selection:text-[#cfbdff] antialiased">
+      <body className="text-[#211c2b] selection:bg-[#9a83db]/40 selection:text-white antialiased">
         {children}
       </body>
     </html>

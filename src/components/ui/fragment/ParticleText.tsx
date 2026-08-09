@@ -63,7 +63,7 @@ export default function ParticleText() {
         if (distance < mouse.radius) {
           const force = (mouse.radius - distance) / mouse.radius;
           const angle = Math.atan2(dy, dx);
-          
+
           const spreadFactor = 4.2;
           const jitterX = (Math.random() - 0.5) * 8;
           const jitterY = (Math.random() - 0.5) * 8;
@@ -95,15 +95,15 @@ export default function ParticleText() {
 
     const init = () => {
       if (!canvas || !ctx) return;
-      
+
       const width = containerRef.current?.clientWidth || window.innerWidth || 1000;
       isMobile = width < 640;
       const fontScale = width < 1200 ? 5.6 : 4.8;
       const fontSize = Math.min(200, Math.floor(width / fontScale));
       const height = width < 640 ? Math.max(140, Math.floor(fontSize * 1.8)) : 340;
-      
+
       mouse.radius = width < 640 ? 60 : 135;
-      
+
       const dpr = window.devicePixelRatio || 1;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
@@ -132,7 +132,7 @@ export default function ParticleText() {
         for (let x = 0; x < width; x += step) {
           const index = (y * width + x) * 4;
           const alpha = imgData.data[index + 3];
-          
+
           if (alpha > 120) {
             const rand = Math.random();
             let color = 'rgba(207, 189, 255, 0.75)';

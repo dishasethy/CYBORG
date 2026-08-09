@@ -130,7 +130,7 @@ export default function InteractiveBg() {
 
       const orb1X = width * 0.2 + (mouse.x - width / 2) * 0.05;
       const orb1Y = height * 0.3 - (scrollYOffset * 0.15) % height + (mouse.y - height / 2) * 0.05;
-      
+
       const orbGrad1 = ctx.createRadialGradient(orb1X, orb1Y, 10, orb1X, orb1Y, 350);
       orbGrad1.addColorStop(0, `rgba(0, 242, 255, ${0.04 + Math.min(0.04, Math.abs(scrollVelocity) * 0.01)})`);
       orbGrad1.addColorStop(0.6, 'rgba(154, 131, 219, 0.015)');
@@ -142,7 +142,7 @@ export default function InteractiveBg() {
 
       const orb2X = width * 0.8 + (mouse.x - width / 2) * 0.08;
       const orb2Y = height * 0.7 - (scrollYOffset * 0.25) % height + (mouse.y - height / 2) * 0.08;
-      
+
       const orbGrad2 = ctx.createRadialGradient(orb2X, orb2Y, 10, orb2X, orb2Y, 400);
       orbGrad2.addColorStop(0, 'rgba(207, 189, 255, 0.035)');
       orbGrad2.addColorStop(0.7, 'rgba(0, 242, 255, 0.01)');

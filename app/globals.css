@@ -9,27 +9,27 @@
   --font-qwigley: var(--font-qwigley-loaded), "Qwigley", cursive;
   --font-bitcount: "Bitcount Ink", sans-serif;
 
-  --color-brand-surface: #0f0d13;
-  --color-brand-surface-lowest: #08060c;
-  --color-brand-surface-low: #121017;
-  --color-brand-surface-high: #1c1924;
-  --color-brand-surface-highest: #262232;
-  --color-brand-primary: #cfbdff;
-  --color-brand-on-primary: #371e72;
-  --color-brand-primary-container: #9a83db;
-  --color-brand-accent: #00F2FF;
-  --color-brand-secondary: #c9c5cd;
-  --color-brand-outline: #948e9c;
+  --color-brand-surface: #f7f5fa;
+  --color-brand-surface-lowest: #ffffff;
+  --color-brand-surface-low: #fcfbfe;
+  --color-brand-surface-high: #eae5f2;
+  --color-brand-surface-highest: #ded7eb;
+  --color-brand-primary: #4a3a78;
+  --color-brand-on-primary: #ffffff;
+  --color-brand-primary-container: #826abf;
+  --color-brand-accent: #00878f;
+  --color-brand-secondary: #56535a;
+  --color-brand-outline: #8c8695;
 }
 
-/* Custom modern body styling with fixed dynamic gradient dark background */
+/* Custom modern body styling with fixed dynamic gradient light background */
 body {
   background:
-    radial-gradient(circle at 10% 20%, rgba(26, 23, 38, 0.8) 0%, transparent 50%),
-    radial-gradient(circle at 90% 80%, rgba(9, 7, 13, 0.9) 0%, transparent 50%),
-    #0d0c12 !important;
+    radial-gradient(circle at 10% 20%, rgba(207, 189, 255, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.08) 0%, transparent 60%),
+    #f7f5fa !important;
   background-attachment: fixed !important;
-  color: #e6e1e9;
+  color: #211c2b !important;
   font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 

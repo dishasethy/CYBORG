@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Youtube, Github, ArrowUpRight, Calendar } from 'lucide-react';
 
@@ -124,12 +125,20 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         {/* Top bar of the gradient band */}
         <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] tracking-widest font-mono text-[#948e9c] uppercase z-10 pb-4 border-b border-[#494551]/20">
-          <div>
+          <div className="w-full sm:w-1/3 text-center sm:text-left">
             © 2026 CYBORG ROBOTICS CLUB. ALL RIGHTS RESERVED.
           </div>
-          <div className="flex gap-6">
-            <span className="hover:text-white transition-colors cursor-pointer">TERMS // INTEGRITY</span>
-            <span className="hover:text-white transition-colors cursor-pointer">PRIVACY // KERNEL</span>
+
+          <div className="w-full sm:w-1/3 flex justify-center sm:justify-end gap-6">
+            <div className="w-full sm:w-1/3 flex justify-center items-center py-2 sm:py-0 shrink-0">
+              <Image
+                src="/cyborg_logo.png"
+                alt="Cyborg Logo"
+                className="h-17 w-auto object-contain brightness-95"
+                width={80}
+                height={35}
+              />
+            </div>
           </div>
         </div>
 
