@@ -5,6 +5,7 @@ import { Github, Linkedin, Mail, X, Layers, Database, CheckCircle2, Building, Ma
 import { YearGroup, segregateMembersByYearAndSubsystem, SUBSYSTEM_METADATA } from '../../utils/memberSegregation';
 import { IMember, AcademicYearType, SubsystemType } from '../../models/Member';
 import { teamMembers, DEFAULT_MEMBER_AVATAR } from '../../constants';
+import TeamCarousel from './TeamCarousel';
 
 // Local fallback using teamMembers converted to IMember
 const mappedStatic: IMember[] = teamMembers.map(m => ({
@@ -213,6 +214,9 @@ export default function TeamView() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Team Frameless 3D Carousel Section */}
+            <TeamCarousel />
 
             {/* Year Level Quick Navigation Filter Tabs */}
             {viewMode === 'segregated' && (
