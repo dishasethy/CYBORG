@@ -188,6 +188,9 @@ export default function TeamView() {
 
     return (
         <div className="space-y-12 pb-12">
+            {/* Team Hero Full Pinterest Storytelling Carousel */}
+            <TeamCarousel />
+
             {/* Page Header */}
             <section id="team-header-panel" className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-[#494551]/20 pb-6 gap-4">
                 <div>
@@ -214,9 +217,6 @@ export default function TeamView() {
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            {/* Team Frameless 3D Carousel Section */}
-            <TeamCarousel />
 
             {/* Year Level Quick Navigation Filter Tabs */}
             {viewMode === 'segregated' && (

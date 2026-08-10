@@ -2,17 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { motion } from 'motion/react';
 import teamImagesData from '../../utils/team_images.json';
 
 export default function TeamCarousel() {
   const images = teamImagesData.image;
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const total = images.length;
-  
+
   // Track window resizing for responsive dimensions
   useEffect(() => {
     const handleResize = () => {
@@ -23,14 +21,13 @@ export default function TeamCarousel() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Auto-play interval
+  // Auto-play interval - loops through images automatically
   useEffect(() => {
-    if (!isPlaying) return;
     const interval = setInterval(() => {
       handleNext();
     }, 4500);
     return () => clearInterval(interval);
-  }, [isPlaying, activeIndex]);
+  }, [activeIndex]);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % total);
@@ -40,259 +37,175 @@ export default function TeamCarousel() {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   };
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
-
-  // Helper to extract clean cyber labels from Cloudinary URL filenames
-  const getLabelFromUrl = (url: string, index: number) => {
-    const parts = url.split('/');
-    const filename = parts[parts.length - 1];
-    if (filename.includes('CYB_DR_')) {
-      const match = filename.match(/CYB_DR_\d+/);
-      return match ? match[0].replace(/_/g, ' ') : `ROBOTICS UNIT [0${index + 1}]`;
-    }
-    if (filename.toLowerCase().includes('whatsapp_image')) {
-      return `TEAM MEMORY // SYS_${index * 10 + 104}`;
-    }
-    return `CYBER RECORD // LAB_${index + 1}`;
-  };
-
   return (
-    <div className="relative w-full flex flex-col items-center justify-center py-6 px-4 select-none">
-      {/* Decorative Cyber Grid Header */}
-      <div className="w-full max-w-5xl flex items-center justify-between mb-8 border-b border-[#494551]/30 pb-3">
-        <div className="flex items-center gap-2 font-mono text-[10px] text-[#00F2FF] tracking-widest uppercase">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00F2FF] animate-pulse" />
-          <span>DATABASE STREAM: TEAM_GALLERY.JSON</span>
-        </div>
-        <div className="flex items-center gap-2 font-mono text-[10px] text-[#948e9c]">
-          <span>INDEX: {activeIndex + 1} / {total}</span>
-        </div>
+    <div className="relative w-full flex flex-col items-center justify-center select-none overflow-hidden pt-6 pb-4">
+      {/* Pinterest-style Story Progress Bar Indicator */}
+      <div className="absolute top-0 inset-x-8 z-30 flex gap-1.5 justify-center max-w-xl mx-auto px-4 pointer-events-none">
+        {images.map((_, idx) => (
+          <div key={idx} className="h-1 flex-1 rounded-full bg-white/10 overflow-hidden">
+            <motion.div
+              className="h-full bg-[#cfbdff]/70"
+              initial={{ width: "0%" }}
+              animate={{ width: idx === activeIndex ? "100%" : (idx < activeIndex ? "100%" : "0%") }}
+              transition={{ duration: idx === activeIndex ? 4.5 : 0.3, ease: "linear" }}
+            />
+          </div>
+        ))}
       </div>
 
-      {/* 3D Viewport Wrapper */}
-      <div 
-        className="relative w-full max-w-5xl h-[340px] md:h-[460px] flex items-center justify-center overflow-visible"
+      {/* 3D Viewport Wrapper with Panning/Swiping Gesture */}
+      <motion.div
+        className="relative w-full max-w-7xl h-[62vh] md:h-[72vh] flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing"
         style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}
+        onPanEnd={(e, info) => {
+          const swipeThreshold = 40;
+          if (info.offset.x < -swipeThreshold) {
+            handleNext();
+          } else if (info.offset.x > swipeThreshold) {
+            handlePrev();
+          }
+        }}
       >
-        <AnimatePresence initial={false}>
-          {images.map((url, idx) => {
-            // Circular offset logic
-            let offset = (idx - activeIndex + total) % total;
-            if (offset > total / 2) {
-              offset -= total;
-            }
+        {images.map((url, idx) => {
+          // Circular offset logic
+          let offset = (idx - activeIndex + total) % total;
+          if (offset > total / 2) {
+            offset -= total;
+          }
 
-            const absOffset = Math.abs(offset);
-            
-            // Render only items in view (offset within +/- 2)
-            if (absOffset > 2) return null;
+          const absOffset = Math.abs(offset);
 
-            // Responsive coordinates
-            const baseX = isMobile ? 110 : 260;
-            const baseZ = isMobile ? -100 : -180;
-            const baseY = isMobile ? -15 : -35; // Pinetree vertical lift for background cards
-            const baseRotate = isMobile ? 20 : 32;
+          // Render only items in view
+          const isVisible = absOffset <= 2;
 
-            let x = 0;
-            let y = 0;
-            let z = 0;
-            let rotateY = 0;
-            let scale = 1;
-            let opacity = 1;
-            const zIndex = 10 - absOffset;
+          // Responsive coordinates - scaled for fullscreen layout
+          const baseX = isMobile ? 140 : 540;
+          const baseZ = isMobile ? -100 : -220;
+          const baseY = isMobile ? -15 : -35; // Pinetree vertical lift for background cards
+          const baseRotate = isMobile ? 16 : 26;
 
-            if (offset === 0) {
-              x = 0;
-              y = 0;
-              z = 0;
-              rotateY = 0;
-              scale = 1;
-              opacity = 1;
-            } else if (offset === -1) {
-              x = -baseX;
-              y = baseY; // Translated upwards
-              z = baseZ; // Shifted backwards
-              rotateY = baseRotate; // Angled towards center
-              scale = 0.86;
-              opacity = 0.8;
-            } else if (offset === 1) {
-              x = baseX;
-              y = baseY;
-              z = baseZ;
-              rotateY = -baseRotate;
-              scale = 0.86;
-              opacity = 0.8;
-            } else if (offset === -2) {
-              x = -baseX * 1.75;
-              y = baseY * 2; // Scaled higher up
-              z = baseZ * 1.85; // Deeper back
-              rotateY = baseRotate * 1.5;
-              scale = 0.72;
-              opacity = 0.45;
-            } else if (offset === 2) {
-              x = baseX * 1.75;
-              y = baseY * 2;
-              z = baseZ * 1.85;
-              rotateY = -baseRotate * 1.5;
-              scale = 0.72;
-              opacity = 0.45;
-            }
+          let x = 0;
+          let y = 0;
+          let z = 0;
+          let rotateY = 0;
+          let scale = 1;
+          let opacity = 1;
+          const zIndex = 10 - absOffset;
 
-            const isActive = offset === 0;
+          if (offset === 0) {
+            x = 0;
+            y = 0;
+            z = 0;
+            rotateY = 0;
+            scale = 1;
+            opacity = 1;
+          } else if (offset === -1) {
+            x = -baseX;
+            y = baseY; // Translated upwards
+            z = baseZ; // Shifted backwards
+            rotateY = baseRotate; // Angled towards center
+            scale = 0.8;
+            opacity = 0.2; // Reduced opacity for side cards
+          } else if (offset === 1) {
+            x = baseX;
+            y = baseY;
+            z = baseZ;
+            rotateY = -baseRotate;
+            scale = 0.8;
+            opacity = 0.2; // Reduced opacity for side cards
+          } else if (offset === -2) {
+            x = -baseX * 1.65;
+            y = baseY * 2; // Scaled higher up
+            z = baseZ * 1.8; // Deeper back
+            rotateY = baseRotate * 1.35;
+            scale = 0.65;
+            opacity = 0.03; // Substantially transparent for far background
+          } else if (offset === 2) {
+            x = baseX * 1.65;
+            y = baseY * 2;
+            z = baseZ * 1.8;
+            rotateY = -baseRotate * 1.35;
+            scale = 0.65;
+            opacity = 0.03; // Substantially transparent for far background
+          }
 
-            return (
-              <motion.div
-                key={idx}
-                style={{
-                  position: 'absolute',
-                  transformStyle: 'preserve-3d',
-                  transformOrigin: 'center center',
-                }}
-                animate={{
-                  x,
-                  y,
-                  z,
-                  rotateY,
-                  scale,
-                  opacity,
-                  zIndex,
-                }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 200,
-                  damping: 24,
-                }}
-                // Drag gesture only on active card
-                drag={isActive ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.25}
-                onDragEnd={(e, info) => {
-                  if (info.offset.x < -60) handleNext();
-                  if (info.offset.x > 60) handlePrev();
-                }}
-                onClick={() => {
-                  if (!isActive) {
-                    setActiveIndex(idx);
-                  }
-                }}
-                className={`relative w-[210px] h-[270px] md:w-[290px] md:h-[380px] rounded-2xl cursor-pointer group select-none transition-all duration-300
-                  ${isActive 
-                    ? 'shadow-[0_0_25px_rgba(0,242,255,0.25)] border border-[#00F2FF]/40' 
-                    : 'shadow-2xl border border-white/5 hover:border-white/10'
-                  }
-                `}
-              >
-                {/* Frameless Image Wrapper */}
-                <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black/40">
-                  <Image
-                    src={url}
-                    alt={`Team Image ${idx + 1}`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none"
-                    sizes="(max-width: 768px) 210px, 290px"
-                    priority={isActive}
-                  />
+          const isActive = offset === 0;
 
-                  {/* Top Holographic Overlay Line */}
-                  <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#00F2FF]/60 to-transparent pointer-events-none" />
+          return (
+            <motion.div
+              key={idx}
+              style={{
+                position: 'absolute',
+                transformStyle: 'preserve-3d',
+                transformOrigin: 'center center',
+                visibility: isVisible ? 'visible' : 'hidden',
+                pointerEvents: isActive ? 'auto' : (isVisible ? 'auto' : 'none'),
+              }}
+              animate={{
+                x,
+                y,
+                z,
+                rotateY,
+                scale,
+                opacity,
+                zIndex,
+              }}
+              transition={{
+                type: 'tween',
+                ease: [0.25, 1, 0.5, 1], // Decelerate ease
+                duration: 0.45,
+              }}
+              onClick={() => {
+                if (!isActive) {
+                  setActiveIndex(idx);
+                }
+              }}
+              // Storyteller fullscreen height card size
+              className={`relative w-[85vw] h-[55vh] md:w-[78vw] md:max-w-6xl md:h-[68vh] rounded-3xl cursor-pointer select-none border border-[#494551]/30 bg-[#120f1a]
+                ${isActive
+                  ? 'shadow-[inset_0_1px_3px_rgba(255,255,255,0.15),_0_25px_50px_rgba(0,0,0,0.75)] border-white/10'
+                  : 'shadow-lg border-white/5'
+                }
+              `}
+            >
+              {/* Frameless Image Wrapper */}
+              <div className="relative w-full h-full rounded-3xl overflow-hidden">
+                <Image
+                  src={url}
+                  alt={`Team Image ${idx + 1}`}
+                  fill
+                  className="object-cover pointer-events-none"
+                  sizes="(max-width: 768px) 85vw, 1200px"
+                  priority={isActive}
+                />
 
-                  {/* Dark Vignette Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-80" />
+                {/* Top Holographic Overlay Line */}
+                <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#cfbdff]/25 to-transparent pointer-events-none" />
 
-                  {/* Scan-line animation inside Active Card */}
-                  {isActive && <div className="scan-line" />}
+                {/* Dark Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-85 pointer-events-none" />
 
-                  {/* Neon Cyber Glow inside Card */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#00F2FF]/5 to-[#9a83db]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-                  {/* HUD Information Overlay */}
-                  <div className="absolute bottom-0 inset-x-0 p-4 flex flex-col justify-end pointer-events-none">
-                    <div className="flex justify-between items-end">
-                      <div className="space-y-0.5">
-                        <span className="font-mono text-[9px] text-[#00F2FF]/70 uppercase tracking-wider block">
-                          {getLabelFromUrl(url, idx)}
-                        </span>
-                        <span className="font-cyber font-bold text-[11px] md:text-[13px] text-white tracking-tight block">
-                          CYBORG DIRECTIVE
-                        </span>
-                      </div>
-                      <div className="font-mono text-[9px] text-[#948e9c]">
-                        0{idx + 1}
-                      </div>
+                {/* HUD Information Overlay */}
+                <div className="absolute bottom-0 inset-x-0 p-6 flex flex-col justify-end pointer-events-none">
+                  <div className="flex justify-between items-end">
+                    <div className="space-y-0.5">
+                      <span className="font-mono text-[10px] text-[#cfbdff]/60 uppercase tracking-wider block">
+                        CYBORG UNIT
+                      </span>
+                      <span className="font-cyber font-bold text-[12px] md:text-[14px] text-white/95 tracking-tight block">
+                        CYBORG DIRECTIVE
+                      </span>
+                    </div>
+                    <div className="font-mono text-[10px] text-[#948e9c]">
+                      0{idx + 1}
                     </div>
                   </div>
                 </div>
-
-                {/* Glitch Tech border corners on active card */}
-                {isActive && (
-                  <>
-                    <span className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#00F2FF] pointer-events-none" />
-                    <span className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-[#00F2FF] pointer-events-none" />
-                    <span className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-[#00F2FF] pointer-events-none" />
-                    <span className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[#00F2FF] pointer-events-none" />
-                  </>
-                )}
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </div>
-
-      {/* Carousel Controls */}
-      <div className="flex flex-col sm:flex-row items-center gap-6 mt-8 w-full max-w-md justify-between font-mono">
-        {/* Navigation buttons */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={handlePrev}
-            className="p-2.5 rounded-xl border border-[#494551]/30 text-[#cac4d2] hover:text-[#00F2FF] hover:border-[#00F2FF]/50 transition-all neo-btn cursor-pointer bg-black/20"
-            title="Previous"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-
-          <button
-            onClick={togglePlay}
-            className="px-4 py-2.5 rounded-xl border border-[#494551]/30 text-[#cac4d2] hover:text-[#00F2FF] hover:border-[#00F2FF]/50 transition-all neo-btn cursor-pointer flex items-center gap-2 bg-black/20 text-xs font-bold"
-          >
-            {isPlaying ? (
-              <>
-                <Pause className="w-3.5 h-3.5 fill-[#cac4d2]/30" />
-                <span>PAUSE</span>
-              </>
-            ) : (
-              <>
-                <Play className="w-3.5 h-3.5 fill-[#cac4d2]/30" />
-                <span>PLAY</span>
-              </>
-            )}
-          </button>
-
-          <button
-            onClick={handleNext}
-            className="p-2.5 rounded-xl border border-[#494551]/30 text-[#cac4d2] hover:text-[#00F2FF] hover:border-[#00F2FF]/50 transition-all neo-btn cursor-pointer bg-black/20"
-            title="Next"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-
-        {/* Progress indicator pips */}
-        <div className="flex items-center gap-1.5 max-w-[200px] overflow-x-auto py-1.5 scrollbar-thin">
-          {images.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveIndex(idx)}
-              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                idx === activeIndex 
-                  ? 'w-6 bg-[#00F2FF]' 
-                  : 'w-1.5 bg-[#494551]/50 hover:bg-[#00F2FF]/40'
-              }`}
-            />
-          ))}
-        </div>
-      </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
     </div>
   );
 }
