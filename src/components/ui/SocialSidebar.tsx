@@ -30,7 +30,7 @@ export default function SocialSidebar() {
       name: 'LinkedIn',
       icon: Linkedin,
       url: 'https://linkedin.com',
-      colorHover: 'hover:text-[#00F2FF] hover:border-[#00F2FF]/60'
+      colorHover: 'hover:text-[#26a641] hover:border-[#26a641]/60'
     },
     {
       id: 'github',

@@ -49,7 +49,7 @@ export default function ProjectsView() {
           id={`project-card-${anvritProject.id}`}
           layoutId={`project-container-${anvritProject.id}`}
           whileHover={{ y: -4 }}
-          className={`w-full max-w-7xl mx-auto neo-card neo-card-cyan rounded-2xl overflow-hidden group flex flex-col md:flex-row border border-[#00F2FF]/30 hover:border-[#00F2FF] transition-all bg-[#0f0d13] mb-8 ${isAnvritExpanded ? 'md:h-auto' : 'md:h-[450px]'}`}
+          className={`w-full max-w-7xl mx-auto neo-card neo-card-cyan rounded-2xl overflow-hidden group flex flex-col md:flex-row border border-[#d4d4d8]/30 hover:border-[#e4e4e7] transition-all bg-[#0f0d13] mb-8 ${isAnvritExpanded ? 'md:h-auto' : 'md:h-[450px]'}`}
         >
           {/* Media Container (Stretches on desktop, height-capped based on state) */}
           <div className={`relative w-full md:w-1/2 overflow-hidden bg-black flex-shrink-0 ${isAnvritExpanded ? 'min-h-[300px] md:min-h-full h-80 md:h-auto' : 'h-80 md:h-full'}`}>
@@ -77,7 +77,7 @@ export default function ProjectsView() {
                         e.stopPropagation();
                         setIsAnvritExpanded(false);
                       }}
-                      className="text-[#00F2FF] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
+                      className="text-[#26a641] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
                     >
                       Read Less
                     </button>
@@ -90,7 +90,7 @@ export default function ProjectsView() {
                         e.stopPropagation();
                         setIsAnvritExpanded(true);
                       }}
-                      className="text-[#00F2FF] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
+                      className="text-[#26a641] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
                     >
                       Read More
                     </button>
@@ -112,10 +112,10 @@ export default function ProjectsView() {
               <button
                 id={`btn-access-${anvritProject.id}`}
                 onClick={() => setSelectedProject(anvritProject)}
-                className="px-4 py-2 neo-btn text-[#cfbdff] hover:text-[#00F2FF] font-cyber font-bold text-[9px] tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="px-4 py-2 neo-btn text-[#cfbdff] hover:text-[#e4e4e7] font-cyber font-bold text-[9px] tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>ACCESS_SYSTEM_CORE</span>
-                <Eye className="w-3.5 h-3.5 text-[#00F2FF]" />
+                <Eye className="w-3.5 h-3.5 text-[#26a641]" />
               </button>
             </div>
           </div>
@@ -159,7 +159,7 @@ export default function ProjectsView() {
                             e.stopPropagation();
                             setSelectedProject(proj);
                           }}
-                          className="text-[#00F2FF] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
+                          className="text-[#26a641] hover:underline cursor-pointer font-semibold ml-1 inline-block bg-transparent border-none p-0"
                         >
                           Read More
                         </button>
@@ -183,10 +183,10 @@ export default function ProjectsView() {
                   <button
                     id={`btn-access-${proj.id}`}
                     onClick={() => setSelectedProject(proj)}
-                    className="px-4 py-2 neo-btn text-[#cfbdff] hover:text-[#00F2FF] font-cyber font-bold text-[9px] tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="px-4 py-2 neo-btn text-[#cfbdff] hover:text-[#e4e4e7] font-cyber font-bold text-[9px] tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>ACCESS_CORE</span>
-                    <Eye className="w-3 h-3 text-[#00F2FF]" />
+                    <Eye className="w-3 h-3 text-[#26a641]" />
                   </button>
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default function ProjectsView() {
                 </div>
 
                 <div className="h-48 rounded-xl neo-inset p-4 font-mono text-[10px] text-emerald-400 overflow-y-auto space-y-1.5 leading-relaxed">
-                  <div className="text-[#00F2FF]">// SIMULATED ACTUATOR DATA DUMP</div>
+                  <div className="text-[#26a641]">// SIMULATED ACTUATOR DATA DUMP</div>
                   <div>[STABLE] Handshake: complete.</div>
                   <div>[ACTIVE] Port 8080 routing to core ROS2 telemetry layer.</div>
                   <div>[OK] Sensor arrays active. Thread counts: 16.</div>
@@ -240,7 +240,7 @@ export default function ProjectsView() {
                     <span className="text-xs font-bold text-white uppercase">Cortex-M7</span>
                   </div>
                   <div className="p-3 neo-inset rounded-xl text-center">
-                    <Database className="w-4 h-4 text-[#00F2FF] mx-auto mb-1" />
+                    <Database className="w-4 h-4 text-[#26a641] mx-auto mb-1" />
                     <span className="font-mono text-[8px] text-[#948e9c] block uppercase">NETWORK LAYER</span>
                     <span className="text-xs font-bold text-white uppercase">DDS / ROS2</span>
                   </div>
@@ -279,7 +279,7 @@ export default function ProjectsView() {
                 <div className="flex justify-end pt-4 gap-3">
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="px-6 py-2.5 neo-btn text-[#cfbdff] hover:text-[#00F2FF] font-cyber font-bold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer"
+                    className="px-6 py-2.5 neo-btn text-[#cfbdff] hover:text-[#e4e4e7] font-cyber font-bold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer"
                   >
                     CLOSE_LINK
                   </button>

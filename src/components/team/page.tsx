@@ -234,8 +234,8 @@ export default function TeamView() {
                                 key={yearTab.id}
                                 onClick={() => setSelectedYearFilter(yearTab.id)}
                                 className={`px-3.5 py-1.5 rounded-xl font-mono text-[11px] font-bold uppercase transition-all cursor-pointer neo-btn ${isActive
-                                    ? 'bg-[#00F2FF]/20 text-[#00F2FF] border border-[#00F2FF]/60'
-                                    : 'text-[#cac4d2] border border-[#494551]/30 hover:border-[#00F2FF]/30'
+                                    ? 'bg-[#d4d4d8]/20 text-[#e4e4e7] border border-[#d4d4d8]/60'
+                                    : 'text-[#cac4d2] border border-[#494551]/30 hover:border-[#d4d4d8]/30'
                                     }`}
                             >
                                 {yearTab.label}
@@ -253,10 +253,10 @@ export default function TeamView() {
                         .map((yearGroup) => (
                             <div key={yearGroup.yearKey} className="space-y-8 py-2">
                                 {/* LEVEL 1: ACADEMIC YEAR HEADER */}
-                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#00F2FF]/30 pb-4 gap-2">
+                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#26a641]/30 pb-4 gap-2">
                                     <div>
                                         <div className="flex items-center gap-2">
-                                            <Layers className="w-4 h-4 text-[#00F2FF]" />
+                                            <Layers className="w-4 h-4 text-[#26a641]" />
                                             <h3 className="font-cyber font-black text-lg md:text-2xl text-white uppercase tracking-tight">
                                                 {yearGroup.yearLabel}
                                             </h3>
@@ -264,7 +264,7 @@ export default function TeamView() {
                                         <p className="font-sans text-xs text-[#cac4d2] mt-1">{yearGroup.description}</p>
                                     </div>
 
-                                    <div className="neo-btn px-3 py-1.5 rounded-xl border border-[#00F2FF]/40 font-mono text-xs text-[#00F2FF] font-bold">
+                                    <div className="neo-btn px-3 py-1.5 rounded-xl border border-[#26a641]/40 font-mono text-xs text-[#26a641] font-bold">
                                         {yearGroup.totalCount} {yearGroup.totalCount === 1 ? 'MEMBER' : 'MEMBERS'}
                                     </div>
                                 </div>
@@ -284,7 +284,7 @@ export default function TeamView() {
                                             <motion.div
                                                 key={`${member.name}-${idx}`}
                                                 whileHover={{ y: -4 }}
-                                                className="neo-card rounded-2xl overflow-hidden flex flex-col justify-between border border-[#494551]/30 hover:border-[#00F2FF]/60 transition-all p-3 space-y-3 group h-full"
+                                                className="neo-card rounded-2xl overflow-hidden flex flex-col justify-between border border-[#494551]/30 hover:border-[#26a641]/60 transition-all p-3 space-y-3 group h-full"
                                             >
                                                 <div className="space-y-3">
                                                     {/* Avatar Header */}
@@ -300,7 +300,7 @@ export default function TeamView() {
 
                                                     {/* Name & Role */}
                                                     <div>
-                                                        <h4 className="font-cyber font-bold text-sm text-white group-hover:text-[#00F2FF] transition-colors leading-tight">
+                                                        <h4 className="font-cyber font-bold text-sm text-white group-hover:text-[#26a641] transition-colors leading-tight">
                                                             {member.name}
                                                         </h4>
                                                         {renderMemberRole(member) && (
@@ -338,7 +338,7 @@ export default function TeamView() {
                                                                 href={member.github}
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
-                                                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#00F2FF] transition-colors"
+                                                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#26a641] transition-colors"
                                                                 title="GitHub"
                                                             >
                                                                 <Github className="w-3.5 h-3.5" />
@@ -349,7 +349,7 @@ export default function TeamView() {
                                                                 href={member.linkedin}
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
-                                                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#00F2FF] transition-colors"
+                                                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#26a641] transition-colors"
                                                                 title="LinkedIn"
                                                             >
                                                                 <Linkedin className="w-3.5 h-3.5" />
@@ -389,7 +389,7 @@ export default function TeamView() {
                                 </div>
                                 <div className="flex justify-between items-start">
                                     <h4 className="font-cyber font-bold text-sm text-white">{member.name}</h4>
-                                    <span className="neo-btn text-[8px] font-mono px-2 py-0.5 rounded text-[#00F2FF] border border-[#00F2FF]/30 uppercase">
+                                    <span className="neo-btn text-[8px] font-mono px-2 py-0.5 rounded text-[#26a641] border border-[#26a641]/30 uppercase">
                                         {member.year}
                                     </span>
                                 </div>
@@ -401,12 +401,12 @@ export default function TeamView() {
                             <div className="flex justify-between items-center pt-3 border-t border-[#494551]/20 font-mono text-[9px]">
                                 <div className="flex gap-2">
                                     {member.github && (
-                                        <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#00F2FF]">
+                                        <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#26a641]">
                                             <Github className="w-3.5 h-3.5" />
                                         </a>
                                     )}
                                     {member.linkedin && (
-                                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#00F2FF]">
+                                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#26a641]">
                                             <Linkedin className="w-3.5 h-3.5" />
                                         </a>
                                     )}
@@ -441,7 +441,7 @@ export default function TeamView() {
                             </button>
 
                             <div className="space-y-1">
-                                <div className="flex items-center gap-2 text-[#00F2FF] font-mono text-xs">
+                                <div className="flex items-center gap-2 text-[#26a641] font-mono text-xs">
                                     <Database className="w-4 h-4" />
                                     <span>LOCAL REGISTRY STORAGE WRITER</span>
                                 </div>
@@ -454,7 +454,7 @@ export default function TeamView() {
                                 {/* Name */}
                                 <div className="space-y-1">
                                     <label className="font-mono text-[10px] text-[#cac4d2] uppercase block">
-                                        FULL NAME <span className="text-[#00F2FF]">*</span>
+                                        FULL NAME <span className="text-[#26a641]">*</span>
                                     </label>
                                     <input
                                         type="text"
@@ -462,7 +462,7 @@ export default function TeamView() {
                                         placeholder="e.g. Priyanshi S. Mohanty"
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#00F2FF] outline-none"
+                                        className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none"
                                     />
                                 </div>
 
@@ -470,12 +470,12 @@ export default function TeamView() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div className="space-y-1">
                                         <label className="font-mono text-[10px] text-[#cac4d2] uppercase block">
-                                            SUBSYSTEM <span className="text-[#00F2FF]">*</span>
+                                            SUBSYSTEM <span className="text-[#26a641]">*</span>
                                         </label>
                                         <select
                                             value={formData.subsystem}
                                             onChange={e => setFormData({ ...formData, subsystem: e.target.value as SubsystemType })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#00F2FF] outline-none font-mono"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono"
                                         >
                                             <option value="robotics">Robotics &amp; Automation</option>
                                             <option value="software">Software &amp; AI</option>
@@ -490,12 +490,12 @@ export default function TeamView() {
 
                                     <div className="space-y-1">
                                         <label className="font-mono text-[10px] text-[#cac4d2] uppercase block">
-                                            ACADEMIC YEAR / STATUS <span className="text-[#00F2FF]">*</span>
+                                            ACADEMIC YEAR / STATUS <span className="text-[#26a641]">*</span>
                                         </label>
                                         <select
                                             value={formData.year}
                                             onChange={e => setFormData({ ...formData, year: e.target.value as AcademicYearType })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#00F2FF] outline-none font-mono"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono"
                                         >
                                             <option value="sophomore">Sophomore</option>
                                             <option value="pre-final year">Pre-Final Year</option>
@@ -516,7 +516,7 @@ export default function TeamView() {
                                             placeholder="https://github.com/username"
                                             value={formData.github}
                                             onChange={e => setFormData({ ...formData, github: e.target.value })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#00F2FF] outline-none font-mono text-[11px]"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono text-[11px]"
                                         />
                                     </div>
 
@@ -529,7 +529,7 @@ export default function TeamView() {
                                             placeholder="https://linkedin.com/in/username"
                                             value={formData.linkedin}
                                             onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#00F2FF] outline-none font-mono text-[11px]"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono text-[11px]"
                                         />
                                     </div>
                                 </div>
@@ -545,7 +545,7 @@ export default function TeamView() {
                                             placeholder="e.g. ROS2 DDS Architect"
                                             value={formData.role}
                                             onChange={e => setFormData({ ...formData, role: e.target.value })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#00F2FF] outline-none"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none"
                                         />
                                     </div>
 
@@ -558,7 +558,7 @@ export default function TeamView() {
                                             placeholder="operator@nitrkl.ac.in"
                                             value={formData.email}
                                             onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#00F2FF] outline-none font-mono text-[11px]"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono text-[11px]"
                                         />
                                     </div>
                                 </div>
@@ -613,9 +613,9 @@ export default function TeamView() {
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-6 py-2.5 rounded-xl font-mono text-xs text-white bg-[#00F2FF]/20 border border-[#00F2FF]/60 hover:bg-[#00F2FF]/40 font-bold flex items-center gap-2 neo-btn cursor-pointer"
+                                        className="px-6 py-2.5 rounded-xl font-mono text-xs text-white bg-[#d4d4d8]/20 border border-[#d4d4d8]/60 hover:bg-[#d4d4d8]/45 font-bold flex items-center gap-2 neo-btn cursor-pointer"
                                     >
-                                        <Database className="w-4 h-4 text-[#00F2FF]" />
+                                        <Database className="w-4 h-4 text-[#26a641]" />
                                         <span>SAVE TO MONGO DB</span>
                                     </button>
                                 </div>

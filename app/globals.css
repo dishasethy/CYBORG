@@ -26,7 +26,7 @@
 body {
   background:
     radial-gradient(circle at 10% 20%, rgba(207, 189, 255, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(38, 166, 65, 0.06) 0%, transparent 60%),
     #f7f5fa !important;
   background-attachment: fixed !important;
   color: #211c2b !important;
@@ -43,7 +43,7 @@ body {
 .scan-line {
   width: 100%;
   height: 2px;
-  background: linear-gradient(to right, transparent, rgba(0, 242, 255, 0.15), rgba(207, 189, 255, 0.15), transparent);
+  background: linear-gradient(to right, transparent, rgba(38, 166, 65, 0.2), rgba(207, 189, 255, 0.15), transparent);
   position: absolute;
   animation: scan 12s linear infinite;
   z-index: 10;
@@ -94,7 +94,7 @@ body {
 }
 
 .text-glow-cyan {
-  text-shadow: 0 0 12px rgba(0, 242, 255, 0.3);
+  text-shadow: 0 0 12px rgba(38, 166, 65, 0.45);
 }
 
 .font-note {
@@ -134,16 +134,18 @@ body {
   border-bottom: 1px solid transparent !important;
   box-shadow: none !important;
   transition: all 0.3s ease-in-out !important;
-  position: relative;
+  position: fixed !important;
 }
 
 /* Scrolled state with premium glassmorphism and subtle border */
 .neo-header-scrolled {
-  background: rgba(11, 9, 15, 0.65) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: linear-gradient(180deg, rgba(11, 9, 15, 0.75) 0%, rgba(11, 9, 15, 0.5) 100%) !important;
+  backdrop-filter: blur(24px) saturate(175%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(175%) !important;
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 .neo-header::before {
@@ -151,41 +153,44 @@ body {
 }
 
 .neo-nav-container {
-  background: rgba(20, 17, 29, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(20, 17, 29, 0.65) 100%);
+  backdrop-filter: blur(20px) saturate(160%) ;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) ;
   border-radius: 9999px;
   padding: 5px 8px;
   position: relative;
   overflow: hidden;
   box-shadow:
-    0 8px 32px 0 rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    inset 2px 2px 6px rgba(0, 0, 0, 0.45),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .neo-btn {
-  background: rgba(28, 25, 39, 0.5) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(10, 8, 16, 0.45) 100%) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  border-top-color: rgba(255, 255, 255, 0.28) !important;
+  border-left-color: rgba(255, 255, 255, 0.24) !important;
   box-shadow:
-    4px 4px 10px #06050b,
-    -3px -3px 8px rgba(255, 255, 255, 0.03),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.1) !important;
+    0 8px 24px 0 rgba(0, 0, 0, 0.35),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.2) !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   border-radius: 0.75rem;
 }
 
 .neo-btn:hover {
-  background: rgba(36, 32, 51, 0.7) !important;
-  border-color: rgba(207, 189, 255, 0.45) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 40%, rgba(10, 8, 16, 0.55) 100%) !important;
+  border-color: rgba(228, 228, 231, 0.5) !important;
+  border-top-color: rgba(255, 255, 255, 0.45) !important;
+  border-left-color: rgba(255, 255, 255, 0.4) !important;
   box-shadow:
-    6px 6px 14px #040307,
-    -4px -4px 12px rgba(207, 189, 255, 0.08),
-    0 0 12px rgba(207, 189, 255, 0.15),
-    inset 1px 1px 1px rgba(255, 255, 255, 0.2) !important;
-  transform: translateY(-1px) !important;
+    0 12px 32px 0 rgba(0, 0, 0, 0.45),
+    0 0 15px rgba(228, 228, 231, 0.25),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.35),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.2) !important;
+  transform: translateY(-2px) !important;
 }
 
 .neo-btn:active,
@@ -194,7 +199,7 @@ body {
   box-shadow:
     inset 4px 4px 8px #040307,
     inset -3px -3px 6px rgba(255, 255, 255, 0.03) !important;
-  border-color: rgba(207, 189, 255, 0.55) !important;
+  border-color: rgba(212, 212, 216, 0.5) !important;
   transform: translateY(1px) !important;
 }
 
@@ -207,27 +212,27 @@ body {
 }
 
 .neo-tab-active {
-  background: rgba(154, 131, 219, 0.15) !important;
-  color: #cfbdff !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(154, 131, 219, 0.25) 100%) !important;
+  color: #ffffff !important;
   box-shadow:
-    0 0 15px rgba(154, 131, 219, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(154, 131, 219, 0.4) !important;
+    0 4px 15px rgba(154, 131, 219, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  border: 1px solid rgba(154, 131, 219, 0.5) !important;
 }
 
 .neo-card-cyan {
-  border-color: rgba(0, 242, 255, 0.18) !important;
+  border-color: rgba(212, 212, 216, 0.25) !important;
   box-shadow:
     0 8px 32px 0 rgba(0, 0, 0, 0.4),
-    inset 0 1px 1px 0 rgba(0, 242, 255, 0.1) !important;
+    inset 0 1px 1px 0 rgba(228, 228, 231, 0.15) !important;
 }
 
 .neo-card-cyan:hover {
-  border-color: rgba(0, 242, 255, 0.45) !important;
+  border-color: rgba(228, 228, 231, 0.55) !important;
   box-shadow:
     0 16px 48px 0 rgba(0, 0, 0, 0.5),
-    0 0 24px 0 rgba(0, 242, 255, 0.18),
-    inset 0 1px 1px 0 rgba(0, 242, 255, 0.15) !important;
+    0 0 24px 0 rgba(228, 228, 231, 0.25),
+    inset 0 1px 1px 0 rgba(228, 228, 231, 0.25) !important;
 }
 
 .neo-card-purple {
@@ -325,7 +330,7 @@ body {
 
 /* Glow tags */
 .glow-accent {
-  box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+  box-shadow: 0 0 15px rgba(38, 166, 65, 0.35);
 }
 
 .tactical-bg {

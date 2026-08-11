@@ -185,22 +185,7 @@ export default function TeamCarousel() {
                 {/* Dark Vignette Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-85 pointer-events-none" />
 
-                {/* HUD Information Overlay */}
-                <div className="absolute bottom-0 inset-x-0 p-6 flex flex-col justify-end pointer-events-none">
-                  <div className="flex justify-between items-end">
-                    <div className="space-y-0.5">
-                      <span className="font-mono text-[10px] text-[#cfbdff]/60 uppercase tracking-wider block">
-                        CYBORG UNIT
-                      </span>
-                      <span className="font-cyber font-bold text-[12px] md:text-[14px] text-white/95 tracking-tight block">
-                        CYBORG DIRECTIVE
-                      </span>
-                    </div>
-                    <div className="font-mono text-[10px] text-[#948e9c]">
-                      0{idx + 1}
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </motion.div>
           );

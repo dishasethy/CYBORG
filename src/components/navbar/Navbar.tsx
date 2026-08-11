@@ -67,7 +67,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
             <div className="relative group">
               <button className="p-2.5 rounded-xl neo-btn text-[#cac4d2] transition-all duration-300">
                 <Bell className="w-4 h-4" />
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#00F2FF] rounded-full animate-ping" />
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#FE490D] rounded-full animate-ping" />
               </button>
 
               <div className="absolute right-0 mt-2 w-48 bg-[#1d1b20] border border-[#494551]/50 p-2.5 rounded-xl text-[10px] font-mono text-[#cac4d2] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-2xl neo-btn">

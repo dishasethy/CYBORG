@@ -42,7 +42,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           {/* Interactive Cinematic Logo Character Split with Particles */}
           <div className="py-2 w-full">
             <ParticleText />
-            <p className="font-cyber text-[9px] sm:text-[11px] md:text-xs tracking-[0.2em] sm:tracking-[0.35em] md:tracking-[0.45em] text-[#00F2FF] mt-4 font-semibold uppercase">
+            <p className="font-cyber text-[9px] sm:text-[11px] md:text-xs tracking-[0.2em] sm:tracking-[0.35em] md:tracking-[0.45em] text-[#26a641] mt-4 font-semibold uppercase">
               artificial intelligence &amp; autonomous systems lab
             </p>
           </div>
@@ -61,10 +61,10 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             <button
               id="btn-initiate-protocol"
               onClick={() => onNavigate('events')}
-              className="px-8 py-4 rounded-xl font-cyber font-bold text-xs uppercase tracking-widest neo-btn text-[#cfbdff] hover:text-[#00F2FF] flex items-center justify-center gap-2 cursor-pointer group"
+              className="px-8 py-4 rounded-xl font-cyber font-bold text-xs uppercase tracking-widest neo-btn text-[#cfbdff] hover:text-[#e4e4e7] flex items-center justify-center gap-2 cursor-pointer group"
             >
               <span>Initialize Protocol</span>
-              <Rocket className="w-4 h-4 animate-bounce text-[#00F2FF] group-hover:scale-110 transition-transform" />
+              <Rocket className="w-4 h-4 animate-bounce text-[#d4d4d8] group-hover:scale-110 transition-transform" />
             </button>
             <button
               id="btn-view-projects"
@@ -120,22 +120,20 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           {/* Division Overview Card (7 columns) */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-7 neo-card neo-card-cyan rounded-2xl p-8 flex flex-col justify-between border-l-4 border-l-[#cfbdff] hover:border-l-[#00F2FF] relative overflow-hidden group"
+            className="md:col-span-7 neo-card neo-card-cyan rounded-2xl p-8 flex flex-col justify-between border-l-4 border-l-[#cfbdff] hover:border-l-[#26a641] relative overflow-hidden group"
             id="card-division-overview"
           >
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#00F2FF]/5 group-hover:bg-[#00F2FF]/15 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#26a641]/5 group-hover:bg-[#26a641]/15 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
 
             <div className="space-y-4 relative z-10">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-xl neo-btn flex items-center justify-center">
-                    <Cpu className="text-[#cfbdff] group-hover:text-[#00F2FF] w-5 h-5 transition-colors duration-300" />
+                    <Cpu className="text-[#cfbdff] group-hover:text-[#26a641] w-5 h-5 transition-colors duration-300" />
                   </div>
                   <h4 className="font-cyber text-lg tracking-wider text-white uppercase">{divisionOverview.title}</h4>
                 </div>
-                <span className="font-mono text-[10px] tracking-widest text-[#00F2FF] uppercase neo-btn px-3 py-1.5 rounded-lg border border-[#00F2FF]/30 font-semibold shadow-[0_0_12px_rgba(0,242,255,0.15)]">
-                  LAB NOTEBOOK
-                </span>
+
               </div>
 
               <div className="relative pl-4 border-l-2 border-[#cfbdff]/40 my-3 neo-inset rounded-r-xl p-4">
@@ -149,13 +147,13 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               <div className="space-y-1">
                 <span className="font-cyber text-[9px] tracking-wider text-[#948e9c] uppercase block">LOCATION</span>
                 <p className="text-xs font-semibold text-white flex items-center gap-2 group-hover:text-[#cfbdff] transition-colors">
-                  <MapPin className="w-3.5 h-3.5 text-[#00F2FF]" />
+                  <MapPin className="w-3.5 h-3.5 text-[#26a641]" />
                   {divisionOverview.location}
                 </p>
               </div>
               <div className="space-y-1">
                 <span className="font-cyber text-[9px] tracking-wider text-[#948e9c] uppercase block">DIRECT EMAIL</span>
-                <p className="text-xs font-semibold text-[#cfbdff] flex items-center gap-2 group-hover:text-[#00F2FF] transition-colors">
+                <p className="text-xs font-semibold text-[#cfbdff] flex items-center gap-2 group-hover:text-[#26a641] transition-colors">
                   <Mail className="w-3.5 h-3.5" />
                   {divisionOverview.email}
                 </p>
@@ -175,7 +173,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-xl neo-btn flex items-center justify-center">
-                    <Award className="text-[#cfbdff] group-hover:text-[#00F2FF] w-5 h-5 transition-colors duration-300" />
+                    <Award className="text-[#cfbdff] group-hover:text-[#26a641] w-5 h-5 transition-colors duration-300" />
                   </div>
                   <h4 className="font-cyber text-lg tracking-wider text-white uppercase">Faculty Advisor</h4>
                 </div>
@@ -185,7 +183,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               </div>
 
               <div className="flex flex-col items-center text-center space-y-4 pt-2">
-                <div className="w-32 h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden neo-inset p-1.5 shrink-0 group-hover:border-[#00F2FF]/60 shadow-[0_0_20px_rgba(0,0,0,0.6)] transition-all duration-300">
+                <div className="w-32 h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden neo-inset p-1.5 shrink-0 group-hover:border-[#26a641]/60 shadow-[0_0_20px_rgba(0,0,0,0.6)] transition-all duration-300">
                   <img
                     alt={facultyAdvisor.name}
                     className="w-full h-full object-cover object-top rounded-xl grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
@@ -220,10 +218,10 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           {/* President Details Card (Full Row, 12 columns) */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-12 neo-card neo-card-cyan rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-l-[#00F2FF] relative overflow-hidden group"
+            className="md:col-span-12 neo-card neo-card-cyan rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-l-[#26a641] relative overflow-hidden group"
             id="card-club-president"
           >
-            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-[#00F2FF]/5 group-hover:bg-[#00F2FF]/15 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-[#26a641]/5 group-hover:bg-[#26a641]/15 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
 
             <div className="flex items-center gap-6 w-full md:w-auto relative z-10">
               <div className="relative">
@@ -235,10 +233,10 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                     src={clubPresident.image}
                   />
                 </div>
-                <div className="absolute inset-0 bg-[#00F2FF]/10 rounded-2xl blur-md pointer-events-none" />
+                <div className="absolute inset-0 bg-[#26a641]/10 rounded-2xl blur-md pointer-events-none" />
               </div>
               <div>
-                <span className="font-cyber text-[9px] tracking-wider text-[#00F2FF] uppercase font-black neo-btn px-2.5 py-1 rounded-md">{clubPresident.title}</span>
+                <span className="font-cyber text-[9px] tracking-wider text-[#26a641] uppercase font-black neo-btn px-2.5 py-1 rounded-md">{clubPresident.title}</span>
                 <h5 className="font-sans font-bold text-lg text-white mt-2 group-hover:text-[#cfbdff] transition-colors">{clubPresident.name}</h5>
                 <p className="text-xs text-[#cac4d2] font-mono mt-0.5">CYBORG_LEADER // ID: {clubPresident.memberId}</p>
               </div>
@@ -248,7 +246,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               <div className="space-y-1">
                 <span className="font-cyber text-[9px] tracking-wider text-[#948e9c] uppercase block">CONTACT SECURE</span>
                 <p className="text-xs font-bold text-white flex items-center gap-1.5 font-mono">
-                  <Phone className="w-3.5 h-3.5 text-[#00F2FF]" />
+                  <Phone className="w-3.5 h-3.5 text-[#26a641]" />
                   {clubPresident.phone}
                 </p>
               </div>

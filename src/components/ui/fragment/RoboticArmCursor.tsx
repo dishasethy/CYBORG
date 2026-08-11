@@ -85,7 +85,7 @@ export default function RoboticArmCursor() {
   const sy = shoulderRef.current.y;
 
   const clawAngle = isClicked ? 35 : isHovered ? 20 : 0;
-  const mainColor = isHovered ? '#00F2FF' : '#cfbdff';
+  const mainColor = isHovered ? '#26a641' : '#cfbdff';
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">
@@ -162,7 +162,7 @@ export default function RoboticArmCursor() {
         <path
           d={`M ${sx} ${sy} Q ${(sx + ex) / 2 + 10} ${(sy + ey) / 2 - 10}, ${ex} ${ey} T ${wx} ${wy}`}
           fill="none"
-          stroke={isHovered ? '#00F2FF' : '#9a83db'}
+          stroke={isHovered ? '#26a641' : '#9a83db'}
           strokeWidth="1.5"
           strokeDasharray="3 2"
           opacity="0.9"
@@ -238,13 +238,13 @@ export default function RoboticArmCursor() {
               height="16"
               rx="3"
               fill="rgba(15, 13, 21, 0.85)"
-              stroke={isHovered ? 'rgba(0, 242, 255, 0.5)' : 'rgba(207, 189, 255, 0.3)'}
+              stroke={isHovered ? 'rgba(38, 166, 65, 0.5)' : 'rgba(207, 189, 255, 0.3)'}
               strokeWidth="1"
             />
             <text
               x="5"
               y="1"
-              fill={isHovered ? '#00F2FF' : '#cfbdff'}
+              fill={isHovered ? '#26a641' : '#cfbdff'}
               fontSize="8"
               fontFamily="monospace"
               fontWeight="bold"
