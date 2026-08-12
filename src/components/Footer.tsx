@@ -144,9 +144,24 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         {/* GitHub Contribution Tracker Grid Section */}
         <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center z-10 relative">
-          <div className="bg-[#0b0a11]/90 border border-[#2f2b3e]/40 p-6 rounded-xl shadow-inner font-sans w-full overflow-x-auto scrollbar-none flex justify-center">
-            <div className="min-w-[950px] flex justify-center">
-              <GithubTracker />
+          <div className="bg-[#0b0a11]/90 border border-[#2f2b3e]/40 p-6 rounded-xl shadow-inner font-sans w-full overflow-hidden scrollbar-none">
+            {/* Desktop View: Static and Centered */}
+            <div className="hidden xl:flex justify-center w-full">
+              <div className="min-w-[950px] flex justify-center">
+                <GithubTracker />
+              </div>
+            </div>
+
+            {/* Mobile View: Infinite Horizontal Marquee */}
+            <div className="xl:hidden w-full overflow-hidden">
+              <div className="animate-marquee-infinite">
+                <div className="min-w-[950px] pr-16 shrink-0">
+                  <GithubTracker />
+                </div>
+                <div className="min-w-[950px] pr-16 shrink-0">
+                  <GithubTracker />
+                </div>
+              </div>
             </div>
           </div>
         </div>
