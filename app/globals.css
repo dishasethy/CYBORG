@@ -23,11 +23,11 @@
 /* Custom modern body styling with fixed dynamic gradient light background */
 body {
   background:
-    radial-gradient(circle at 10% 20%, rgba(207, 189, 255, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 90% 80%, rgba(38, 166, 65, 0.06) 0%, transparent 60%),
-    #f7f5fa !important;
+    radial-gradient(circle at 10% 20%, rgba(207, 189, 255, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(38, 166, 65, 0.03) 0%, transparent 60%),
+    #09080e !important;
   background-attachment: fixed !important;
-  color: #211c2b !important;
+  color: #e6e1e9 !important;
   font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 

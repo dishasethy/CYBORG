@@ -7,9 +7,12 @@ import Loader from "./loader";
 export default function Home() {
   const [loading, setLoading] = useState(true);
 
-  if (loading) {
-    return <Loader onComplete={() => setLoading(false)} durationMs={1800} />;
-  }
-
-  return <App />;
+  return (
+    <>
+      <App />
+      {loading && (
+        <Loader onComplete={() => setLoading(false)} durationMs={1800} />
+      )}
+    </>
+  );
 }
