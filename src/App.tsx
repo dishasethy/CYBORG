@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import InteractiveBg from './components/ui/fragment/InteractiveBg';
 import Navbar from './components/navbar/Navbar';
@@ -15,20 +15,6 @@ import Footer from './components/Footer';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
-  const [systemUptime, setSystemUptime] = useState<string>('00:00:00');
-
-  // Realistic dynamic uptime counter for high-tech aesthetic
-  useEffect(() => {
-    const startTime = Date.now();
-    const interval = setInterval(() => {
-      const diff = Date.now() - startTime;
-      const hrs = String(Math.floor(diff / 3600000)).padStart(2, '0');
-      const mins = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-      const secs = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
-      setSystemUptime(`${hrs}:${mins}:${secs}`);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const renderActiveView = () => {
     switch (activeTab) {

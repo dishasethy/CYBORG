@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Rocket, Mail, MapPin, Phone, Award, Cpu } from 'lucide-react';
@@ -16,6 +17,8 @@ interface HomeViewProps {
 }
 
 export default function HomeView({ onNavigate }: HomeViewProps) {
+  const [activeDomain, setActiveDomain] = useState<number>(0);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -97,6 +100,142 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         </div>
       </section>
 
+      {/* Club Domains Section */}
+      <section id="club-domains" className="py-8 max-w-7xl mx-auto px-6 relative">
+        <div className="flex flex-col space-y-8">
+          <div>
+            <span className="font-cyber text-[10px] tracking-[0.25em] text-[#cfbdff] uppercase font-bold">
+              DEPARTMENT_DIRECTIVES
+            </span>
+            <h3 className="font-cyber font-black text-3xl md:text-4xl text-white uppercase tracking-tight mt-2">
+              OUR DOMAINS
+            </h3>
+          </div>
+
+          {/* Desktop Accordion Grid (Vertical Tab Hover Layout with Liquid Glass and Color Images) */}
+          <div className="w-full h-[500px] hidden md:flex rounded-3xl overflow-hidden border border-[#494551]/30 bg-[#0c0a12]/50 backdrop-blur-md">
+            {[
+              {
+                name: 'Robotics',
+                caption: 'Push the boundaries of physical kinematics and control systems.',
+                desc: 'Embedded systems, kinematics, path planning, and autonomous navigation architectures.',
+                image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=cover&w=800&q=80'
+              },
+              {
+                name: 'Electronics',
+                caption: 'Architecting high-frequency micro-current control systems.',
+                desc: 'PCB design, microcontrollers, sensor integration, and signal conditioning arrays.',
+                image: 'https://images.unsplash.com/photo-1517055727180-d5a0c797fb9a?auto=format&fit=cover&w=800&q=80'
+              },
+              {
+                name: 'Mechanical',
+                caption: 'Crafting structural frameworks with sub-millimeter errors.',
+                desc: 'CAD design, 3D fabrication, stress analysis, and physical chassis assembly.',
+                image: 'https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=cover&w=800&q=80'
+              },
+              {
+                name: 'Web & Automation',
+                caption: 'Pioneering physical-cyber control networks and UI panels.',
+                desc: 'Next-gen interfaces, control systems routing, and software-hardware bridging.',
+                image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=cover&w=800&q=80'
+              },
+              {
+                name: 'Management',
+                caption: 'Driving strategic resource optimization and sponsor relations.',
+                desc: 'Strategic planning, sponsor outreach, logistics mainframe, and public relations.',
+                image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=cover&w=800&q=80'
+              }
+            ].map((domain, index) => {
+              const isActive = activeDomain === index;
+              return (
+                <div
+                  key={index}
+                  onMouseEnter={() => setActiveDomain(index)}
+                  className={`relative h-full flex flex-col justify-between p-8 border-r border-[#494551]/30 cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden select-none last:border-r-0
+                    ${isActive ? 'flex-[3.5] bg-gradient-to-br from-white/8 to-black/45 border-t border-t-white/20 border-l border-l-white/15' : 'flex-1 bg-gradient-to-br from-white/3 to-black/20'}
+                    backdrop-blur-[20px] saturate-[180%] shadow-[inset_1px_1px_2px_rgba(255,255,255,0.12),_0_8px_24px_rgba(0,0,0,0.35)]
+                  `}
+                >
+                  {/* Absolute Background Image with Vignette */}
+                  <div
+                    className={`absolute inset-0 z-0 transition-opacity duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none
+                      ${isActive ? 'opacity-45' : 'opacity-0'}
+                    `}
+                  >
+                    <Image
+                      src={domain.image}
+                      alt={domain.name}
+                      fill
+                      className="object-cover transition-all duration-400"
+                      sizes="600px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a12] via-transparent to-black/30" />
+                  </div>
+
+                  {/* Top Caption (Visible only when active) */}
+                  <div className={`relative z-10 w-full transition-all duration-400 delay-75
+                    ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}
+                  `}>
+                    <span className="font-cyber text-[8px] tracking-[0.25em] text-[#cfbdff] font-bold block mb-1">
+                      DIRECTIVE_0{index + 1}
+                    </span>
+                    <p className="font-sans text-[10px] text-white/90 leading-relaxed uppercase tracking-wider">
+                      {domain.caption}
+                    </p>
+                  </div>
+
+                  {/* Middle Title */}
+                  <div className="relative z-10 w-full flex flex-col items-start mt-auto">
+                    <h4 className="font-cyber font-black text-2xl transition-all duration-300 text-white uppercase tracking-tight">
+                      {domain.name}
+                    </h4>
+
+                    {/* Active description */}
+                    <div className={`transition-all duration-400 overflow-hidden
+                      ${isActive ? 'max-h-24 opacity-100 mt-2' : 'max-h-0 opacity-0'}
+                    `}>
+                      <p className="font-sans text-xs text-[#cac4d2]/90 leading-relaxed">
+                        {domain.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Big Number watermark (Bottom Right) */}
+                  <div className="absolute bottom-4 right-4 z-1 select-none pointer-events-none opacity-10 transition-all">
+                    <span className="font-cyber font-black text-8xl text-white leading-none block">
+                      {index + 1}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile Accordion Stack Layout */}
+          <div className="flex flex-col space-y-4 md:hidden">
+            {[
+              { name: 'Robotics', desc: 'Embedded systems, kinematics, path planning, and autonomous navigation architectures.' },
+              { name: 'Electronics', desc: 'PCB design, microcontrollers, sensor integration, and signal conditioning arrays.' },
+              { name: 'Mechanical', desc: 'CAD design, 3D fabrication, stress analysis, and physical chassis assembly.' },
+              { name: 'Web & Automation', desc: 'Next-gen interfaces, control systems routing, and software-hardware bridging.' },
+              { name: 'Management', desc: 'Strategic planning, sponsor outreach, logistics mainframe, and public relations.' }
+            ].map((domain, index) => (
+              <div
+                key={index}
+                className="relative flex flex-col p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-black/40 backdrop-blur-[20px] saturate-[180%] overflow-hidden shadow-[inset_1px_1px_2px_rgba(255,255,255,0.08)]"
+              >
+                <div className="flex items-center justify-between">
+                  <h4 className="font-cyber font-bold text-lg text-white uppercase">{domain.name}</h4>
+                  <span className="font-mono text-xs text-[#cfbdff]">0{index + 1}</span>
+                </div>
+                <p className="font-sans text-xs text-[#cac4d2]/90 mt-2 leading-relaxed">
+                  {domain.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Information Bento Grid */}
       <section id="info-bento-grid" className="pt-12 pb-7 max-w-7xl mx-auto px-6 relative">
@@ -118,9 +257,6 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                   </div>
                   <h4 className="font-cyber text-lg tracking-wider text-white uppercase">{divisionOverview.title}</h4>
                 </div>
-                <span className="font-mono text-[10px] tracking-widest text-[#00F2FF] uppercase neo-btn px-3 py-1.5 rounded-lg border border-[#00F2FF]/30 font-semibold shadow-[0_0_12px_rgba(0,242,255,0.15)]">
-                  LAB NOTEBOOK
-                </span>
               </div>
 
               <div className="relative pl-4 border-l-2 border-[#cfbdff]/40 my-3 neo-inset rounded-r-xl p-4">
@@ -130,7 +266,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 mt-6 border-t border-[#494551]/30 relative z-10">
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#494551]/20 mt-4 relative z-10">
               <div className="space-y-1">
                 <span className="font-cyber text-[9px] tracking-wider text-[#948e9c] uppercase block">LOCATION</span>
                 <p className="text-xs font-semibold text-white flex items-center gap-2 group-hover:text-[#cfbdff] transition-colors">
@@ -151,12 +287,12 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           {/* Faculty Advisor Card (5 columns) */}
           <motion.div
             variants={itemVariants}
-            className="md:col-span-5 neo-card neo-card-purple rounded-2xl p-8 flex flex-col justify-between border-l-4 border-l-[#9a83db] hover:border-l-[#cfbdff] relative overflow-hidden group"
+            className="md:col-span-5 neo-card rounded-2xl p-8 flex flex-col justify-between border-l-4 border-l-purple-500 relative overflow-hidden group"
             id="card-faculty-advisor"
           >
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#9a83db]/5 group-hover:bg-[#9a83db]/15 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
+            <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-purple-500/5 group-hover:bg-purple-500/15 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
 
-            <div className="space-y-6 relative z-10">
+            <div className="space-y-4 relative z-10 w-full">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-xl neo-btn flex items-center justify-center">
@@ -164,9 +300,6 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                   </div>
                   <h4 className="font-cyber text-lg tracking-wider text-white uppercase">Faculty Advisor</h4>
                 </div>
-                <span className="font-mono text-[9px] tracking-widest text-[#cfbdff] uppercase neo-btn px-2.5 py-1 rounded-md">
-                  {facultyAdvisor.department}
-                </span>
               </div>
 
               <div className="flex flex-col items-center text-center space-y-4 pt-2">
@@ -175,30 +308,15 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                     alt={facultyAdvisor.name}
                     className="w-full h-full object-cover object-top rounded-xl grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                     src={facultyAdvisor.image}
-                    width={144}
-                    height={144}
+                    width={150}
+                    height={150}
                   />
                 </div>
-
-                <div className="text-center space-y-1">
-                  <h5 className="font-sans font-bold text-base md:text-lg text-white group-hover:text-[#cfbdff] transition-colors">
-                    {facultyAdvisor.name}
-                  </h5>
-                  <p className="text-xs text-[#cac4d2] font-medium">
-                    {facultyAdvisor.designation}, ECE Department
-                  </p>
+                <div className="space-y-1">
+                  <h5 className="font-sans font-bold text-base text-white group-hover:text-[#cfbdff] transition-colors">{facultyAdvisor.name}</h5>
+                  <p className="text-[10px] text-[#948e9c] font-mono tracking-wider uppercase">{facultyAdvisor.designation}</p>
+                  <p className="text-[9px] text-[#cac4d2] font-mono uppercase bg-purple-950/40 px-2 py-0.5 rounded border border-purple-500/30 inline-block">{facultyAdvisor.department}</p>
                 </div>
-              </div>
-            </div>
-
-            <div className="pt-6 mt-6 border-t border-[#494551]/30 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 font-mono text-[11px] relative z-10">
-              <div className="flex items-center gap-2 text-[#cac4d2]">
-                <Phone className="w-3.5 h-3.5 text-[#9a83db]" />
-                <span>{facultyAdvisor.phone}</span>
-              </div>
-              <div className="flex items-center gap-2 text-[#cfbdff]">
-                <Mail className="w-3.5 h-3.5" />
-                <span>{facultyAdvisor.email}</span>
               </div>
             </div>
           </motion.div>
@@ -248,15 +366,11 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               </div>
             </div>
           </motion.div>
-
         </div>
       </section>
     </motion.div>
   );
 }
-
-
-
 
 
 
