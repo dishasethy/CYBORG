@@ -399,7 +399,10 @@ body {
 .animate-marquee-infinite {
   display: flex;
   width: max-content;
-  animation: marquee-infinite 10s linear infinite;
+  animation: marquee-infinite 15s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .animate-marquee-infinite:hover,

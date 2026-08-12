@@ -16,6 +16,39 @@ interface HomeViewProps {
   onNavigate: (tab: string) => void;
 }
 
+const DOMAINS_DATA = [
+  {
+    name: 'Robotics',
+    caption: 'Push the boundaries of physical kinematics and control systems.',
+    desc: 'Embedded systems, kinematics, path planning, and autonomous navigation architectures.',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=cover&w=800&q=80'
+  },
+  {
+    name: 'Electronics',
+    caption: 'Architecting high-frequency micro-current control systems.',
+    desc: 'PCB design, microcontrollers, sensor integration, and signal conditioning arrays.',
+    image: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786532274/vias_plugged_PCB_2-300x200_khjmen.webp'
+  },
+  {
+    name: 'Mechanical',
+    caption: 'Crafting structural frameworks with sub-millimeter errors.',
+    desc: 'CAD design, 3D fabrication, stress analysis, and physical chassis assembly.',
+    image: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786532197/mechanical-engineering-background-ai-generated-404013682_sczgx2.webp'
+  },
+  {
+    name: 'Web & Automation',
+    caption: 'Pioneering physical-cyber control networks and UI panels.',
+    desc: 'Next-gen interfaces, control systems routing, and software-hardware bridging.',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=cover&w=800&q=80'
+  },
+  {
+    name: 'Management',
+    caption: 'Driving strategic resource optimization and sponsor relations.',
+    desc: 'Strategic planning, sponsor outreach, logistics mainframe, and public relations.',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=cover&w=800&q=80'
+  }
+];
+
 export default function HomeView({ onNavigate }: HomeViewProps) {
   const [activeDomain, setActiveDomain] = useState<number>(0);
 
@@ -114,38 +147,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
 
           {/* Desktop Accordion Grid (Vertical Tab Hover Layout with Liquid Glass and Color Images) */}
           <div className="w-full h-[500px] hidden md:flex rounded-3xl overflow-hidden border border-[#494551]/30 bg-[#0c0a12]/50 backdrop-blur-md">
-            {[
-              {
-                name: 'Robotics',
-                caption: 'Push the boundaries of physical kinematics and control systems.',
-                desc: 'Embedded systems, kinematics, path planning, and autonomous navigation architectures.',
-                image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=cover&w=800&q=80'
-              },
-              {
-                name: 'Electronics',
-                caption: 'Architecting high-frequency micro-current control systems.',
-                desc: 'PCB design, microcontrollers, sensor integration, and signal conditioning arrays.',
-                image: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786532274/vias_plugged_PCB_2-300x200_khjmen.webp'
-              },
-              {
-                name: 'Mechanical',
-                caption: 'Crafting structural frameworks with sub-millimeter errors.',
-                desc: 'CAD design, 3D fabrication, stress analysis, and physical chassis assembly.',
-                image: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786532197/mechanical-engineering-background-ai-generated-404013682_sczgx2.webp'
-              },
-              {
-                name: 'Web & Automation',
-                caption: 'Pioneering physical-cyber control networks and UI panels.',
-                desc: 'Next-gen interfaces, control systems routing, and software-hardware bridging.',
-                image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=cover&w=800&q=80'
-              },
-              {
-                name: 'Management',
-                caption: 'Driving strategic resource optimization and sponsor relations.',
-                desc: 'Strategic planning, sponsor outreach, logistics mainframe, and public relations.',
-                image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=cover&w=800&q=80'
-              }
-            ].map((domain, index) => {
+            {DOMAINS_DATA.map((domain, index) => {
               const isActive = activeDomain === index;
               return (
                 <div
@@ -215,22 +217,28 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
 
           {/* Mobile Accordion Stack Layout */}
           <div className="flex flex-col space-y-4 md:hidden">
-            {[
-              { name: 'Robotics', desc: 'Embedded systems, kinematics, path planning, and autonomous navigation architectures.' },
-              { name: 'Electronics', desc: 'PCB design, microcontrollers, sensor integration, and signal conditioning arrays.' },
-              { name: 'Mechanical', desc: 'CAD design, 3D fabrication, stress analysis, and physical chassis assembly.' },
-              { name: 'Web & Automation', desc: 'Next-gen interfaces, control systems routing, and software-hardware bridging.' },
-              { name: 'Management', desc: 'Strategic planning, sponsor outreach, logistics mainframe, and public relations.' }
-            ].map((domain, index) => (
+            {DOMAINS_DATA.map((domain, index) => (
               <div
                 key={index}
                 className="relative flex flex-col p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-black/40 backdrop-blur-[20px] saturate-[180%] overflow-hidden shadow-[inset_1px_1px_2px_rgba(255,255,255,0.08)]"
               >
-                <div className="flex items-center justify-between">
+                {/* Absolute Background Image with Vignette/Overlay for mobile readability */}
+                <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                  <Image
+                    src={domain.image}
+                    alt={domain.name}
+                    fill
+                    className="object-cover grayscale brightness-40 contrast-125"
+                    sizes="400px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a12]/90 via-[#0c0a12]/45 to-black/40" />
+                </div>
+
+                <div className="relative z-10 flex items-center justify-between">
                   <h4 className="font-cyber font-bold text-lg text-white uppercase">{domain.name}</h4>
                   <span className="font-mono text-xs text-[#cfbdff]">0{index + 1}</span>
                 </div>
-                <p className="font-sans text-xs text-[#cac4d2]/90 mt-2 leading-relaxed">
+                <p className="relative z-10 font-sans text-xs text-[#cac4d2]/90 mt-2 leading-relaxed">
                   {domain.desc}
                 </p>
               </div>
