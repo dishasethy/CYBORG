@@ -125,13 +125,13 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                 name: 'Electronics',
                 caption: 'Architecting high-frequency micro-current control systems.',
                 desc: 'PCB design, microcontrollers, sensor integration, and signal conditioning arrays.',
-                image: 'https://images.unsplash.com/photo-1517055727180-d5a0c797fb9a?auto=format&fit=cover&w=800&q=80'
+                image: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786532274/vias_plugged_PCB_2-300x200_khjmen.webp'
               },
               {
                 name: 'Mechanical',
                 caption: 'Crafting structural frameworks with sub-millimeter errors.',
                 desc: 'CAD design, 3D fabrication, stress analysis, and physical chassis assembly.',
-                image: 'https://images.unsplash.com/photo-1537462715879-360eeb61a0bc?auto=format&fit=cover&w=800&q=80'
+                image: 'https://res.cloudinary.com/dlrhikaak/image/upload/v1786532197/mechanical-engineering-background-ai-generated-404013682_sczgx2.webp'
               },
               {
                 name: 'Web & Automation',
@@ -159,14 +159,16 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                   {/* Absolute Background Image with Vignette */}
                   <div
                     className={`absolute inset-0 z-0 transition-opacity duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none
-                      ${isActive ? 'opacity-45' : 'opacity-0'}
+                      ${isActive ? 'opacity-65' : 'opacity-25'}
                     `}
                   >
                     <Image
                       src={domain.image}
                       alt={domain.name}
                       fill
-                      className="object-cover transition-all duration-400"
+                      className={`object-cover transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                        isActive ? 'grayscale-0 scale-105' : 'grayscale scale-100 opacity-80'
+                      }`}
                       sizes="600px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a12] via-transparent to-black/30" />
