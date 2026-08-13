@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Cpu } from 'lucide-react';
+import Image from 'next/image';
 
 interface LoaderProps {
     onComplete?: () => void;
@@ -63,7 +64,7 @@ export default function Loader({ onComplete, durationMs = 1800 }: LoaderProps) {
         };
     }, [durationMs, onComplete]);
 
-    const doorTransition = { duration: 1.2, ease: [0.16, 1, 0.3, 1] };
+    const doorTransition = { duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] };
 
     return (
         <AnimatePresence>
@@ -222,45 +223,113 @@ export default function Loader({ onComplete, durationMs = 1800 }: LoaderProps) {
 
                         <motion.div
                             key="loader-brand-card"
-                            initial={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                            initial={{ opacity: 1, scale: 0.9, rotateX: 0, rotateY: 0 }}
+                            animate={{ 
+                                rotateX: [4, -4, 4], 
+                                rotateY: [-8, 8, -8],
+                                y: [-6, 6, -6],
+                            }}
                             exit={{ 
                                 opacity: 0, 
-                                scale: 1.5, 
+                                scale: 1.3, 
                                 filter: 'blur(20px)',
-                                y: -50
+                                y: -50,
+                                rotateX: 20,
+                                rotateY: 0,
+                                transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
                             }}
-                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="pointer-events-auto relative flex flex-col items-center p-8 sm:p-12 rounded-3xl border border-[#2f2b3e]/60 bg-[#0b0a11]/70 backdrop-blur-xl shadow-2xl text-center max-w-md w-full space-y-8"
+                            transition={{
+                                duration: 6,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                            style={{
+                                transformStyle: 'preserve-3d',
+                                perspective: '1000px'
+                            }}
+                            className="pointer-events-auto relative flex flex-col items-center p-10 sm:p-14 rounded-[2rem] border border-white/15 bg-[#0b0a11]/45 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),_inset_0_-1px_1px_rgba(0,0,0,0.4),_0_25px_50px_-12px_rgba(0,0,0,0.7),_0_0_50px_rgba(0,242,255,0.15)] text-center max-w-lg w-full space-y-10 overflow-hidden"
                         >
-                            {/* Glowing CPU/Core Icon */}
-                            <div className="relative flex items-center justify-center">
-                                <div className="absolute inset-0 bg-gray-500/10 blur-2xl rounded-full w-20 h-20 animate-pulse" />
-                                <div className="p-4 rounded-2xl border border-gray-600/30 bg-black/40 backdrop-blur-md relative shadow-inner">
-                                    <Cpu className="w-8 h-8 text-gray-300 animate-spin" style={{ animationDuration: '6s' }} />
+                            {/* Inner Grid Pattern */}
+                            <div className="absolute inset-0 opacity-15 hud-grid pointer-events-none" />
+
+                            {/* Inner Liquid Glow Orbs */}
+                            <div className="absolute -top-12 -left-12 w-40 h-40 rounded-full bg-[#00f2ff]/10 blur-2xl pointer-events-none animate-pulse" />
+                            <div className="absolute -bottom-12 -right-12 w-40 h-40 rounded-full bg-[#9a83db]/10 blur-2xl pointer-events-none animate-pulse" />
+
+                            {/* Glossy Diagonal Shine Sheen */}
+                            <motion.div
+                                animate={{ x: ['-150%', '300%'] }}
+                                transition={{ duration: 5, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
+                                className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 pointer-events-none"
+                            />
+
+                            {/* Cybernetic HUD Scanline Overlay */}
+                            <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+                                <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#00f2ff]/40 to-transparent absolute top-0 animate-[scan_4s_linear_infinite]" />
+                            </div>
+
+                            {/* Tech Corner Accents (Sharp HUD framing inside borders) */}
+                            <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-[#00f2ff]/80 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+                            <div className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-[#00f2ff]/80 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+                            <div className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-[#00f2ff]/80 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+                            <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-[#00f2ff]/80 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+
+                            {/* Glowing CPU/Core Icon with Tech Rings (TranslateZ: 40px) */}
+                            <div className="relative flex items-center justify-center h-24 w-24" style={{ transform: 'translateZ(40px)' }}>
+                                <div className="absolute inset-0 bg-[#00f2ff]/25 blur-xl rounded-full w-24 h-24 animate-pulse" />
+                                
+                                {/* Concentric Tech Rings */}
+                                <div className="absolute w-20 h-20 border border-dashed border-[#00f2ff]/30 rounded-full animate-[spin_8s_linear_infinite]" />
+                                <div className="absolute w-[88px] h-[88px] border border-dotted border-[#9a83db]/40 rounded-full animate-[spin_12s_linear_infinite_reverse]" />
+
+                                <div className="p-4 rounded-2xl border border-white/20 bg-black/60 backdrop-blur-md relative shadow-[0_10px_20px_rgba(0,0,0,0.5),_inset_0_1px_1px_rgba(255,255,255,0.2)]">
+                                    <Cpu className="w-8 h-8 text-[#00f2ff] animate-spin" style={{ animationDuration: '4s' }} />
                                 </div>
                             </div>
 
-                            {/* Minimal Identity */}
-                            <div className="space-y-2">
-                                <h1 className="font-cyber font-black text-4xl tracking-[0.4em] text-white uppercase ml-[0.4em] drop-shadow-[0_0_12px_rgba(255,255,255,0.1)]">
-                                    CYBORG
-                                </h1>
+                            {/* Official Cyborg Logo instead of text (TranslateZ: 30px) */}
+                            <div className="flex flex-col items-center py-2" style={{ transform: 'translateZ(30px)' }}>
+                                <Image
+                                    src="/cyborg_logo.png"
+                                    alt="Cyborg Logo"
+                                    width={280}
+                                    height={110}
+                                    className="h-[85px] w-auto object-contain transition-all duration-300 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] hover:scale-105"
+                                    priority
+                                />
                             </div>
 
-                            {/* Loader Progress Section */}
-                            <div className="w-full space-y-3 pt-4 border-t border-[#2f2b3e]/60">
-                                <div className="flex justify-between items-center text-[10px] tracking-widest text-gray-400 font-mono uppercase font-bold">
-                                    <span>SYSTEM START</span>
+                            {/* Loader Progress Section (TranslateZ: 25px) */}
+                            <div className="w-full space-y-4 pt-4 border-t border-white/10" style={{ transform: 'translateZ(25px)' }}>
+                                <div className="flex justify-between items-center text-[9px] tracking-widest text-gray-400 font-mono uppercase font-bold">
+                                    <span className="text-[#00f2ff] animate-pulse">
+                                        {progress < 25 ? "INITIALIZING SYSTEMS..." :
+                                         progress < 55 ? "ESTABLISHING CORE LINK..." :
+                                         progress < 85 ? "LOADING CYBERNETICS..." :
+                                         progress < 98 ? "OPTIMIZING INTERFACE..." : "SYSTEM READY"}
+                                    </span>
                                     <span className="text-gray-200 font-black">{progress.toFixed(0)}%</span>
                                 </div>
 
                                 {/* Progress Bar Container */}
-                                <div className="h-1 w-full bg-black/50 rounded-full overflow-hidden border border-[#2f2b3e]/60">
+                                <div className="h-2.5 w-full bg-black/70 rounded-full overflow-hidden border border-white/10 p-[1px] relative shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.8)]">
                                     <motion.div
-                                        className="h-full rounded-full bg-gradient-to-r from-gray-700 via-gray-400 to-gray-200 shadow-[0_0_10px_rgba(255,255,255,0.2)]"
+                                        className="h-full rounded-full bg-gradient-to-r from-[#9a83db] via-[#cfbdff] to-[#00f2ff] relative"
                                         style={{ width: `${progress}%` }}
                                         transition={{ ease: 'linear' }}
-                                    />
+                                    >
+                                        {/* Glowing Laser Tip */}
+                                        {progress > 0 && (
+                                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white shadow-[0_0_10px_#00f2ff,0_0_3px_#fff]" />
+                                        )}
+                                    </motion.div>
+                                </div>
+
+                                {/* Diagnostic Technical Subtitles */}
+                                <div className="flex justify-between items-center text-[8px] font-mono text-gray-500 uppercase tracking-widest pt-1 select-none">
+                                    <span>SECURE_BOOT: ACTIVE</span>
+                                    <span>PORT: 0x8F9C</span>
+                                    <span>SYS_VER: 2.0.4</span>
                                 </div>
                             </div>
                         </motion.div>
