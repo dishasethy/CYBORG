@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Cpu } from 'lucide-react';
+import { Cpu, Activity, Terminal } from 'lucide-react';
 import Image from 'next/image';
 
 interface LoaderProps {
@@ -221,118 +221,268 @@ export default function Loader({ onComplete, durationMs = 1800 }: LoaderProps) {
                             );
                         })}
 
-                        <motion.div
-                            key="loader-brand-card"
-                            initial={{ opacity: 1, scale: 0.9, rotateX: 0, rotateY: 0 }}
-                            animate={{ 
-                                rotateX: [4, -4, 4], 
-                                rotateY: [-8, 8, -8],
-                                y: [-6, 6, -6],
-                            }}
-                            exit={{ 
-                                opacity: 0, 
-                                scale: 1.3, 
-                                filter: 'blur(20px)',
-                                y: -50,
-                                rotateX: 20,
-                                rotateY: 0,
-                                transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-                            }}
-                            transition={{
-                                duration: 6,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            style={{
-                                transformStyle: 'preserve-3d',
-                                perspective: '1000px'
-                            }}
-                            className="pointer-events-auto relative flex flex-col items-center p-10 sm:p-14 rounded-[2rem] border border-white/15 bg-[#0b0a11]/45 backdrop-blur-2xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.25),_inset_0_-1px_1px_rgba(0,0,0,0.4),_0_25px_50px_-12px_rgba(0,0,0,0.7),_0_0_50px_rgba(0,242,255,0.15)] text-center max-w-lg w-full space-y-10 overflow-hidden"
-                        >
-                            {/* Inner Grid Pattern */}
-                            <div className="absolute inset-0 opacity-15 hud-grid pointer-events-none" />
-
-                            {/* Inner Liquid Glow Orbs */}
-                            <div className="absolute -top-12 -left-12 w-40 h-40 rounded-full bg-[#00f2ff]/10 blur-2xl pointer-events-none animate-pulse" />
-                            <div className="absolute -bottom-12 -right-12 w-40 h-40 rounded-full bg-[#9a83db]/10 blur-2xl pointer-events-none animate-pulse" />
-
-                            {/* Glossy Diagonal Shine Sheen */}
+                        <div className="flex flex-col lg:flex-row items-center justify-center gap-6 max-w-6xl w-full">
+                            
+                            {/* LEFT DIAGNOSTIC MODULE (Desktop only) */}
                             <motion.div
-                                animate={{ x: ['-150%', '300%'] }}
-                                transition={{ duration: 5, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
-                                className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 pointer-events-none"
-                            />
+                                initial={{ opacity: 0, x: -35 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -35, transition: { duration: 0.4 } }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                className="hidden lg:flex pointer-events-auto flex-col w-64 bg-gradient-to-br from-[#9a83db]/30 via-transparent to-[#00f2ff]/20 p-[1.5px]"
+                                style={{
+                                    clipPath: 'polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px)',
+                                    transformStyle: 'preserve-3d',
+                                    perspective: '1000px'
+                                }}
+                            >
+                                <div 
+                                    className="bg-[#0b0a11]/85 backdrop-blur-2xl p-5 space-y-6 font-mono text-[10px] min-h-[350px] flex flex-col justify-between"
+                                    style={{
+                                        clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)'
+                                    }}
+                                >
+                                    <div className="space-y-4">
+                                        <div className="flex items-center gap-2 border-b border-[#00f2ff]/25 pb-2 text-[#00f2ff] font-bold tracking-wider uppercase">
+                                            <Activity className="w-3.5 h-3.5 animate-pulse text-[#00f2ff]" />
+                                            <span>SYS_TELEMETRY</span>
+                                        </div>
 
-                            {/* Cybernetic HUD Scanline Overlay */}
-                            <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
-                                <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#00f2ff]/40 to-transparent absolute top-0 animate-[scan_4s_linear_infinite]" />
-                            </div>
+                                        {/* Data points */}
+                                        <div className="space-y-3 text-gray-400">
+                                            <div className="flex justify-between">
+                                                <span>CORE_STATUS:</span>
+                                                <span className="text-[#cfbdff] font-bold">ONLINE</span>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <span>SYS_TEMP:</span>
+                                                <span className="text-[#00f2ff] font-bold">{(38.2 + (progress * 0.12)).toFixed(1)} °C</span>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <span>MEM_ALLOC:</span>
+                                                <span className="text-gray-200">{(1.24 + (progress * 0.015)).toFixed(2)} GB</span>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <span>LINK_RATE:</span>
+                                                <span className="text-[#00f2ff]">984.8 GB/s</span>
+                                            </div>
+                                        </div>
 
-                            {/* Tech Corner Accents (Sharp HUD framing inside borders) */}
-                            <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-[#00f2ff]/80 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
-                            <div className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-[#00f2ff]/80 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
-                            <div className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-[#00f2ff]/80 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
-                            <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-[#00f2ff]/80 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+                                        {/* sector grid */}
+                                        <div className="space-y-2 pt-2 border-t border-white/5">
+                                            <span className="text-gray-500 uppercase tracking-widest text-[9px] block">GRID_SECTORS</span>
+                                            <div className="grid grid-cols-6 gap-1 p-2 bg-black/40 border border-white/5 rounded">
+                                                {[...Array(24)].map((_, idx) => {
+                                                    const isActive = (idx * 4.2) < progress;
+                                                    const isBlinking = idx % 7 === 0;
+                                                    return (
+                                                        <div 
+                                                            key={idx} 
+                                                            className={`h-2 rounded-[1px] transition-all duration-200 ${
+                                                                isActive 
+                                                                    ? 'bg-[#00f2ff]/80 shadow-[0_0_6px_rgba(0,242,255,0.6)]' 
+                                                                    : 'bg-[#9a83db]/10'
+                                                            } ${isBlinking && progress < 100 ? 'animate-pulse' : ''}`}
+                                                        />
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            {/* Glowing CPU/Core Icon with Tech Rings (TranslateZ: 40px) */}
-                            <div className="relative flex items-center justify-center h-24 w-24" style={{ transform: 'translateZ(40px)' }}>
-                                <div className="absolute inset-0 bg-[#00f2ff]/25 blur-xl rounded-full w-24 h-24 animate-pulse" />
-                                
-                                {/* Concentric Tech Rings */}
-                                <div className="absolute w-20 h-20 border border-dashed border-[#00f2ff]/30 rounded-full animate-[spin_8s_linear_infinite]" />
-                                <div className="absolute w-[88px] h-[88px] border border-dotted border-[#9a83db]/40 rounded-full animate-[spin_12s_linear_infinite_reverse]" />
-
-                                <div className="p-4 rounded-2xl border border-white/20 bg-black/60 backdrop-blur-md relative shadow-[0_10px_20px_rgba(0,0,0,0.5),_inset_0_1px_1px_rgba(255,255,255,0.2)]">
-                                    <Cpu className="w-8 h-8 text-[#00f2ff] animate-spin" style={{ animationDuration: '4s' }} />
+                                    <div className="text-[8px] text-gray-500 leading-normal border-t border-white/5 pt-3">
+                                        [SECURE COMPLIANCE: GEN-8 V.14]
+                                        <br/>
+                                        LOC: SEC-D3_BAY9
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
 
-                            {/* Official Cyborg Logo instead of text (TranslateZ: 30px) */}
-                            <div className="flex flex-col items-center py-2" style={{ transform: 'translateZ(30px)' }}>
-                                <Image
-                                    src="/cyborg_logo.png"
-                                    alt="Cyborg Logo"
-                                    width={280}
-                                    height={110}
-                                    className="h-[85px] w-auto object-contain transition-all duration-300 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] hover:scale-105"
-                                    priority
-                                />
-                            </div>
+                            {/* MAIN BRAND CARD */}
+                            <motion.div
+                                key="loader-brand-card"
+                                initial={{ opacity: 1, scale: 0.9, rotateX: 0, rotateY: 0 }}
+                                animate={{ 
+                                    rotateX: [3, -3, 3], 
+                                    rotateY: [-5, 5, -5],
+                                    y: [-4, 4, -4],
+                                }}
+                                exit={{ 
+                                    opacity: 0, 
+                                    scale: 1.3, 
+                                    filter: 'blur(20px)',
+                                    y: -50,
+                                    rotateX: 20,
+                                    rotateY: 0,
+                                    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+                                }}
+                                transition={{
+                                    duration: 6,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                                className="pointer-events-auto relative flex flex-col items-center bg-gradient-to-br from-[#00f2ff]/30 via-transparent to-[#9a83db]/20 p-[1.5px] max-w-lg w-full shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),_0_0_50px_rgba(0,242,255,0.12)]"
+                                style={{
+                                    clipPath: 'polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px)',
+                                    transformStyle: 'preserve-3d',
+                                    perspective: '1000px'
+                                }}
+                            >
+                                <div 
+                                    className="w-full h-full bg-[#0d0b16]/85 backdrop-blur-3xl px-8 py-10 sm:px-12 sm:py-12 flex flex-col items-center space-y-8 relative overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(29px 0, 100% 0, 100% calc(100% - 29px), calc(100% - 29px) 100%, 0 100%, 0 29px)'
+                                    }}
+                                >
+                                    {/* Inner Grid Pattern */}
+                                    <div className="absolute inset-0 opacity-15 hud-grid pointer-events-none" />
 
-                            {/* Loader Progress Section (TranslateZ: 25px) */}
-                            <div className="w-full space-y-4 pt-4 border-t border-white/10" style={{ transform: 'translateZ(25px)' }}>
-                                <div className="flex justify-between items-center text-[9px] tracking-widest text-gray-400 font-mono uppercase font-bold">
-                                    <span className="text-[#00f2ff] animate-pulse">
-                                        {progress < 25 ? "INITIALIZING SYSTEMS..." :
-                                         progress < 55 ? "ESTABLISHING CORE LINK..." :
-                                         progress < 85 ? "LOADING CYBERNETICS..." :
-                                         progress < 98 ? "OPTIMIZING INTERFACE..." : "SYSTEM READY"}
-                                    </span>
-                                    <span className="text-gray-200 font-black">{progress.toFixed(0)}%</span>
-                                </div>
+                                    {/* Inner Liquid Glow Orbs */}
+                                    <div className="absolute -top-12 -left-12 w-40 h-40 rounded-full bg-[#00f2ff]/10 blur-2xl pointer-events-none animate-pulse" />
+                                    <div className="absolute -bottom-12 -right-12 w-40 h-40 rounded-full bg-[#9a83db]/10 blur-2xl pointer-events-none animate-pulse" />
 
-                                {/* Progress Bar Container */}
-                                <div className="h-2.5 w-full bg-black/70 rounded-full overflow-hidden border border-white/10 p-[1px] relative shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.8)]">
+                                    {/* Glossy Diagonal Shine Sheen */}
                                     <motion.div
-                                        className="h-full rounded-full bg-gradient-to-r from-[#9a83db] via-[#cfbdff] to-[#00f2ff] relative"
-                                        style={{ width: `${progress}%` }}
-                                        transition={{ ease: 'linear' }}
-                                    >
-                                        {/* Glowing Laser Tip */}
-                                        {progress > 0 && (
-                                            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white shadow-[0_0_10px_#00f2ff,0_0_3px_#fff]" />
-                                        )}
-                                    </motion.div>
-                                </div>
+                                        animate={{ x: ['-150%', '300%'] }}
+                                        transition={{ duration: 5, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
+                                        className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 pointer-events-none"
+                                    />
 
-                                {/* Diagnostic Technical Subtitles */}
-                                <div className="flex justify-between items-center text-[8px] font-mono text-gray-500 uppercase tracking-widest pt-1 select-none">
-                                    <span>SECURE_BOOT: ACTIVE</span>
-                                    <span>PORT: 0x8F9C</span>
-                                    <span>SYS_VER: 2.0.4</span>
+                                    {/* Cybernetic HUD Scanline Overlay */}
+                                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                                        <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#00f2ff]/40 to-transparent absolute top-0 animate-[scan_4s_linear_infinite]" />
+                                    </div>
+
+                                    {/* Blinking LEDs / Status bar at top */}
+                                    <div className="absolute top-4 left-6 right-6 flex justify-between items-center text-[8px] font-mono tracking-widest text-[#00f2ff]/75 pointer-events-none select-none">
+                                        <div className="flex items-center gap-1.5">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#00f2ff] animate-ping" />
+                                            <span>SECURE BOOT INTERFACE</span>
+                                        </div>
+                                        <div className="flex gap-1">
+                                            <span className="w-1.5 h-1 bg-[#00f2ff]/80" />
+                                            <span className="w-1.5 h-1 bg-[#00f2ff]/80" />
+                                            <span className="w-1.5 h-1 bg-[#9a83db]/40" />
+                                        </div>
+                                    </div>
+
+                                    {/* Tech Corner Accents (Sharp HUD framing inside borders) */}
+                                    <div className="absolute top-6 left-6 w-3 h-3 border-t border-l border-[#00f2ff]/55 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+                                    <div className="absolute top-6 right-6 w-3 h-3 border-t border-r border-[#00f2ff]/55 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+                                    <div className="absolute bottom-6 left-6 w-3 h-3 border-b border-l border-[#00f2ff]/55 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+                                    <div className="absolute bottom-6 right-6 w-3 h-3 border-b border-r border-[#00f2ff]/55 pointer-events-none" style={{ transform: 'translateZ(10px)' }} />
+
+                                    {/* Glowing CPU/Core Icon with Tech Rings (TranslateZ: 40px) */}
+                                    <div className="relative flex items-center justify-center h-20 w-20 pt-2" style={{ transform: 'translateZ(40px)' }}>
+                                        <div className="absolute inset-0 bg-[#00f2ff]/20 blur-xl rounded-full w-20 h-20 animate-pulse" />
+                                        
+                                        {/* Concentric Tech Rings */}
+                                        <div className="absolute w-16 h-16 border border-dashed border-[#00f2ff]/30 rounded-full animate-[spin_8s_linear_infinite]" />
+                                        <div className="absolute w-[72px] h-[72px] border border-dotted border-[#9a83db]/40 rounded-full animate-[spin_12s_linear_infinite_reverse]" />
+
+                                        <div className="p-3 rounded-xl border border-white/20 bg-black/60 backdrop-blur-md relative shadow-[0_10px_20px_rgba(0,0,0,0.5),_inset_0_1px_1px_rgba(255,255,255,0.2)]">
+                                            <Cpu className="w-6.5 h-6.5 text-[#00f2ff] animate-spin" style={{ animationDuration: '4s' }} />
+                                        </div>
+                                    </div>
+
+                                    {/* Official Cyborg Logo instead of text (TranslateZ: 30px) */}
+                                    <div className="flex flex-col items-center py-1" style={{ transform: 'translateZ(30px)' }}>
+                                        <Image
+                                            src="/cyborg_logo.png"
+                                            alt="Cyborg Logo"
+                                            width={150}
+                                            height={50}
+                                            className="h-[70px] w-auto object-contain transition-all duration-300 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] hover:scale-105"
+                                            loading="eager"
+                                        />
+                                    </div>
+
+                                    {/* Loader Progress Section (TranslateZ: 25px) */}
+                                    <div className="w-full space-y-4 pt-4 border-t border-white/10" style={{ transform: 'translateZ(25px)' }}>
+                                        <div className="flex justify-between items-center text-[9px] tracking-widest text-gray-400 font-mono uppercase font-bold">
+                                            <span className="text-[#00f2ff] animate-pulse">
+                                                {progress < 25 ? "INITIALIZING SYSTEMS..." :
+                                                 progress < 55 ? "ESTABLISHING CORE LINK..." :
+                                                 progress < 85 ? "LOADING CYBERNETICS..." :
+                                                 progress < 98 ? "OPTIMIZING INTERFACE..." : "SYSTEM READY"}
+                                            </span>
+                                            <span className="text-gray-200 font-black">{progress.toFixed(0)}%</span>
+                                        </div>
+
+                                        {/* Progress Bar Container */}
+                                        <div className="h-2.5 w-full bg-black/70 rounded-full overflow-hidden border border-white/10 p-[1px] relative shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.8)]">
+                                            <motion.div
+                                                className="h-full rounded-full bg-gradient-to-r from-[#9a83db] via-[#cfbdff] to-[#00f2ff] relative"
+                                                style={{ width: `${progress}%` }}
+                                                transition={{ ease: 'linear' }}
+                                            >
+                                                {/* Glowing Laser Tip */}
+                                                {progress > 0 && (
+                                                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-white shadow-[0_0_10px_#00f2ff,0_0_3px_#fff]" />
+                                                )}
+                                            </motion.div>
+                                        </div>
+
+                                        {/* Diagnostic Technical Subtitles */}
+                                        <div className="flex justify-between items-center text-[8px] font-mono text-gray-500 uppercase tracking-widest pt-1 select-none">
+                                            <span>SECURE_BOOT: ACTIVE</span>
+                                            <span>PORT: 0x8F9C</span>
+                                            <span>SYS_VER: 2.0.4</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+
+                            {/* RIGHT DIAGNOSTIC MODULE (Desktop only) */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 35 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 35, transition: { duration: 0.4 } }}
+                                transition={{ duration: 0.8, delay: 0.2 }}
+                                className="hidden lg:flex pointer-events-auto flex-col w-64 bg-gradient-to-br from-[#00f2ff]/20 via-transparent to-[#9a83db]/30 p-[1.5px]"
+                                style={{
+                                    clipPath: 'polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px)',
+                                    transformStyle: 'preserve-3d',
+                                    perspective: '1000px'
+                                }}
+                            >
+                                <div 
+                                    className="bg-[#0b0a11]/85 backdrop-blur-2xl p-5 space-y-6 font-mono text-[10px] min-h-[350px] flex flex-col justify-between"
+                                    style={{
+                                        clipPath: 'polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)'
+                                    }}
+                                >
+                                    <div className="space-y-4">
+                                        <div className="flex items-center gap-2 border-b border-[#00f2ff]/25 pb-2 text-[#00f2ff] font-bold tracking-wider uppercase">
+                                            <Terminal className="w-3.5 h-3.5 text-[#00f2ff]" />
+                                            <span>PROCESS_STREAM</span>
+                                        </div>
+
+                                        <div className="space-y-2 text-[9px] text-gray-400 font-mono leading-relaxed h-[170px] overflow-hidden select-none">
+                                            {progress > 5 && <div className="text-green-400/90">&gt; INIT_SYS: STAGE_01 ... OK</div>}
+                                            {progress > 20 && <div className="text-gray-400">&gt; MOUNT: /dev/core_link ... SUCCESS</div>}
+                                            {progress > 40 && <div className="text-[#00f2ff]/90">&gt; KEY_EXCHANGE: 1024-BIT AUTH</div>}
+                                            {progress > 60 && <div className="text-[#cfbdff]/90">&gt; PARSING: CYBORG_DB [120 ENTRIES]</div>}
+                                            {progress > 80 && <div className="text-amber-400/90">&gt; COMPILING: GRAPHICS ENGINE ...</div>}
+                                            {progress >= 100 && <div className="text-green-400 font-bold">&gt; COMPLETED: INTERFACE READY</div>}
+                                            
+                                            {/* Blinking CLI cursor */}
+                                            <div className="flex items-center gap-1 mt-1 text-[#00f2ff]">
+                                                <span>&gt;</span>
+                                                <span className="w-1.5 h-3 bg-[#00f2ff] animate-pulse" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="border-t border-white/5 pt-3 flex justify-between items-center text-[8px] text-gray-500">
+                                        <span>SYS_LOAD: {(10 + progress * 0.6).toFixed(0)}%</span>
+                                        <span className="text-[#00f2ff]/75">PORT: 8080</span>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                        </div>
+
                     </div>
                 </motion.div>
             )}
