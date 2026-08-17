@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Youtube, Github, ArrowUpRight, Calendar } from 'lucide-react';
+import { optimizeCloudinaryUrl } from '../utils/cloudinary';
 
 interface FooterProps {
   onNavigate?: (tab: string) => void;
@@ -130,8 +131,18 @@ export default function Footer({ onNavigate }: FooterProps) {
             © 2026 CYBORG ROBOTICS CLUB. ALL RIGHTS RESERVED.
           </div>
 
-          <div className="w-full sm:w-1/3 flex justify-center sm:justify-end gap-6">
-            <div className="w-full sm:w-1/3 flex justify-center items-center py-2 sm:py-0 shrink-0">
+          <div className="w-full sm:w-1/3 flex justify-center sm:justify-end gap-6 items-center">
+            <div className="flex justify-center items-center py-2 sm:py-0 shrink-0">
+              <Image
+                src={optimizeCloudinaryUrl("https://res.cloudinary.com/dlrhikaak/image/upload/v1786030305/logo_obzdoq.webp", 160)}
+                alt="Partner Logo"
+                className="h-17 w-auto object-contain brightness-95"
+                width={80}
+                height={35}
+              />
+            </div>
+            <div className="w-[1px] h-11 bg-[#494531] shrink-0" />
+            <div className="flex justify-center items-center py-2 sm:py-0 shrink-0">
               <Image
                 src="/cyborg_logo.png"
                 alt="Cyborg Logo"

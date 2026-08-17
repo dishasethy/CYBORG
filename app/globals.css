@@ -405,10 +405,10 @@ body {
   backface-visibility: hidden;
 }
 
-.marquee-infinite-scroll:hover,
-.marquee-infinite-scroll:active,
-.marquee-infinite-scroll:focus {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .marquee-infinite-scroll:hover {
+    animation-play-state: paused;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
