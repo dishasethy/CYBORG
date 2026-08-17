@@ -30,7 +30,7 @@ export default function SocialSidebar() {
       name: 'LinkedIn',
       icon: Linkedin,
       url: 'https://linkedin.com',
-      colorHover: 'hover:text-[#26a641] hover:border-[#26a641]/60'
+      colorHover: 'hover:text-[#9a83db] hover:border-[#9a83db]/60'
     },
     {
       id: 'github',
@@ -60,7 +60,7 @@ export default function SocialSidebar() {
               aria-label={item.name}
               whileHover={{ scale: 1.15, x: 4 }}
               whileTap={{ scale: 0.95 }}
-              className={`p-2.5 rounded-xl bg-transparent hover:bg-[#26a641]/15 border border-transparent hover:border-[#cfbdff]/30 transition-all duration-300 flex items-center justify-center relative group/icon text-white ${item.colorHover}`}
+              className={`p-2.5 rounded-xl bg-transparent hover:bg-[#9a83db]/15 border border-transparent hover:border-[#cfbdff]/30 transition-all duration-300 flex items-center justify-center relative group/icon text-white ${item.colorHover}`}
             >
               <Icon className="w-5 h-5 transition-transform duration-200" />
 

@@ -33,6 +33,7 @@ function GithubTracker() {
         if (val === 0) return '#0e4429';
         if (val === 1) return '#006d32';
         if (val === 2) return '#26a641';
+
         return '#39d353';
       }
     }
@@ -82,7 +83,7 @@ function GithubTracker() {
         <div className="w-3 h-3 rounded-[1.5px] bg-[#161b22]" />
         <div className="w-3 h-3 rounded-[1.5px] bg-[#0e4429]" />
         <div className="w-3 h-3 rounded-[1.5px] bg-[#006d32]" />
-        <div className="w-3 h-3 rounded-[1.5px] bg-[#26a641]" />
+        <div className="w-3 h-3 rounded-[1.5px] bg-[#9a83db]" />
         <div className="w-3 h-3 rounded-[1.5px] bg-[#39d353]" />
         <span>More</span>
       </div>

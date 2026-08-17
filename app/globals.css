@@ -24,7 +24,7 @@
 body {
   background:
     radial-gradient(circle at 10% 20%, rgba(207, 189, 255, 0.05) 0%, transparent 60%),
-    radial-gradient(circle at 90% 80%, rgba(38, 166, 65, 0.03) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(154, 131, 219, 0.03) 0%, transparent 60%),
     #09080e !important;
   background-attachment: fixed !important;
   color: #e6e1e9 !important;
@@ -41,7 +41,7 @@ body {
 .scan-line {
   width: 100%;
   height: 2px;
-  background: linear-gradient(to right, transparent, rgba(38, 166, 65, 0.2), rgba(207, 189, 255, 0.15), transparent);
+  background: linear-gradient(to right, transparent, rgba(154, 131, 219, 0.2), rgba(207, 189, 255, 0.15), transparent);
   position: absolute;
   animation: scan 12s linear infinite;
   z-index: 10;
@@ -92,7 +92,7 @@ body {
 }
 
 .text-glow-cyan {
-  text-shadow: 0 0 12px rgba(38, 166, 65, 0.45);
+  text-shadow: 0 0 12px rgba(154, 131, 219, 0.45);
 }
 
 .font-note {
@@ -328,7 +328,7 @@ body {
 
 /* Glow tags */
 .glow-accent {
-  box-shadow: 0 0 15px rgba(38, 166, 65, 0.35);
+  box-shadow: 0 0 15px rgba(154, 131, 219, 0.35);
 }
 
 .tactical-bg {

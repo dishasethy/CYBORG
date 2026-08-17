@@ -59,9 +59,102 @@ const renderMemberRole = (member: IMember) => {
     return null;
 };
 
+const renderMemberCard = (member: IMember, idx: number) => {
+    return (
+        <motion.div
+            key={`${member.name}-${idx}`}
+            whileHover={{ y: -4 }}
+            className="neo-card rounded-2xl overflow-hidden flex flex-col justify-between border border-[#494551]/30 hover:border-[#9a83db]/60 transition-all p-3 space-y-3 group h-full"
+        >
+            <div className="space-y-3">
+                {/* Avatar Header */}
+                <div className="relative h-60 bg-[#0b0a11] rounded-xl overflow-hidden neo-inset">
+                    <Image
+                        alt={member.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
+                        src={optimizeCloudinaryUrl(member.image || DEFAULT_MEMBER_AVATAR, 400)}
+                        fill
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] via-transparent to-transparent pointer-events-none" />
+                </div>
+
+                {/* Name & Role */}
+                <div>
+                    <h4 className="font-cyber font-bold text-sm text-white group-hover:text-[#9a83db] transition-colors leading-tight">
+                        {member.name}
+                    </h4>
+                    {renderMemberRole(member) && (
+                        <p className="font-sans text-xs text-[#cac4d2] mt-1 leading-relaxed line-clamp-2">
+                            {renderMemberRole(member)}
+                        </p>
+                    )}
+                </div>
+
+                {/* Alumni Details Card */}
+                {member.year === 'alumni' && member.alumniInfo && member.alumniInfo.company && (
+                    <div className="neo-inset p-2.5 rounded-xl border border-amber-500/20 space-y-1 font-mono text-[10px] text-amber-200">
+                        <div className="flex items-center gap-1 font-bold">
+                            <Building className="w-3 h-3 text-amber-400" />
+                            <span>{member.alumniInfo.company}</span>
+                        </div>
+                        <div className="text-[#cac4d2]">
+                            {member.alumniInfo.designation && `${member.alumniInfo.designation} `}({member.alumniInfo.graduationYear})
+                        </div>
+                        {member.alumniInfo.currentLocation && (
+                            <div className="flex items-center gap-1 text-[#948e9c]">
+                                <MapPin className="w-2.5 h-2.5" />
+                                <span>{member.alumniInfo.currentLocation}</span>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+
+            {/* Social Links Bar */}
+            <div className="pt-3 border-t border-[#494551]/20 flex items-center justify-between font-mono text-[10px]">
+                <div className="flex gap-2">
+                    {member.github && (
+                        <a
+                            href={member.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#9a83db] transition-colors"
+                            title="GitHub"
+                        >
+                            <Github className="w-3.5 h-3.5" />
+                        </a>
+                    )}
+                    {member.linkedin && (
+                        <a
+                            href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#9a83db] transition-colors"
+                            title="LinkedIn"
+                        >
+                            <Linkedin className="w-3.5 h-3.5" />
+                        </a>
+                    )}
+                    {member.email && (
+                        <a
+                            href={`mailto:${member.email}`}
+                            className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-white transition-colors"
+                            title="Email"
+                        >
+                            <Mail className="w-3.5 h-3.5" />
+                        </a>
+                    )}
+                </div>
+                <span className="text-[#948e9c] text-[9px] font-mono uppercase tracking-wider">{member.subsystem}</span>
+            </div>
+        </motion.div>
+    );
+};
+
 export default function TeamView() {
     const [viewMode, setViewMode] = useState<'segregated' | 'flat'>('segregated');
     const [selectedYearFilter, setSelectedYearFilter] = useState<string>('final year');
+    const [selectedAlumniYearFilter, setSelectedAlumniYearFilter] = useState<string | number>('all');
     const [memberList, setMemberList] = useState<IMember[]>(mappedStatic);
     const [segregatedGroups, setSegregatedGroups] = useState<YearGroup<IMember>[]>(initialSegregatedGroups);
     const [isAddingMember, setIsAddingMember] = useState<boolean>(false);
@@ -187,6 +280,19 @@ export default function TeamView() {
         setTimeout(() => setSuccessToast(null), 4000);
     };
 
+    const alumniMembers = memberList.filter(m => m.year === 'alumni');
+    const alumniByYear: Record<number, IMember[]> = {};
+    alumniMembers.forEach(m => {
+        const y = m.alumniInfo?.graduationYear || 2025;
+        if (!alumniByYear[y]) {
+            alumniByYear[y] = [];
+        }
+        alumniByYear[y].push(m);
+    });
+    const alumniYears = Object.keys(alumniByYear)
+        .map(Number)
+        .sort((a, b) => b - a);
+
     return (
         <div className="space-y-12 pb-12">
             {/* Team Hero Full Pinterest Storytelling Carousel */}
@@ -246,6 +352,39 @@ export default function TeamView() {
                 </div>
             )}
 
+            {/* Alumni Graduation Year (Batch) Filter Row */}
+            {viewMode === 'segregated' && selectedYearFilter === 'alumni' && (
+                <div className="flex flex-wrap items-center gap-2 border-b border-[#494551]/20 pb-4 font-mono text-xs">
+                    <span className="text-[#948e9c] text-[10px] uppercase font-bold mr-2">FILTER BATCH:</span>
+                    <button
+                        onClick={() => setSelectedAlumniYearFilter('all')}
+                        className={`px-3.5 py-1.5 rounded-xl font-mono text-[11px] font-bold uppercase transition-all cursor-pointer neo-btn ${
+                            selectedAlumniYearFilter === 'all'
+                                ? 'bg-[#d4d4d8]/20 text-[#e4e4e7] border border-[#d4d4d8]/60'
+                                : 'text-[#cac4d2] border border-[#494551]/30 hover:border-[#d4d4d8]/30'
+                        }`}
+                    >
+                        ALL BATCHES
+                    </button>
+                    {alumniYears.map((year) => {
+                        const isActive = selectedAlumniYearFilter === year;
+                        return (
+                            <button
+                                key={year}
+                                onClick={() => setSelectedAlumniYearFilter(year)}
+                                className={`px-3.5 py-1.5 rounded-xl font-mono text-[11px] font-bold uppercase transition-all cursor-pointer neo-btn ${
+                                    isActive
+                                        ? 'bg-[#d4d4d8]/20 text-[#e4e4e7] border border-[#d4d4d8]/60'
+                                        : 'text-[#cac4d2] border border-[#494551]/30 hover:border-[#d4d4d8]/30'
+                                }`}
+                            >
+                                {year}
+                            </button>
+                        );
+                    })}
+                </div>
+            )}
+
             {viewMode === 'segregated' ? (
                 /* HIERARCHICAL SEGREGATION VIEW: YEAR -> SUBSYSTEM -> MEMBERS */
                 <div className="space-y-16">
@@ -254,10 +393,10 @@ export default function TeamView() {
                         .map((yearGroup) => (
                             <div key={yearGroup.yearKey} className="space-y-8 py-2">
                                 {/* LEVEL 1: ACADEMIC YEAR HEADER */}
-                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#26a641]/30 pb-4 gap-2">
+                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#9a83db]/30 pb-4 gap-2">
                                     <div>
                                         <div className="flex items-center gap-2">
-                                            <Layers className="w-4 h-4 text-[#26a641]" />
+                                            <Layers className="w-4 h-4 text-[#9a83db]" />
                                             <h3 className="font-cyber font-black text-lg md:text-2xl text-white uppercase tracking-tight">
                                                 {yearGroup.yearLabel}
                                             </h3>
@@ -265,112 +404,55 @@ export default function TeamView() {
                                         <p className="font-sans text-xs text-[#cac4d2] mt-1">{yearGroup.description}</p>
                                     </div>
 
-                                    <div className="neo-btn px-3 py-1.5 rounded-xl border border-[#26a641]/40 font-mono text-xs text-[#26a641] font-bold">
+                                    <div className="neo-btn px-3 py-1.5 rounded-xl border border-[#9a83db]/40 font-mono text-xs text-[#9a83db] font-bold">
                                         {yearGroup.totalCount} {yearGroup.totalCount === 1 ? 'MEMBER' : 'MEMBERS'}
                                     </div>
                                 </div>
 
                                 {/* YEAR MEMBERS GRID */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
-                                    {[...yearGroup.subsystems.flatMap((subGroup) => subGroup.members)]
-                                        .sort((a, b) => {
-                                            const findIndex = (member: IMember) => memberList.findIndex(m =>
-                                                m.name.toLowerCase().trim() === member.name.toLowerCase().trim() &&
-                                                (m.email?.toLowerCase().trim() === member.email?.toLowerCase().trim() ||
-                                                    m.github?.toLowerCase().trim() === member.github?.toLowerCase().trim())
-                                            );
-                                            return findIndex(a) - findIndex(b);
-                                        })
-                                        .map((member, idx) => (
-                                            <motion.div
-                                                key={`${member.name}-${idx}`}
-                                                whileHover={{ y: -4 }}
-                                                className="neo-card rounded-2xl overflow-hidden flex flex-col justify-between border border-[#494551]/30 hover:border-[#26a641]/60 transition-all p-3 space-y-3 group h-full"
-                                            >
-                                                <div className="space-y-3">
-                                                    {/* Avatar Header */}
-                                                    <div className="relative h-60 bg-[#0b0a11] rounded-xl overflow-hidden neo-inset">
-                                                        <Image
-                                                            alt={member.name}
-                                                            className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                                                            src={optimizeCloudinaryUrl(member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy', 400)}
-                                                            fill
-                                                        />
-                                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] via-transparent to-transparent pointer-events-none" />
-                                                    </div>
-
-                                                    {/* Name & Role */}
-                                                    <div>
-                                                        <h4 className="font-cyber font-bold text-sm text-white group-hover:text-[#26a641] transition-colors leading-tight">
-                                                            {member.name}
-                                                        </h4>
-                                                        {renderMemberRole(member) && (
-                                                            <p className="font-sans text-xs text-[#cac4d2] mt-1 leading-relaxed line-clamp-2">
-                                                                {renderMemberRole(member)}
-                                                            </p>
-                                                        )}
-                                                    </div>
-
-                                                    {/* Alumni Details Card */}
-                                                    {member.year === 'alumni' && member.alumniInfo && member.alumniInfo.company && (
-                                                        <div className="neo-inset p-2.5 rounded-xl border border-amber-500/20 space-y-1 font-mono text-[10px] text-amber-200">
-                                                            <div className="flex items-center gap-1 font-bold">
-                                                                <Building className="w-3 h-3 text-amber-400" />
-                                                                <span>{member.alumniInfo.company}</span>
-                                                            </div>
-                                                            <div className="text-[#cac4d2]">
-                                                                {member.alumniInfo.designation && `${member.alumniInfo.designation} `}({member.alumniInfo.graduationYear})
-                                                            </div>
-                                                            {member.alumniInfo.currentLocation && (
-                                                                <div className="flex items-center gap-1 text-[#948e9c]">
-                                                                    <MapPin className="w-2.5 h-2.5" />
-                                                                    <span>{member.alumniInfo.currentLocation}</span>
-                                                                </div>
-                                                            )}
+                                {yearGroup.yearKey === 'alumni' ? (
+                                    <div className="space-y-12">
+                                        {alumniYears
+                                            .filter(yr => selectedAlumniYearFilter === 'all' || selectedAlumniYearFilter === yr)
+                                            .map((yr) => {
+                                                const yrMembers = alumniByYear[yr] || [];
+                                                if (yrMembers.length === 0) return null;
+                                                return (
+                                                    <div key={yr} className="space-y-6">
+                                                        {/* Sub-header for batch year */}
+                                                        <div className="flex items-center gap-3 border-b border-[#9a83db]/25 pb-2">
+                                                            <h4 className="font-cyber text-sm md:text-base font-bold text-white uppercase tracking-wider">
+                                                                Batch of {yr}
+                                                            </h4>
+                                                            <span className="neo-btn px-2 py-0.5 rounded text-[9px] font-mono text-[#9a83db] border border-[#9a83db]/30">
+                                                                {yrMembers.length} {yrMembers.length === 1 ? 'ALUMNUS' : 'ALUMNI'}
+                                                            </span>
                                                         </div>
-                                                    )}
-                                                </div>
 
-                                                {/* Social Links Bar */}
-                                                <div className="pt-3 border-t border-[#494551]/20 flex items-center justify-between font-mono text-[10px]">
-                                                    <div className="flex gap-2">
-                                                        {member.github && (
-                                                            <a
-                                                                href={member.github}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#26a641] transition-colors"
-                                                                title="GitHub"
-                                                            >
-                                                                <Github className="w-3.5 h-3.5" />
-                                                            </a>
-                                                        )}
-                                                        {member.linkedin && (
-                                                            <a
-                                                                href={member.linkedin}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-[#26a641] transition-colors"
-                                                                title="LinkedIn"
-                                                            >
-                                                                <Linkedin className="w-3.5 h-3.5" />
-                                                            </a>
-                                                        )}
-                                                        {member.email && (
-                                                            <a
-                                                                href={`mailto:${member.email}`}
-                                                                className="p-1.5 neo-btn rounded-lg text-[#cac4d2] hover:text-white transition-colors"
-                                                                title="Email"
-                                                            >
-                                                                <Mail className="w-3.5 h-3.5" />
-                                                            </a>
-                                                        )}
+                                                        {/* Grid of cards */}
+                                                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
+                                                            {[...yrMembers]
+                                                                .sort((a, b) => a.name.localeCompare(b.name))
+                                                                .map((member, idx) => renderMemberCard(member, idx))}
+                                                        </div>
                                                     </div>
-                                                    <span className="text-[#948e9c] text-[9px] font-mono uppercase tracking-wider">{member.subsystem}</span>
-                                                </div>
-                                            </motion.div>
-                                        ))}
-                                </div>
+                                                );
+                                            })}
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-4">
+                                        {[...yearGroup.subsystems.flatMap((subGroup) => subGroup.members)]
+                                            .sort((a, b) => {
+                                                const findIndex = (member: IMember) => memberList.findIndex(m =>
+                                                    m.name.toLowerCase().trim() === member.name.toLowerCase().trim() &&
+                                                    (m.email?.toLowerCase().trim() === member.email?.toLowerCase().trim() ||
+                                                        m.github?.toLowerCase().trim() === member.github?.toLowerCase().trim())
+                                                );
+                                                return findIndex(a) - findIndex(b);
+                                            })
+                                            .map((member, idx) => renderMemberCard(member, idx))}
+                                    </div>
+                                )}
                             </div>
                         ))}
                 </div>
@@ -390,7 +472,7 @@ export default function TeamView() {
                                 </div>
                                 <div className="flex justify-between items-start">
                                     <h4 className="font-cyber font-bold text-sm text-white">{member.name}</h4>
-                                    <span className="neo-btn text-[8px] font-mono px-2 py-0.5 rounded text-[#26a641] border border-[#26a641]/30 uppercase">
+                                    <span className="neo-btn text-[8px] font-mono px-2 py-0.5 rounded text-[#9a83db] border border-[#9a83db]/30 uppercase">
                                         {member.year}
                                     </span>
                                 </div>
@@ -402,12 +484,12 @@ export default function TeamView() {
                             <div className="flex justify-between items-center pt-3 border-t border-[#494551]/20 font-mono text-[9px]">
                                 <div className="flex gap-2">
                                     {member.github && (
-                                        <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#26a641]">
+                                        <a href={member.github} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#9a83db]">
                                             <Github className="w-3.5 h-3.5" />
                                         </a>
                                     )}
                                     {member.linkedin && (
-                                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#26a641]">
+                                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#cac4d2] hover:text-[#9a83db]">
                                             <Linkedin className="w-3.5 h-3.5" />
                                         </a>
                                     )}
@@ -442,7 +524,7 @@ export default function TeamView() {
                             </button>
 
                             <div className="space-y-1">
-                                <div className="flex items-center gap-2 text-[#26a641] font-mono text-xs">
+                                <div className="flex items-center gap-2 text-[#9a83db] font-mono text-xs">
                                     <Database className="w-4 h-4" />
                                     <span>LOCAL REGISTRY STORAGE WRITER</span>
                                 </div>
@@ -455,7 +537,7 @@ export default function TeamView() {
                                 {/* Name */}
                                 <div className="space-y-1">
                                     <label className="font-mono text-[10px] text-[#cac4d2] uppercase block">
-                                        FULL NAME <span className="text-[#26a641]">*</span>
+                                        FULL NAME <span className="text-[#9a83db]">*</span>
                                     </label>
                                     <input
                                         type="text"
@@ -463,7 +545,7 @@ export default function TeamView() {
                                         placeholder="e.g. Priyanshi S. Mohanty"
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none"
+                                        className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#9a83db] outline-none"
                                     />
                                 </div>
 
@@ -471,12 +553,12 @@ export default function TeamView() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div className="space-y-1">
                                         <label className="font-mono text-[10px] text-[#cac4d2] uppercase block">
-                                            SUBSYSTEM <span className="text-[#26a641]">*</span>
+                                            SUBSYSTEM <span className="text-[#9a83db]">*</span>
                                         </label>
                                         <select
                                             value={formData.subsystem}
                                             onChange={e => setFormData({ ...formData, subsystem: e.target.value as SubsystemType })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#9a83db] outline-none font-mono"
                                         >
                                             <option value="robotics">Robotics &amp; Automation</option>
                                             <option value="software">Software &amp; AI</option>
@@ -491,12 +573,12 @@ export default function TeamView() {
 
                                     <div className="space-y-1">
                                         <label className="font-mono text-[10px] text-[#cac4d2] uppercase block">
-                                            ACADEMIC YEAR / STATUS <span className="text-[#26a641]">*</span>
+                                            ACADEMIC YEAR / STATUS <span className="text-[#9a83db]">*</span>
                                         </label>
                                         <select
                                             value={formData.year}
                                             onChange={e => setFormData({ ...formData, year: e.target.value as AcademicYearType })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black text-white border border-[#494551]/40 focus:border-[#9a83db] outline-none font-mono"
                                         >
                                             <option value="sophomore">Sophomore</option>
                                             <option value="pre-final year">Pre-Final Year</option>
@@ -517,7 +599,7 @@ export default function TeamView() {
                                             placeholder="https://github.com/username"
                                             value={formData.github}
                                             onChange={e => setFormData({ ...formData, github: e.target.value })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono text-[11px]"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#9a83db] outline-none font-mono text-[11px]"
                                         />
                                     </div>
 
@@ -530,7 +612,7 @@ export default function TeamView() {
                                             placeholder="https://linkedin.com/in/username"
                                             value={formData.linkedin}
                                             onChange={e => setFormData({ ...formData, linkedin: e.target.value })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono text-[11px]"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#9a83db] outline-none font-mono text-[11px]"
                                         />
                                     </div>
                                 </div>
@@ -546,7 +628,7 @@ export default function TeamView() {
                                             placeholder="e.g. ROS2 DDS Architect"
                                             value={formData.role}
                                             onChange={e => setFormData({ ...formData, role: e.target.value })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#9a83db] outline-none"
                                         />
                                     </div>
 
@@ -559,7 +641,7 @@ export default function TeamView() {
                                             placeholder="operator@nitrkl.ac.in"
                                             value={formData.email}
                                             onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#26a641] outline-none font-mono text-[11px]"
+                                            className="w-full neo-inset px-4 py-3 rounded-xl bg-black/40 text-white border border-[#494551]/40 focus:border-[#9a83db] outline-none font-mono text-[11px]"
                                         />
                                     </div>
                                 </div>
@@ -616,7 +698,7 @@ export default function TeamView() {
                                         type="submit"
                                         className="px-6 py-2.5 rounded-xl font-mono text-xs text-white bg-[#d4d4d8]/20 border border-[#d4d4d8]/60 hover:bg-[#d4d4d8]/45 font-bold flex items-center gap-2 neo-btn cursor-pointer"
                                     >
-                                        <Database className="w-4 h-4 text-[#26a641]" />
+                                        <Database className="w-4 h-4 text-[#9a83db]" />
                                         <span>SAVE TO MONGO DB</span>
                                     </button>
                                 </div>

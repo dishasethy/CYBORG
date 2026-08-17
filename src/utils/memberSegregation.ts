@@ -43,12 +43,12 @@ export const YEAR_METADATA: Record<AcademicYearType, { label: string; descriptio
 export const SUBSYSTEM_METADATA: Record<SubsystemType, { label: string; badgeColor: string; order: number }> = {
   'robotics': {
     label: 'Robotics & Automation',
-    badgeColor: 'border-[#26a641]/40 text-[#26a641] bg-[#26a641]/10',
+    badgeColor: 'border-[#9a83db]/40 text-[#9a83db] bg-[#9a83db]/10',
     order: 1,
   },
   'software': {
     label: 'Software & AI Systems',
-    badgeColor: 'border-[#26a641]/40 text-[#26a641] bg-[#26a641]/10',
+    badgeColor: 'border-[#9a83db]/40 text-[#9a83db] bg-[#9a83db]/10',
     order: 2,
   },
   'mechanical': {

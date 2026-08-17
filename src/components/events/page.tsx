@@ -125,7 +125,7 @@ export default function EventsView() {
                     </span>
                     {evt.venue && (
                       <span className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3 text-[#26a641]" />
+                        <MapPin className="w-3 h-3 text-[#9a83db]" />
                         {evt.venue}
                       </span>
                     )}
@@ -160,10 +160,10 @@ export default function EventsView() {
       {/* Overview Section */}
       <section id="events-overview-section" className="w-full max-w-7xl mx-auto px-4">
         <div className="neo-card rounded-2xl p-8 border border-[#494551]/30 bg-[#0f0d13]/50 relative overflow-hidden group">
-          <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#26a641]/5 group-hover:bg-[#26a641]/10 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
+          <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#9a83db]/5 group-hover:bg-[#9a83db]/10 blur-3xl rounded-full transition-all duration-500 pointer-events-none" />
           <div className="flex flex-col md:flex-row items-center gap-6 relative z-10">
             <div className="p-4 rounded-2xl neo-btn flex items-center justify-center shrink-0">
-              <Database className="text-[#26a641] w-8 h-8" />
+              <Database className="text-[#9a83db] w-8 h-8" />
             </div>
             <div className="space-y-2">
               <h3 className="font-cyber text-lg tracking-wider text-white uppercase">Our Legacy</h3>
