@@ -154,7 +154,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
             {/* Mobile View: Infinite Horizontal Marquee */}
             <div className="xl:hidden w-full overflow-hidden">
-              <div className="animate-marquee-infinite">
+              <div className="marquee-infinite-scroll">
                 <div className="w-[1000px] pr-[50px] shrink-0">
                   <GithubTracker />
                 </div>

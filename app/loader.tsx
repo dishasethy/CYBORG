@@ -393,7 +393,7 @@ export default function Loader({ onComplete, durationMs = 1800 }: LoaderProps) {
                                             width={150}
                                             height={50}
                                             className="h-[70px] w-auto object-contain transition-all duration-300 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.4)] hover:scale-105"
-                                            loading="eager"
+                                            priority
                                         />
                                     </div>
 

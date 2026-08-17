@@ -38,6 +38,7 @@ export default function Navbar({ activeTab, setActiveTab }: NavbarProps) {
               className="h-[60px] w-auto object-contain -my-2 transition-transform duration-300 group-hover:scale-105"
               width={120}
               height={52}
+              priority
             />
 
           </div>

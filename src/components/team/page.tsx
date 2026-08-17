@@ -6,6 +6,7 @@ import { YearGroup, segregateMembersByYearAndSubsystem, SUBSYSTEM_METADATA } fro
 import { IMember, AcademicYearType, SubsystemType } from '../../models/Member';
 import { teamMembers, DEFAULT_MEMBER_AVATAR } from '../../constants';
 import TeamCarousel from './TeamCarousel';
+import { optimizeCloudinaryUrl } from '../../utils/cloudinary';
 
 // Local fallback using teamMembers converted to IMember
 const mappedStatic: IMember[] = teamMembers.map(m => ({
@@ -292,7 +293,7 @@ export default function TeamView() {
                                                         <Image
                                                             alt={member.name}
                                                             className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
-                                                            src={member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy'}
+                                                            src={optimizeCloudinaryUrl(member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy', 400)}
                                                             fill
                                                         />
                                                         <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] via-transparent to-transparent pointer-events-none" />
@@ -383,7 +384,7 @@ export default function TeamView() {
                                     <Image
                                         alt={member.name}
                                         className="w-full h-full object-cover transition-all duration-500"
-                                        src={member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy'}
+                                        src={optimizeCloudinaryUrl(member.image || 'https://lh3.googleusercontent.com/aida-public/AB6AXuDImuv0sDGm_33jDgjjlB_zPwbs9kJfF4dI1WQ-3EWcBh_ieWi5FxnG9PKrL0banm7Dl6rKDuHMwDVNCFigpk26svsLwNsrU_szG57GEQU501t2kN091t6-0Ki7uX3BVEEmkkansGu8vQP3bWtNnIP5auHalGHz5i0-NwPUBn468vqlkHXlp5LxpftIls28Lv9ltRyIQRWoTuLRP7xwpMMDNOgQi38DX4UNjwYpVJSo5rqv71KLuCowg8ymZyIOKPTpOejMKZdK2Vuy', 400)}
                                         fill
                                     />
                                 </div>

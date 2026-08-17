@@ -396,7 +396,7 @@ body {
   }
 }
 
-.animate-marquee-infinite {
+.marquee-infinite-scroll {
   display: flex;
   width: max-content;
   animation: marquee-infinite 15s linear infinite;
@@ -405,14 +405,14 @@ body {
   backface-visibility: hidden;
 }
 
-.animate-marquee-infinite:hover,
-.animate-marquee-infinite:active,
-.animate-marquee-infinite:focus {
+.marquee-infinite-scroll:hover,
+.marquee-infinite-scroll:active,
+.marquee-infinite-scroll:focus {
   animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee-infinite {
+  .marquee-infinite-scroll {
     animation: none;
   }
 }

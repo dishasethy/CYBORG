@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import teamImagesData from '../../utils/team_images.json';
+import { optimizeCloudinaryUrl } from '../../utils/cloudinary';
 
 export default function TeamCarousel() {
   const images = teamImagesData.image;
@@ -171,7 +172,7 @@ export default function TeamCarousel() {
               {/* Frameless Image Wrapper */}
               <div className="relative w-full h-full rounded-3xl overflow-hidden">
                 <Image
-                  src={url}
+                  src={optimizeCloudinaryUrl(url, 1200)}
                   alt={`Team Image ${idx + 1}`}
                   fill
                   className="object-cover pointer-events-none"

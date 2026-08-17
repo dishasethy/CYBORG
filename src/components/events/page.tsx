@@ -7,7 +7,7 @@ export default function EventsView() {
   return (
     <div className="space-y-12 pt-2">
       {/* Splitscreen Dual Cinematic Hero Header */}
-      <section id="splitscreen-hero-panel" className="relative min-h-[45vh] lg:h-[400px] flex flex-col lg:flex-row overflow-hidden neo-card rounded-2xl bg-black">
+      <section id="splitscreen-hero-panel" className="relative w-screen left-1/2 -translate-x-1/2 min-h-[45vh] lg:h-[400px] flex flex-col lg:flex-row overflow-hidden bg-black border-y border-[#494551]/20">
         {/* Left Side: Death Race */}
         <div id="hero-left-death-race" className="relative flex-1 group overflow-hidden border-b lg:border-b-0 lg:border-r border-[#494551]/20 min-h-[220px]">
           <div className="absolute inset-0 z-0">
@@ -21,7 +21,7 @@ export default function EventsView() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] to-transparent" />
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8 space-y-3">
+          <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8 lg:pl-16 xl:pl-28 space-y-3">
             <h1 className="font-cyber text-2xl md:text-4xl italic font-black text-glow-purple uppercase tracking-tight text-white">
               DEATH_RACE
             </h1>
@@ -55,7 +55,7 @@ export default function EventsView() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0f0d13] to-transparent" />
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8 lg:items-end lg:text-right space-y-3">
+          <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8 lg:pr-16 xl:pr-28 lg:items-end lg:text-right space-y-3">
             <h1 className="font-cyber text-2xl md:text-4xl italic font-black text-glow-cyan uppercase tracking-tight text-white">
               ROBO_SUMO
             </h1>
