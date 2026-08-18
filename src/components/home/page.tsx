@@ -138,7 +138,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
         <div className="flex flex-col space-y-8">
           <div>
             <span className="font-cyber text-[10px] tracking-[0.25em] text-[#cfbdff] uppercase font-bold">
-              DEPARTMENT_DIRECTIVES
+              CLUB DOMAINS
             </span>
             <h3 className="font-cyber font-black text-3xl md:text-4xl text-white uppercase tracking-tight mt-2">
               OUR DOMAINS
@@ -153,7 +153,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                 <div
                   key={index}
                   onMouseEnter={() => setActiveDomain(index)}
-                  className={`relative h-full flex flex-col justify-between p-8 border-r border-[#494551]/30 cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden select-none last:border-r-0
+                  className={`relative h-full flex flex-col justify-end p-8 border-r border-[#494551]/30 cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden select-none last:border-r-0
                     ${isActive ? 'flex-[3.5] bg-gradient-to-br from-white/8 to-black/45 border-t border-t-white/20 border-l border-l-white/15' : 'flex-1 bg-gradient-to-br from-white/3 to-black/20'}
                     backdrop-blur-[20px] saturate-[180%] shadow-[inset_1px_1px_2px_rgba(255,255,255,0.12),_0_8px_24px_rgba(0,0,0,0.35)]
                   `}
@@ -174,18 +174,6 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
                       sizes="600px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a12] via-transparent to-black/30" />
-                  </div>
-
-                  {/* Top Caption (Visible only when active) */}
-                  <div className={`relative z-10 w-full transition-all duration-400 delay-75
-                    ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}
-                  `}>
-                    <span className="font-cyber text-[8px] tracking-[0.25em] text-[#cfbdff] font-bold block mb-1">
-                      DIRECTIVE_0{index + 1}
-                    </span>
-                    <p className="font-sans text-[10px] text-white/90 leading-relaxed uppercase tracking-wider">
-                      {domain.caption}
-                    </p>
                   </div>
 
                   {/* Middle Title */}
