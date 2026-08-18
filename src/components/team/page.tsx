@@ -34,6 +34,13 @@ const renderMemberRole = (member: IMember) => {
         return null;
     }
 
+    let resolvedRole = '';
+
+    const hasEx = (str: string) => {
+        const s = str.toLowerCase();
+        return s.startsWith('ex-') || s.startsWith('ex ') || s.startsWith('ex -');
+    };
+
     if (
         roleLower.includes('president') ||
         roleLower.includes('secretary') ||
@@ -41,22 +48,108 @@ const renderMemberRole = (member: IMember) => {
         roleLower.includes('treasurer') ||
         roleLower.includes('vp')
     ) {
-        return member.role;
-    }
+        resolvedRole = member.role;
+    } else if (roleLower.includes('lead')) {
+        let subName = '';
+        if (member.subsystem === 'management') {
+            subName = 'Management';
+        } else if (member.subsystem === 'web&automation') {
+            subName = 'Web and Automation';
+        } else {
+            const subMeta = SUBSYSTEM_METADATA[member.subsystem];
+            subName = subMeta ? subMeta.label : member.subsystem;
 
-    if (roleLower.includes('lead')) {
-        const subMeta = SUBSYSTEM_METADATA[member.subsystem];
-        let subName = subMeta ? subMeta.label : member.subsystem;
-
-        if (subName.includes(' & ')) {
-            subName = subName.split(' & ')[0];
+            if (subName.includes(' & ')) {
+                subName = subName.split(' & ')[0];
+            }
+            subName = subName.replace(/Systems|Engineering|Hardware|PCB|CAD/g, '').trim();
         }
-        subName = subName.replace(/Systems|Engineering|Hardware|PCB|CAD/g, '').trim();
 
-        return `${subName} Lead`;
+        const hasExPrefix = hasEx(roleLower);
+        let prefix = 'Ex-';
+        if (member.subsystem === 'web&automation') {
+            prefix = 'Ex - ';
+        } else if (member.subsystem === 'management') {
+            prefix = 'Ex ';
+        }
+        resolvedRole = hasExPrefix ? `${prefix}${subName} Lead` : `${subName} Lead`;
     }
 
-    return null;
+    if (!resolvedRole) {
+        return null;
+    }
+
+    if (member.year === 'final year' && !hasEx(resolvedRole)) {
+        let prefix = 'Ex-';
+        if (member.subsystem === 'web&automation') {
+            prefix = 'Ex - ';
+        } else if (member.subsystem === 'management') {
+            prefix = 'Ex ';
+        }
+        return `${prefix}${resolvedRole}`;
+    }
+
+    return resolvedRole;
+};
+
+const getCompanyLogoUrl = (company: string): string => {
+    const name = company.toLowerCase().trim();
+    
+    const domainMap: Record<string, string> = {
+        'accenture': 'accenture.com',
+        'avalara': 'avalara.com',
+        'flipkart': 'flipkart.com',
+        'barclays': 'barclays.com',
+        'maruti suzuki': 'marutisuzuki.com',
+        'bharat electronics ltd': 'bel-india.in',
+        'qualcomm': 'qualcomm.com',
+        'dassault systems': '3ds.com',
+        'visa': 'visa.com',
+        'hp': 'hp.com',
+        'perplexity': 'perplexity.ai',
+        'zs associates': 'zs.com',
+        'microsoft': 'microsoft.com',
+        'oracle': 'oracle.com',
+        'samsung': 'samsung.com',
+        'aws': 'amazon.com',
+        'lowes': 'lowes.com',
+        'texasinstruments': 'ti.com',
+        'blueyonder': 'blueyonder.com',
+        'tatasteel': 'tatasteel.com',
+        'bakerhughes': 'bakerhughes.com',
+        'deloitte': 'deloitte.com',
+        'wellsfargo': 'wellsfargo.com',
+        'usc': 'usc.edu',
+        'google': 'google.com',
+        'exxonmobil': 'exxonmobil.com',
+    };
+
+    if (domainMap[name]) {
+        return `https://logo.clearbit.com/${domainMap[name]}`;
+    }
+
+    const sanitizedName = name
+        .replace(/[^a-z0-9]/g, '')
+        .concat('.com');
+        
+    return `https://logo.clearbit.com/${sanitizedName}`;
+};
+
+const AlumniCompanyLogo = ({ company }: { company: string }) => {
+    const [hasError, setHasError] = useState(false);
+
+    if (hasError || !company) {
+        return <Building className="w-3.5 h-3.5 text-amber-400 shrink-0" />;
+    }
+
+    return (
+        <img
+            src={getCompanyLogoUrl(company)}
+            alt={`${company} logo`}
+            onError={() => setHasError(true)}
+            className="w-3.5 h-3.5 object-contain rounded-sm shrink-0 bg-white p-[1px] border border-white/25 shadow-sm transition-transform hover:scale-110 duration-200"
+        />
+    );
 };
 
 const renderMemberCard = (member: IMember, idx: number) => {
@@ -94,7 +187,7 @@ const renderMemberCard = (member: IMember, idx: number) => {
                 {member.year === 'alumni' && member.alumniInfo && member.alumniInfo.company && (
                     <div className="neo-inset p-2.5 rounded-xl border border-amber-500/20 space-y-1 font-mono text-[10px] text-amber-200">
                         <div className="flex items-center gap-1 font-bold">
-                            <Building className="w-3 h-3 text-amber-400" />
+                            <AlumniCompanyLogo company={member.alumniInfo.company} />
                             <span>{member.alumniInfo.company}</span>
                         </div>
                         <div className="text-[#cac4d2]">
