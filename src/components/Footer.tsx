@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { Youtube, Github, ArrowUpRight, Calendar } from 'lucide-react';
@@ -93,6 +96,36 @@ function GithubTracker() {
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [maxScroll, setMaxScroll] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    const updateScroll = () => {
+      setScrollLeft(el.scrollLeft);
+      setMaxScroll(el.scrollWidth - el.clientWidth);
+    };
+
+    el.addEventListener('scroll', updateScroll, { passive: true });
+    updateScroll();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateScroll();
+    });
+    resizeObserver.observe(el);
+
+    return () => {
+      el.removeEventListener('scroll', updateScroll);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  const showLeftFade = scrollLeft > 10;
+  const showRightFade = scrollLeft < maxScroll - 10;
+
   return (
     <footer
       className="relative z-20 w-full text-[#cac4d2] border-t border-[#494551]/30 overflow-hidden font-sans pb-8 pt-4"
@@ -156,7 +189,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         {/* GitHub Contribution Tracker Grid Section */}
         <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center z-10 relative">
-          <div className="bg-[#0b0a11]/90 border border-[#2f2b3e]/40 p-6 rounded-xl shadow-inner font-sans w-full overflow-hidden scrollbar-none">
+          <div className="bg-[#0b0a11]/90 border border-[#2f2b3e]/40 p-6 rounded-xl shadow-inner font-sans w-full relative overflow-hidden">
             {/* Desktop View: Static and Centered */}
             <div className="hidden xl:flex justify-center w-full">
               <div className="min-w-[950px] flex justify-center">
@@ -164,15 +197,35 @@ export default function Footer({ onNavigate }: FooterProps) {
               </div>
             </div>
 
-            {/* Mobile View: Infinite Horizontal Marquee */}
-            <div className="xl:hidden w-full overflow-hidden">
-              <div className="marquee-infinite-scroll">
-                <div className="w-[1000px] pr-[50px] shrink-0">
+            {/* Mobile/Tablet View: Scrollable with Left & Right Gradient Fading Edges */}
+            <div className="xl:hidden w-full relative">
+              {/* Left Gradient Fade */}
+              <div 
+                className={`absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0b0a11] via-[#0b0a11]/80 to-transparent pointer-events-none z-10 transition-opacity duration-300 ${
+                  showLeftFade ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+              {/* Right Gradient Fade */}
+              <div 
+                className={`absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0b0a11] via-[#0b0a11]/80 to-transparent pointer-events-none z-10 transition-opacity duration-300 ${
+                  showRightFade ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+
+              {/* Scrollable Container */}
+              <div
+                ref={scrollContainerRef}
+                className="w-full overflow-x-auto scrollbar-none select-none flex scroll-smooth"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                <div className="min-w-[950px] px-6 py-2 shrink-0">
                   <GithubTracker />
                 </div>
-                <div className="w-[1000px] pr-[50px] shrink-0">
-                  <GithubTracker />
-                </div>
+              </div>
+
+              {/* Touch Scroll Hint */}
+              <div className="flex justify-center items-center gap-2 mt-4 text-[10px] font-mono text-[#8b949e]/60 tracking-wider uppercase animate-pulse select-none">
+                <span>← Swipe horizontally to explore contributions →</span>
               </div>
             </div>
           </div>
