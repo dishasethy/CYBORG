@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Space_Grotesk, Orbitron, JetBrains_Mono, Caveat, Architects_Daughter, Qwigley } from "next/font/google";
+import SmoothScroll from "../src/components/ui/fragment/SmoothScroll";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${orbitron.variable} ${qwigley.variable} ${jetbrainsMono.variable} ${caveat.variable} ${architectsDaughter.variable}`}
     >
       <body className="text-[#211c2b] selection:bg-[#9a83db]/40 selection:text-white antialiased">
+        <SmoothScroll />
         {children}
       </body>
     </html>

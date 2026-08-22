@@ -42,12 +42,35 @@ export default function App() {
       <SocialSidebar />
 
       {/* Interactive Network Particle Background */}
-      <InteractiveBg />
-
-
+      {activeTab !== 'events' ? (
+        <InteractiveBg />
+      ) : (
+        <>
+          <div className="fixed inset-0 pointer-events-none z-0 bg-[#fffae5]" />
+          {/* Dense tactical dots matrix (grain/pores) */}
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 opacity-[0.4]" 
+            style={{
+              backgroundImage: 'radial-gradient(rgba(255, 61, 0, 0.15) 1.2px, transparent 0), radial-gradient(rgba(9, 9, 10, 0.06) 0.8px, transparent 0)',
+              backgroundSize: '16px 16px',
+              backgroundPosition: '0 0, 8px 8px',
+            }}
+          />
+          {/* Large scale grid lines */}
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 opacity-[0.22]" 
+            style={{
+              backgroundImage: 'linear-gradient(rgba(255, 61, 0, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 61, 0, 0.06) 1px, transparent 1px)',
+              backgroundSize: '80px 80px',
+            }}
+          />
+        </>
+      )}
 
       {/* Global Tactical grid and noise overlays */}
-      <div className="fixed inset-0 pointer-events-none z-1 bg-repeat hud-grid opacity-[0.45]" />
+      {activeTab !== 'events' && (
+        <div className="fixed inset-0 pointer-events-none z-1 bg-repeat hud-grid opacity-[0.45]" />
+      )}
       <div className="fixed inset-0 pointer-events-none z-1 tactical-bg opacity-[0.07]" />
 
       {/* Navigation Mainframe */}
