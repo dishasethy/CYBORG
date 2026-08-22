@@ -49,11 +49,11 @@ export default function App() {
           <div className="fixed inset-0 pointer-events-none z-0 bg-[#fffae5]" />
           {/* Dense tactical dots matrix (grain/pores) */}
           <div 
-            className="fixed inset-0 pointer-events-none z-0 opacity-[0.4]" 
+            className="fixed inset-0 pointer-events-none z-0 opacity-[0.7]" 
             style={{
-              backgroundImage: 'radial-gradient(rgba(255, 61, 0, 0.15) 1.2px, transparent 0), radial-gradient(rgba(9, 9, 10, 0.06) 0.8px, transparent 0)',
-              backgroundSize: '16px 16px',
-              backgroundPosition: '0 0, 8px 8px',
+              backgroundImage: 'radial-gradient(rgba(255, 61, 0, 0.22) 0.6px, transparent 0), radial-gradient(rgba(9, 9, 10, 0.1) 0.5px, transparent 0)',
+              backgroundSize: '8px 8px',
+              backgroundPosition: '0 0, 4px 4px',
             }}
           />
           {/* Large scale grid lines */}
